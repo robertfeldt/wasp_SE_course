@@ -19,3 +19,14 @@ This repo contains course materials, resources/links, and student assignments fo
 
 - [TabNine](https://www.tabnine.com/) - code autocomplete for many languages (including Python, Java, Javascript, and more)
   - [Code Autocomplete](https://marketplace.visualstudio.com/items?itemName=svipas.code-autocomplete) is a VS code extension that access TabNine for code autocomplete
+
+### Data Validation
+
+- [Google Data Linter](https://github.com/brain-research/data-linter)
+- [Amazon Dequu](https://aws.amazon.com/blogs/big-data/test-data-quality-at-scale-with-deequ/)
+- [CSV Validator](https://github.com/jbroutier/csv-validator)
+
+### Design By Contract
+
+- [Pre/Post-Conditions in Python Decorator Library](https://wiki.python.org/moin/PythonDecoratorLibrary#Pre-.2FPost-Conditions)
+- [StackOverflow thread on ways to do DBC in Python](https://stackoverflow.com/questions/8563464/using-design-by-contract-in-python)
