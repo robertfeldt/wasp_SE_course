@@ -41,6 +41,7 @@ This repo contains course materials, resources/links, and student assignments fo
 
 ### Unit Testing
 
+- [Effective Python Testing With Pytest](https://realpython.com/pytest-python-testing/)
 - [Unit Testing Your Code with the unittest Module](https://www.youtube.com/watch?v=6tNS--WetLI ) by Corey Schafer
 
 ### Property-based testing (PBT)
