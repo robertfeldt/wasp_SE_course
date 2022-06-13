@@ -31,12 +31,17 @@ This repo contains course materials, resources/links, and student assignments fo
 
 - [Google Data Linter](https://github.com/brain-research/data-linter)
 - [Amazon Dequu](https://aws.amazon.com/blogs/big-data/test-data-quality-at-scale-with-deequ/)
+- [Python csvvalidator](https://pypi.org/project/csvvalidator)
 - [CSV Validator](https://github.com/jbroutier/csv-validator)
 
 ### Design By Contract
 
 - [Pre/Post-Conditions in Python Decorator Library](https://wiki.python.org/moin/PythonDecoratorLibrary#Pre-.2FPost-Conditions)
 - [StackOverflow thread on ways to do DBC in Python](https://stackoverflow.com/questions/8563464/using-design-by-contract-in-python)
+
+### Unit Testing
+
+- [Unit Testing Your Code with the unittest Module](https://www.youtube.com/watch?v=6tNS--WetLI ) by Corey Schafer
 
 ### Coding standards
 
@@ -54,6 +59,7 @@ This repo contains course materials, resources/links, and student assignments fo
 
 - [mllint](https://bvobart.github.io/mllint/) - Linter for Machine Learning projects
 - [pynblint](https://github.com/collab-uniba/pynblint) - linter for Python Notebooks, this is the one you will try in assignment 1 in the course
+- [MLSmellHound](https://arxiv.org/abs/2205.03790) - paper describing adaptation of pylint for ML projects
 
 ### Testing of DNNs
 
