@@ -46,6 +46,7 @@ This repo contains course materials, resources/links, and student assignments fo
 ### Property-based testing (PBT)
 
 - [Hypothesis](https://hypothesis.works/) PBT in Python
+- [Property based testing — A practical approach in Python with Hypothesis and Pandas](https://medium.com/clarityai-engineering/property-based-testing-a-practical-approach-in-python-with-hypothesis-and-pandas-6082d737c3ee)
 
 ### Coding standards and Code Reviews
 
