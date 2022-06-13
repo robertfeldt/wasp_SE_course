@@ -38,6 +38,10 @@ This repo contains course materials, resources/links, and student assignments fo
 - [Pre/Post-Conditions in Python Decorator Library](https://wiki.python.org/moin/PythonDecoratorLibrary#Pre-.2FPost-Conditions)
 - [StackOverflow thread on ways to do DBC in Python](https://stackoverflow.com/questions/8563464/using-design-by-contract-in-python)
 
+### Coding standards
+
+- [Style Guide for Python Code](https://peps.python.org/pep-0008/)
+
 ### QA/Static analsis
 
 - [pylint](https://pypi.org/project/pylint/) - static code analysis for Python
