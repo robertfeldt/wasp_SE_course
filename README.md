@@ -43,6 +43,7 @@ This repo contains course materials, resources/links, and student assignments fo
 - [pylint](https://pypi.org/project/pylint/) - static code analysis for Python
 - [Using pylint to write clean Python code](https://towardsdatascience.com/using-pylint-to-write-clean-python-code-660eff40ed8)
 - [pylama](https://klen.github.io/pylama/) code audit tool for Python
+- [lintR](https://github.com/r-lib/li) - static code analysis for R
 - [StaticLint.jl](https://github.com/julia-vscode/StaticLint.jl) - static code analysis for Julia
 
 #### Static analysis for ML
