@@ -27,6 +27,11 @@ This repo contains course materials, resources/links, and student assignments fo
 - [TabNine](https://www.tabnine.com/) - code autocomplete for many languages (including Python, Java, Javascript, and more)
   - [Code Autocomplete](https://marketplace.visualstudio.com/items?itemName=svipas.code-autocomplete) is a VS code extension that access TabNine for code autocomplete
 
+### ML-QA Toolkit
+
+- [QA-Mapping-for-ML](https://github.com/alexandersimolaIT/QA-Mapping-for-ML) - results of a recent Master thesis at Chalmers
+- [ML Testing Paper Mapping Tool](https://lists.live.com/:l:/g/personal/7caca96344176fc6/FH7iTutBDSFOqKiNJbDKkPsBQ3SePdQ-KFtO2iOIE9Aj0w?e=LMl7K4) - online filtering tool for the ML testing papers
+
 ### Data Validation
 
 - [Google Data Linter](https://github.com/brain-research/data-linter)
