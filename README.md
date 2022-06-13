@@ -43,6 +43,10 @@ This repo contains course materials, resources/links, and student assignments fo
 
 - [Unit Testing Your Code with the unittest Module](https://www.youtube.com/watch?v=6tNS--WetLI ) by Corey Schafer
 
+### Property-based testing (PBT)
+
+- [Hypothesis](https://hypothesis.works/) PBT in Python
+
 ### Coding standards and Code Reviews
 
 - [Style Guide for Python Code](https://peps.python.org/pep-0008/)
