@@ -54,12 +54,14 @@ This repo contains course materials, resources/links, and student assignments fo
 - [pylama](https://klen.github.io/pylama/) code audit tool for Python
 - [lintR](https://github.com/r-lib/lintr) static code analysis for R
 - [StaticLint.jl](https://github.com/julia-vscode/StaticLint.jl) - static code analysis for Julia
+- [WALA](https://github.com/wala/WALA) static code analysis for Java bytecode and related languages
 
 #### Static analysis for ML
 
 - [mllint](https://bvobart.github.io/mllint/) - Linter for Machine Learning projects
 - [pynblint](https://github.com/collab-uniba/pynblint) - linter for Python Notebooks, this is the one you will try in assignment 1 in the course
 - [MLSmellHound](https://arxiv.org/abs/2205.03790) - paper describing adaptation of pylint for ML projects
+- [Ariadne / WALA](https://wala.github.io/ariadne/) extension to WALA (above) for Python and Tensorflow
 
 ### Testing of DNNs
 
