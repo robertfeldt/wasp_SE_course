@@ -30,3 +30,7 @@ This repo contains course materials, resources/links, and student assignments fo
 
 - [Pre/Post-Conditions in Python Decorator Library](https://wiki.python.org/moin/PythonDecoratorLibrary#Pre-.2FPost-Conditions)
 - [StackOverflow thread on ways to do DBC in Python](https://stackoverflow.com/questions/8563464/using-design-by-contract-in-python)
+
+### Testing of DNNs
+
+- [Tonella Keynote at ICST 2022: "Misconceptions in Deep Learning Testing"](https://youtu.be/xoEgcbFrIoc)
