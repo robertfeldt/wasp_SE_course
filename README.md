@@ -43,11 +43,12 @@ This repo contains course materials, resources/links, and student assignments fo
 
 - [Unit Testing Your Code with the unittest Module](https://www.youtube.com/watch?v=6tNS--WetLI ) by Corey Schafer
 
-### Coding standards
+### Coding standards and Code Reviews
 
 - [Style Guide for Python Code](https://peps.python.org/pep-0008/)
+- [How To Review Someone Else’s Code: Tips and Best Practices](https://www.codecademy.com/resources/blog/code-review-best-practices/)
 
-### QA/Static analsis
+### QA/Static analysis
 
 - [pylint](https://pypi.org/project/pylint/) - static code analysis for Python
 - [Using pylint to write clean Python code](https://towardsdatascience.com/using-pylint-to-write-clean-python-code-660eff40ed8)
