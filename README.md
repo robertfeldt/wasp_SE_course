@@ -51,6 +51,7 @@ This repo contains course materials, resources/links, and student assignments fo
 ### Coding standards and Code Reviews
 
 - [Style Guide for Python Code](https://peps.python.org/pep-0008/)
+- [Coding Standards and Best Practices for Python Code Quality](https://www.zenesys.com/blog/python-coding-standards-best-practices-for-python-code-quality)
 - [How To Review Someone Else’s Code: Tips and Best Practices](https://www.codecademy.com/resources/blog/code-review-best-practices/)
 
 ### QA/Static analysis
