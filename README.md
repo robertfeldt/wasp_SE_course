@@ -5,11 +5,18 @@ This repo contains course materials, resources/links, and student assignments fo
 ## Papers on SE for AI/ML
 - [Software Engineering for AI/ML -- An Annotated Bibliography](https://github.com/ckaestne/seaibib)
 
-## Tools
+## Tools (with background reading)
 
 ### Cheat Sheets
 - [Git Cheat Sheet](https://wac-cdn.atlassian.com/dam/jcr:e7e22f25-bba2-4ef1-a197-53f46b6df4a5/SWTM-2088_Atlassian-Git-Cheatsheet.pdf?cdnVersion=387)
 - [Docker - Ultimate Cheat Sheet](https://dockerlabs.collabnix.com/docker/cheatsheet/)
+
+### Version control
+
+- [Understanding Version-Control Systems](http://www.catb.org/esr/writings/version-control/version-control.html) by Eric Raymond
+- [Atomic Commits](https://sparkbox.com/foundry/atomic_commits_with_git) by Nathan Rambeck
+- [Semantic Versioning specification](https://semver.org/)
+- [Introduction to Semantic Versioning](https://www.geeksforgeeks.org/introduction-semantic-versioning/)
 
 ### IDEs
 
@@ -30,6 +37,18 @@ This repo contains course materials, resources/links, and student assignments fo
 
 - [Pre/Post-Conditions in Python Decorator Library](https://wiki.python.org/moin/PythonDecoratorLibrary#Pre-.2FPost-Conditions)
 - [StackOverflow thread on ways to do DBC in Python](https://stackoverflow.com/questions/8563464/using-design-by-contract-in-python)
+
+### QA/Static analsis
+
+- [pylint](https://pypi.org/project/pylint/) - static code analysis for Python
+- [Using pylint to write clean Python code](https://towardsdatascience.com/using-pylint-to-write-clean-python-code-660eff40ed8)
+- [pylama](https://klen.github.io/pylama/) code audit tool for Python
+- [StaticLint.jl](https://github.com/julia-vscode/StaticLint.jl) - static code analysis for Julia
+
+#### Static analysis for ML
+
+- [mllint](https://bvobart.github.io/mllint/) - Linter for Machine Learning projects
+- [pynblint](https://github.com/collab-uniba/pynblint) - linter for Python Notebooks, this is the one you will try in assignment 1 in the course
 
 ### Testing of DNNs
 
