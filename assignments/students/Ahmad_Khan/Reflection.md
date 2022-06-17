@@ -9,4 +9,4 @@ _Yes, I think it can be useful in my research because I have plan to publish my 
 _At the moment, pynblint only analyses the style of coding (more towards the format of code) but it does not say much about coding itself. For instance, It does not rectify the code itself (like duplication of code, dead code etc.). If it adds these features in future then it can become more useful._
 
 ## 4.	What do you see as the limits for static analysis tools in ML? For code, models, and for data?
-_These does not execute the code and therefore it does not know about the code, data, or models. That is what I think is the limitation of static analysis._ 
+_They do not execute the code and therefore it does not know about the code, data, or models. That is what I think is the limitation of static analysis._ 
