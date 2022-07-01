@@ -1,0 +1,30 @@
+% !TeX spellcheck = en_US
+\documentclass[11pt]{article}
+
+\title{WASP Software Engineering - Assignment 1}
+\date{\today}
+\author{Maarten Jensen - Ume{\aa} University}
+
+\begin{document} % 0.5 to 1.5 pages
+\maketitle
+
+I did a bachelor in Computer Engineering where we used for example a code style guide\footnote{https://www.stroustrup.com/JSF-AV-rules.pdf}, but also making various UML diagrams and making Unit tests for assuring code quality. However I never used a static analysis tool before, maybe because back then (7 years ago) it was not so popular. Or because in general software engineering (not machine learning algorithms) it is maybe more popular to use other tools to assure code quality.
+
+This was my first using a static analysis tool. However the pynblint tool was easy to install and easy to use as it just entails running a single command. We applied it to two of my notebook projects which were both related to machine learning as they are from a WASP machine learning course. The first project didn't gave any remarks. The second project actually did give some remarks. I learned that pynblint can actually give remarks about the structure and can help making the notebook better and therefore less prone to errors. Me and Luigi talked about how some remarks were probably false positives and that it depends a lot on the project whether the remark of pynblint should actually be fixed. And also pynblint seems to be most relevant for a team working and sharing notebooks (to assure some quality).
+
+%For example it indicated the notebook was too long (51 out of 50) but me and Luigi agreed is was a false positive since it was so close to the parameter and it did not make sense to split up this particular notebook into two notebook as everything was related to each other. Pynblint also commented about imports being spread throughout the notebook. While most imports were at the beginning there were some imports done in later cells, but this made sense since that cell was the only place the import was being used. There was a problem with one of the remarks where since we use a colab notebook it didn't register that cells have been executed. The last comment was about some cells being too long, we discussed that cells can be a bit longer as long as they are not filling more than the screen (although one cell did which should have been split up into different functions).
+
+Personally the pynblint tool will not be useful for my PhD project since I do not work with notebooks. In my project I make simulations of human behavior which especially with more complex simulations (which I'm focusing on) does not work that well in notebooks since there is much complexity in the code and an IDE like pycharm is much more suitable. Although perhaps for demonstrations of a simulation a python notebook could be used. As then it would be easy to adjust the parameters of the model through the notebook and plot interesting graphs, while the simulation model itself is imported into the notebook.
+
+I thought pynblint was already very intuitive and easy to use. One think I thought about was integrating pynblint into jupyter notebooks to make the overhead even smaller. As I think the overhead of using something like this may hinder people (especially researchers) from using the tool regularly.
+
+I did not see the use of pynblint specifically for machine learning. Since pynblint did not give specific remarks on the content of the code rather than the style of the code. While it seems to be focused on machine learning prototypes \footnote{https://arxiv.org/abs/2205.11934} I would argue it can be applied to python notebooks in general. Pynblint seems to not dive into the code and provides feedback on the notebook structure rather than the 'machine learning' code. It could thus be improved by trying to understand the code, libraries used or data used however I think developing this provides a whole new challenge.
+
+%What did you learn, in your individual session, about static analysis for ML and the pynblint tool?
+%Will pynblint be useful to you in your WASP PhD project? Why or why not?
+%Ideas for how the tool could be improved?
+%What do you see as the limits for static analysis tools in ML? For code, models, and for data?
+%- Problem is that it does not give insight into
+
+
+\end{document}
