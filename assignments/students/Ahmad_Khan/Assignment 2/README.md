@@ -35,6 +35,7 @@ My project is being developed for H&M, therefore all rules and regulations exist
 ### Data management
 
 **Sources**
+
 I am using data from two sources:
 1.	Online benchmark datasets for the estimation of ITE (individual treatment effect) which includes IHDP, Twins, Jobs and many other publicly available datasets. These datasets are owned by different governments and have been collected on various times as result of multiple programs.
 2.	Secondly, I would use real-world datasets collected by H&M group over the period as result of transactions by its customers around the world.  
