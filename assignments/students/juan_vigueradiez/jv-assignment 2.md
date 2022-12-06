@@ -27,10 +27,10 @@ Additionally, the field of drug discovery requires deep understanding of the und
 
 
  
-[1] Gisbert Schneider and Uli Fechner. Computer-based de novo design of drug-like molecules. Nat Rev Drug Discov, 4:649 – 663, 2005.
-[2] Sara Romeo Atanace and Juan Viguera Diez. Towards molecular design with desired property profiles and 3D conformer generation using Deep Generative Models. Chalmers Open Digital Repository. https://hdl.handle.net/20.500.12380/302827 .
-[3] Thomas Blaschke, Josep Arús-Pous, Hongming Chen, Christian Margreitter, Christian Tyrchan, Ola Engkvist, Kostas Papadopoulos, and Atanas Patronov. Journal of Chemical Information and Modeling. 2020 60 (12), 5918-5922. DOI: 10.1021/acs.jcim.0c00915.
-[4] Benjamin Kurt Miller, Mario Geiger, Tess E. Smidt, Frank Noé. Relevance of Rotationally Equivariant Convolutions for Predicting Molecular Properties. https://arxiv.org/abs/2008.08461v4 .
-[5] Aliaksandr Siarohin, Enver Sangineto and Stephane Lathuiliere, Nicu Sebe. Deformable GANs for Pose-based Human Image Generation. https://arxiv.org/abs/1801.00055 .
-[6] Jean-Pierre Briot, Gaëtan Hadjeres and François Pachet. Deep Learning Techniques for Music Generation - A Survey. http://arxiv.org/abs/1709.01620 .
-[7] Boltzmann generators: Sampling equilibrium states of many-body systems with deep learning. Frank Noé, Simon Olsson, Jonas Köhlerand and Hao Wu. Science, 365 (6457). DOI: 10.1126/science.aaw1147.
+[1] Gisbert Schneider and Uli Fechner. Computer-based de novo design of drug-like molecules. Nat Rev Drug Discov, 4:649 – 663, 2005. \
+[2] Sara Romeo Atanace and Juan Viguera Diez. Towards molecular design with desired property profiles and 3D conformer generation using Deep Generative Models. Chalmers Open Digital Repository. https://hdl.handle.net/20.500.12380/302827 . \
+[3] Thomas Blaschke, Josep Arús-Pous, Hongming Chen, Christian Margreitter, Christian Tyrchan, Ola Engkvist, Kostas Papadopoulos, and Atanas Patronov. Journal of Chemical Information and Modeling. 2020 60 (12), 5918-5922. DOI: 10.1021/acs.jcim.0c00915. \
+[4] Benjamin Kurt Miller, Mario Geiger, Tess E. Smidt, Frank Noé. Relevance of Rotationally Equivariant Convolutions for Predicting Molecular Properties. https://arxiv.org/abs/2008.08461v4 . \
+[5] Aliaksandr Siarohin, Enver Sangineto and Stephane Lathuiliere, Nicu Sebe. Deformable GANs for Pose-based Human Image Generation. https://arxiv.org/abs/1801.00055 . \
+[6] Jean-Pierre Briot, Gaëtan Hadjeres and François Pachet. Deep Learning Techniques for Music Generation - A Survey. http://arxiv.org/abs/1709.01620 . \
+[7] Boltzmann generators: Sampling equilibrium states of many-body systems with deep learning. Frank Noé, Simon Olsson, Jonas Köhlerand and Hao Wu. Science, 365 (6457). DOI: 10.1126/science.aaw1147. \
