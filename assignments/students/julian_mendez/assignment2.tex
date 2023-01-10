@@ -1,0 +1,93 @@
+\documentclass[11pt]{article}
+
+
+\begin{document}
+
+    \title{Software Engineering and Cloud Computing \\
+    Essay
+    }
+    \author{Julian Alfredo Mendez \\
+    Ume{\aa} University}
+
+    \date{September 2022}
+
+    \maketitle
+
+
+    \section{Current Research}
+
+    This essay starts by explaining my current research, then explains my view on three relevant topics of Software Engineering, and ends with a discussion about future trends and directions of Software Engineering.
+
+    My current research is centered on techniques and tools to formalize ethical requirements for Artificial Intelligence (AI) systems.
+    My main focus is bridging the gap between what a human intends to communicate and what a computer interprets from that.
+    My main interest is on ethical requirements, which could be sometimes either too vague to express in a formal language, or too technical to be grasped by most humans.
+
+    The first steps in my research have been to develop a language that preserves most of the expressive power of traditional computer languages, but that keeps a very clean way to express concepts.
+    On top of this language, I am developing a toolbox to connect components to express ethical concepts.
+
+    The language addresses clarity by limiting how descriptions can be built to favor readability, and it can be integrated with a proof checker.
+    The language does not pursue defining what is ethical and what is not, neither does it try to formalize all ethical requirements.
+    Its main purpose is to be useful to formalize some relevant ethical issues, and to bring extra reliability in parts that can be formally proved.
+
+
+    \section{Relevant Topics}
+
+    In the following, I discuss three topics which I consider relevant to my research.
+
+    \subsection{Automated Software Testing}
+
+    Automated software testing refers to the use of automation to execute tests on a piece of software.
+    Testing has always been relevant for software development, but its value became especially visible after the appearance of Test Driven Development in 2003, based on the principles of Extreme Programming.
+    This happened not much later than when the Year 2000 Problem (Y2K) affected the maintenance costs of expensive computer systems, like those for banking, aeronautics, and machinery control.
+
+    Nowadays, the need of having maintainable and flexible software makes testing essential.
+    Good tests and high test coverage allow refactoring, which in turn leads to better designs.
+    This topic is indirectly linked to my research, because testing usually contributes to improve desired ethical requirements in a system, like transparency and robustness.
+
+    \subsection{Architecture and Design}
+
+    Software architecture and design refer to a general view of fundamental parts of software systems.
+    Architecture and design are critical in software development, since a wrong architecture or design can make a system extremely expensive or simply unfeasible.
+
+    Modern development tools are very helpful for refactoring, which combined with automated tests, can help to adapt and to improve a design, making a system more durable and reliable.
+    This topic is related to my research, because the language I develop has specific constructs to simplify modeling of a class-based design, with the purpose of having designs that many stakeholders can understand.
+
+    \subsection{Security and Privacy}
+
+    Data security and data privacy are two different concepts, but they share common ideas.
+    The former focuses on protecting data from unauthorized access, either for modification or just retrieval.
+    The latter focuses on protecting private information of individuals, in such a way that they can choose what, when, and with whom sharing that information.
+
+    I consider that both concepts are related to my research.
+    In particular, privacy is object of high interest at a societal level, especially considering that some large providers of online services can monetize private information of their users, and in some cases, use it to influence their opinion.
+    Formalizing some cases to model how a system can respect privacy is one of the planned use cases of my research.
+
+
+    \section{Future Trends and Directions of Software Engineering}
+
+    The future is clearly uncertain, but there are already some trends that could be highlighted.
+    In this section, I express my perception of the relation between my research topic and the evolution of Software Engineering.
+
+    My impression is that future Software Engineering will help to produce more transparent and robust software.
+    Aside from transparency and robustness, future software systems will include other ethical requirements to ensure societal values, especially in aspects concerning fairness and privacy.
+
+    We can observe that over the last years hardware producers have brought computers with more microprocessors instead of faster ones.
+    This fosters programming that includes techniques for concurrent execution, for example by using immutable structures.
+
+    Being a distinctive trait of functional programming, immutability helps to preserve a structure across executions without changing it.
+    The language I present in my research is a simplified statically typed purely functional language, which induces to create small functions that use immutable structures.
+
+    Immutability helps to prevent unexpected side effects and static typing to prevent common type mistakes.
+    Both features lead to a more maintainable system, with cleaner source code and a better design.
+
+    The language I develop has the potential of proving the correctness of some pieces of code by using a proof checker.
+    Even if doing this can require significant effort, this effort can be justified for critical pieces of code.
+    I believe that future software will use more libraries with pieces of proven code, as current software uses libraries with very high test coverage.
+
+    Regarding the relation between Machine Learning (ML) and Software Engineering, I consider that ML has to comply with ethical requirements.
+    An image recognition system that distinguishes between dogs and wolves by using the background and an autonomous vehicle that sometimes interprets a Stop sign like a Speed Limit 45 mph (72 km/h) sign are examples of unreliable systems that cannot be in production.
+
+    ML systems have currently some limitations and they should be properly contained, if society needs to trust them.
+    Overall, I consider that my research is aligned with the aforementioned trends, and helps bridging the ethical gap between humans and machines.
+
+\end{document}
