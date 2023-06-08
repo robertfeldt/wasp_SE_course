@@ -1,0 +1,74 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{indentfirst}
+\usepackage{booktabs}
+\usepackage{geometry}
+\usepackage{cleveref}
+\usepackage{svg}
+\geometry{
+    left=24mm,
+    top=20mm
+}
+\graphicspath{ {images/} }
+\title{Reflection Report}
+\author{Huaifeng Zhang}
+\date{}
+
+\begin{document}
+\maketitle
+\bibliographystyle{ieeetr} 
+
+\begin{center}
+    \textit{1. What did you learn, in your individual session, about static analysis for ML and the pynblint tool?}    
+\end{center}
+
+During my individual session with Luigi, we used \textsf{pynblint} to analyze some notebooks I have. 
+Static analysis is helpful to improve the maintainability and understandability of code. 
+Maintainability and understandability are vital for large projects which need to be developed collaboratively.
+\textsf{pynblint} detected some issues existing in my notebooks by static analysis. The detected results 
+fall into 2 categories: repository-level results and notebook-level results. The detected repository-level results include
+\textsf{repository-not-versioned} and \textsf{dependencies-unmanaged}; and the detected notebook-level results include
+\textsf{too-few-MD-cells}, \textsf{cell-too-long} and so on.
+
+\begin{center}
+    \textit{2. Will pynblint be useful to you in your WASP PhD project? Why or why not?}    
+\end{center}
+\textsf{pynblint} would be useful to my WASP PhD project. Because in my project, I need
+to use notebooks to analyze relevant data. \textsf{pynblint} could detect issues and helps me 
+improve maintainability and understandability of my notebook.
+
+
+\begin{center}
+    \textit{3. Ideas for how the tool could be improved?}    
+\end{center}
+It would be great if \textsf{pynblint} could report code coverages of notebooks.
+
+\begin{center}
+    \textit{4. What do you see as the limits for static analysis tools in ML? For code, models, and for data?}    
+\end{center}
+Most codes in ML projects are related to data manipulation tasks. 
+Data manipulation tasks usually can be performed parallelly.
+But limited by the programming skills of developers, 
+the code implementations to do these tasks are usually in a sequential way, 
+which is less efficient. 
+As far as I know, there are no static analysis tools detecting these codes. 
+
+ML models, especially deep learning models, consist of many matrix operations.
+This is quite different from traditional programs, which consist of many if-else statements.
+Because of this underlying difference, 
+static analysis for traditional programs might need to do some modification.
+
+Data is the foundation of ML. 
+Metadata, which provides information of this data is very important for developers.
+But usually, codes of ML projects include little information about metadata. 
+Developers have to check metadata in separate files. 
+Because static analysis aims to analyze code, it can obtain little information of data.
+
+
+
+
+
+
+
+
+
+\end{document}
