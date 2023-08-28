@@ -1,0 +1,142 @@
+\documentclass[a4paper,11pt]{article}
+
+% Packages
+\usepackage{geometry}
+\usepackage{times} % Times New Roman
+%\usepackage{natbib}
+\usepackage{cite}
+\usepackage{graphicx}
+
+% Geometry
+\geometry{a4paper, margin=1in}
+
+\begin{document}
+
+\title{Software Engineering Methodologies for Trustworthy Artificial Intelligence}
+\author{ZAHOOR UL ISLAM, Umeå University, Sweden \\Assignment for Software Engineering Course Module 2}
+\date{August 2023}
+\maketitle
+
+\section{Introduction}
+
+The rapid development of Artificial Intelligence (AI) technology has led to significant economic and social benefits for many stakeholders, including companies, industries, and government organisations. New AI applications are being developed frequently across various domains, such as healthcare, automotive, finance, security, and entertainment. The increasing complexity and potential impact of AI applications requires a structured approach to requirements and system engineering to ensure that design and development activities are carried out in a responsible and trustworthy manner~\cite{dignum2019responsible}. Ensuring robust, reliable and trustworthy system engineering is the foundation of most ethical guidelines and governance strategies published in the last few years and endorsed by governments and standard-making organisations worldwide~\cite{design2019vision,chatila2018ethically}.
+
+Trustworthy AI engineering involves designing and developing applications considering society's social, ethical, legal, and economic aspects, while involving several stakeholders throughout the AI development lifecycle. Practical approaches to operationalizing, integrating and incorporating ethical guidelines into the lifecycle of AI system engineering are essential. Different areas have proposed several solutions, with the SE area proposing a promising solution. SE provides a well-established set of development lifecycle activities across numerous domains with successful outcomes~\cite{pressman2005software, sedelmaier2014software, abran2004software, mcmanus2004stakeholder}. The AI lifecycle must consider ethical guidelines while following standard SE principles, such as \textit{analysis, design, implementation, testing, deployment, and maintenance.} Additionally, the process of developing trustworthy AI must consider the maturity of various process areas. These areas include \textit{configuration management, risk management, project planning, project monitoring and control, integrated project management, quantitative project management, and process and product quality assurance}. By focusing on SE areas, researchers can create AI systems that provide benefits and align with ethical values, promoting public trust and responsible innovation. 
+
+The European Commission's ethical framework outlines the dimensions that ensure the responsible development of AI systems, considering their impact on individuals, society, and the environment~\cite{kilian2020white, hleg2020assessment}. These dimensions include Human Agency and Oversight, which ensure that individuals retain control and agency over AI systems. Technical Robustness and Safety ensure that AI systems are secure, reliable, and free from unintended harm. Privacy and Data Governance protects personal data and privacy through appropriate data collection, use, and management practices. Transparency provides clear and accessible information about AI systems' design, operation, and decision-making processes. Diversity, Non-discrimination, and Fairness promote diversity and ensure that AI systems do not discriminate against individuals or groups. Social and Environmental Well-being considers AI systems' broader social and environmental impacts. Accountability holds AI systems and their developers accountable for the outcomes and decisions these systems generate.  I am working on creating a framework that incorporates ethical values into the entire development process of AI systems~\cite{islam2021software}. 
+
+\section{Two concepts/ideas from Robert’s lecture:}
+
+\subsection{Software Development lifecycle}
+Software development Life Cycle (SDLC) aims to provide an effective process for systematically developing software systems. It is crucial to develop AI software by breaking the task into smaller, more manageable activities, and then identifying which activities are relevant at each stage. This will help practitioners identify trustworthy requirements and systematically implement them.
+
+The SDLC and Trustworthy Machine Learning (ML) engineering are different but interconnected concepts. The SDLC provides a structured method for developing software applications and systems, while Trustworthy ML focuses on developing reliable, explainable, fair, privacy-preserving, and robust ML models~\cite{martinez2021developing}.
+
+\subsubsection{Here's how they might connect:}
+\begin{itemize}
+\item Requirements Gathering and Analysis: At this stage of the SDLC, the objective is to understand the user's needs and system requirements. For a ML system, this means understanding what predictions the system should make, what data will be available, and what level of accuracy is expected. Trustworthy ML considerations include the ethical and legal use of data, fairness of outcomes, and the privacy of individuals whose data is used.
+
+\item Design: In this stage, system specifications are prepared, which help define the system architecture. In a ML context, this could involve selecting appropriate ML algorithms, planning how to preprocess the data, and deciding how to validate the models. 
+
+\item Implementation: Here, the system is developed or coded. In a ML context, this could involve training and testing ML models. Trustworthiness considerations include ensuring that the model training process is transparent and reproducible.
+
+\item Testing: The software is tested to meet the specified requirements in this phase. In a ML context, this would involve evaluating the model's performance on a held-out test set. Trustworthiness considerations include checking that the model performs well for all population subgroups, not just on average, and has no unintended bias.
+
+\item Deployment: The software is released for users. In a ML context, the model is deployed to make predictions in a real-world setting. Trustworthiness considerations include monitoring the model's performance over time, as the performance can degrade if the distribution of the data changes.
+
+\item Maintenance: The software is updated as needed to ensure it continues to function correctly. In a ML context, models must be retrained if their performance degrades. Trustworthiness considerations include ensuring that updates to the model preserve the properties of fairness, privacy, robustness, and explainability.
+
+\end{itemize}
+
+\subsection{Software Designing}
+Software designing also plays a crucial role in SDLC. Software designing can be related to abstraction, patterns, separation of data, modulating, functional independence, and refactoring. Several methodologies and processes are designed, developed and proposed for developing AI systems based on different approaches, mainly extending existing object-oriented, behaviour-based designs and knowledge engineering methodologies. AI design technologies have been significantly redesigned, changed and updated over the years.  AI system engineering design decisions must fit within Socio-Technical Systems (STS) frameworks. The STS approach to system development leads to systems that are more acceptable to end users and deliver better value to stakeholders~\cite{baxter2011socio}. One of the reasons for this approach is that traditional methods might not consider the complete requirements for the complex structure of AI systems, where the environment is multidimensional and heterogeneous~\cite{aldewereld2015design}. Assessing the current design challenges and methods of AI systems is key to developing robust design methods for trustworthy AI systems~\cite{umbrello2021mapping}. 
+
+\subsection{Stakeholders}
+
+Another critical criterion in AI development methods is how well they support real-world users, user participation, and user involvement in the development life cycle~\cite{li2023trustworthy, gonzalez2022trustworthy}. Methods to engineer trustworthy AI systems should influence people, groups and societies when making decisions. To clarify how AI development methods support the participation process, in which individuals, groups and organisations are consulted or actively participating in a project or activity program.  Responsibility for compliance with ethical guidelines and the guarantee of accountable development of AI systems lies not only with system engineers, project and product managers, designers and developers, but also with regulators, auditors, owners and users of AI technology. They all need the tools, methods and processes to participate effectively in development activities. To maintain privacy and security, all relevant parties must adhere to trustworthiness guidelines set by various authorities, such as the European Union and the IEEE. 
+
+\section{Two ideas from ONE of the guest lectures}
+\subsection{AI for Software Engineering}
+
+AI in software engineering is revolutionising the way code is written, tested, and deployed, enhancing efficiency and reducing human error. By leveraging ML algorithms and data analytics, AI tools can automate routine tasks, code reviews, and even predictive maintenance, transforming the SDLC~\cite{barenkamp2020applications, feldt2018ways}.
+
+\begin{itemize}
+\item Requirement Analysis
+Gathering requirements is a critical step in the software development process, including projects that aim to develop trustworthy ML systems. ML can be used to support and automate parts of the requirements-gathering process, such as:
+
+\item Analysing Stakeholder Input: If there is a large volume of stakeholder input, such as user feedback, emails, forum posts, etc., text mining and natural language processing (NLP) techniques can be used to automatically analyse this data and extract common themes. This can help identify requirements related to trustworthiness, such as privacy, fairness, or transparency.
+
+\item Sentiment Analysis: Sentiment analysis, a type of NLP, can be used to gauge stakeholder sentiment about certain aspects of a system. This could help identify areas where trust is lacking and needs to be addressed in the requirements.
+
+\item Survey Analysis: If surveys are used to gather input from stakeholders, ML can be used to analyse the responses. For example, clustering algorithms could be used to identify groups of stakeholders with similar views on trustworthiness issues.
+
+\item Requirement Prioritization: ML techniques can be used to prioritise requirements based on various factors, such as the frequency with which stakeholders mention a requirement, or the predicted impact of the requirement on system trustworthiness.
+
+\item Anomaly Detection: ML algorithms can be used to identify anomalies or outliers in the data gathered during the requirements analysis process. This could include identifying stakeholders whose views on trustworthiness are significantly different from the majority, or identifying requirements that are contradictory or inconsistent.
+\end{itemize}
+Remember, while ML can help automate parts of the requirements gathering process, human involvement is still essential. 
+
+\subsection{Documentation}
+
+Technical documentation is a critical part of any software development project, including those involving ML~\cite{chang2022understanding, konigstorfer2021software}. Proper documentation allows users and other developers to understand what a piece of software does, how it works, and how to use or modify it. Trustworthy ML techniques can be incorporated into technical documentation in several ways to ensure the project is transparent, understandable, and reliable~\cite{piorkowski2020towards}.
+
+\begin{itemize}
+\item Data Documentation: Explain what data was used to train the model. This should include the source of the data, how it was collected, any preprocessing steps, and any known limitations or potential biases in the data. Document the reasoning behind the selection of data features used in model training, and their relevance to the prediction task.
+
+\item Model Architecture and Training: Document the ML algorithms used, including a description of how they work and why they were chosen. Describe how the model was trained, including what metrics were used to evaluate its performance, and any techniques used to prevent overfitting. Also, document the hyper-parameters used in the model and any tuning process.
+
+\item Performance Metrics: Provide comprehensive reporting of the model's performance, including accuracy, precision, recall, F1 score, ROC AUC, etc. Make sure to report these metrics for different subgroups of the data to check for fairness and identify any disparate impacts.
+
+\item Interpretability and Explainability: If explainability techniques have been used (e.g., SHAP, LIME), document how these techniques work and what insights they provide about the model's predictions. If the model is interpretable (e.g., a decision tree), provide documentation explaining how to interpret its structure.
+
+\item Privacy and Security Measures: Document any measures taken to protect the privacy of individuals' data, such as differential privacy or federated learning. Also document any robustness measures taken to protect the model from adversarial attacks.
+
+\item Version Control and Experiment Tracking: Document all versions of the data, code, and model, including what changes were made in each version and why. If an experiment tracking tool was used, provide documentation on how to access and interpret this information.
+
+\item Instructions for Use and Maintenance: Provide clear instructions on how to use the model, including any software dependencies, how to input data, and what the model's outputs mean. Also, provide guidance on when and how the model should be retrained or updated.
+
+\end{itemize}
+Including these elements in your technical documentation will ensure that ML applications are transparent.
+
+\section{Two topics from the given list:}
+
+\subsection{Requirement Engineering for Trustworthy Artificial Intelligence}
+
+Software requirements engineering defines and documents requirements in the design process. It's crucial to software development, as it fulfils user and stakeholder needs. A few key considerations need to be considered when integrating Trustworthy ML into this process~\cite{serban2021practices}.
+\begin{itemize}
+\item Identifying the Requirements: This involves understanding the user's needs and the problem the system is designed to solve. For Trustworthy ML, this should also include specifications about model performance (accuracy, precision, recall, etc.) as well as ethical requirements such as fairness, transparency, privacy, and robustness. For example, if the system uses personally identifiable information, privacy could be a requirement. Or, if the system makes decisions that affect people's lives, such as loan approval, fairness could be a requirement.
+
+\item Requirements Specification: The requirements identified are then documented in a clear, precise, and unambiguous manner. For Trustworthy ML, this could involve defining what fairness or privacy means in the context of the particular system, and specifying how these properties will be measured or validated.
+
+\item Requirements Validation: This involves checking that the requirements are consistent, complete, and resolvable. For Trustworthy ML, this could mean that ethical requirements don't conflict, all relevant ethical concerns have been considered, and the requirements can be met given available data and technology.
+
+\item Requirements Management: This is about handling changes to the requirements as the project progresses. For Trustworthy ML, this could involve updating requirements as the team learns more about the data or task, or as external conditions change, such as regulatory or societal norms around algorithmic fairness or privacy.
+\end{itemize}
+Integrating trustworthy ML principles into the Software Requirements Engineering process will lead to ethically aligned AI systems.
+
+\subsection{Regulation and Compliance}
+
+The European Union (EU) has been proactive in establishing guidelines and regulations for AI systems.  Two of the most relevant regulations to Trustworthy AI are the General Data Protection Regulation (GDPR) and the proposed Artificial Intelligence Act~\cite{gal2020competitive, veale2021demystifying}.
+
+\subsubsection{General Data Protection Regulation (GDPR):}
+This regulation came into force in 2018, and focuses primarily on data privacy and individuals' rights over their data~\cite{sovrano2020modelling}. It has a significant impact on the development and deployment of ML models in several ways:
+\begin{itemize}
+\item Right to explanation: Users have the right to know how decisions affect them. This means ML models must be interpretable or explainable.
+\item Data minimisation and purpose limitation: You should only collect necessary and relevant data for your task, which can impact the type and quantity of data used to train ML models.
+\end{itemize}
+Data subject's rights, including the right to access, rectification, and erasure, can impact ML models, especially when a user invokes the right to be forgotten, requiring their data to be removed from datasets used to train models.
+
+\subsubsection{Artificial Intelligence Act:} Proposed by the European Commission in 2021, this regulation aims to create a legal framework for safe and trustworthy AI (including ML)~\cite{ai2019high}. 
+\begin{itemize}
+\item High-risk AI systems: The Act proposes stricter regulations for high-risk AI systems, including many that use ML. These systems must undergo a conformity assessment before being put on the market.
+\item Transparency obligations: Users should be aware when interacting with an AI system, and have the right to know the logic, significance, and consequences of processing their data by the AI system.
+\item Quality of datasets: The proposal emphasises the need for high-quality datasets free from biases to train high-risk AI systems.
+\end{itemize}
+Both these regulations emphasise the principles of trustworthy AI, such as fairness, explainability, privacy, and robustness. 
+
+%\bibliographystyle{plainnat}
+\bibliographystyle{IEEEtran}
+\bibliography{ref} % ref.bib file
+
+
+\end{document}
