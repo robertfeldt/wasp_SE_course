@@ -1,0 +1,63 @@
+\documentclass[11pt]{article}
+\usepackage{graphicx} % Required for inserting images
+
+\title{Automatic Software Testing to detect model poisoning attacks in Federated Learning}
+
+%\title{Software Engineering Principles for Privacy-Preserving Machine Learning}
+\author{Arthur Nijdam}
+\date{28 August 2023}
+
+\begin{document}
+
+\maketitle
+
+%\section{Introduction}
+
+%Assignment 1, WASP Software Engineering Course Module 2023
+
+%This assignment requires you to write an essay on Software Engineering, how it relates to your research, and how you can apply SE principles and tools in your project / on your sub-topic. Please only use diagrams/illustrations if necessary, and do not count these towards the length of the essay. The essay should be a minimum of 3 A4 pages in length, and a maximum of 5 A4 pages in length, excluding references. The font should be Times New Roman (or equivalent) and 11 point. Be sensible in formatting / layout choices.
+
+%The essay should be structured as follows:
+
+%1. Begin with an introduction/abstract to your research and topic area. This should be a maximum of 400 words.
+
+Most conventional Machine Learning (ML) frameworks require clients to share their data to a central server, such that a single global model can be trained on the aggregated dataset of all clients. This model can then be deployed on all client's devices. This pipeline is not suitable for privacy-sensitive data, since it requires user data to be broadcasted to and stored on a server, making (the traffic to and from) the server vulnerable to adversarial attacks. %to honest-but-curious or malicious adversaries. 
+Federated Learning (FL) \cite{mcmahan2017} is often proposed as a solution to combat privacy attacks by "bringing the code to the data, instead of bringing the data to the code". Here, each client $i$ receives an initial model $w$ from the server, fine-tunes it based on their local data $X_i, y_i$ and sends the resulting weight update $\Delta w_i$ to the server. The server then computes the average of all weight updates and adjusts its global model accordingly: $w \leftarrow w + \frac{1}{N}\sum_{i=0}^{N-1}  \Delta w_i$. Although FL greatly improves the privacy of user's data as compared to centralized learning, it is not an end-all be-all solution against adversaries. In fact, it is even possible to recover the user's original input data based off just the weight update $w_i$ \cite{wei2020framework}. Moreover, one can think of various other attack models, where honest-but-curious or even actively adversarial clients or servers corrupt the training process and gain access to user data. 
+
+Additionally, one could argue that FL complicates the normal Machine Learning pipeline, as it distributes the training process over a set of clients. This does not only influence neural network training, but also affects debugging, model testing and hyperparameter tuning \cite{kairouz2021advances}. %This also has its influence on the quality assurance of Neural Networks that are trained in a federated setting: How do we properly evaluate a network if the data is distributed across multiple client devices? 
+
+My PhD project focuses on Privacy-Preserving Machine Learning, which tackles both: 
+\begin{enumerate}
+    \item How FL itself can be made more secure, through e.g. secure multiparty computation \cite{bonawitz2017practical} and differential privacy \cite{wei2020federated}. % and homomorphic encryption schemes. 
+    \item How secondary issues that arise due to the distributed training process in FL can be addressed, such that FL does not degrade the performance or functionality as compared to centralized learning.  %that impede its widespread us
+\end{enumerate}
+
+In this essay, I address how we can take inspiration from Software Engineering (SE) to improve the security and privacy of FL, specifically the resilience to model poisoning attacks. 
+
+Firstly, it is important to note the differences between \textbf{security and privacy}. Security is a broader concept that entails measures and practices to protect both data and software systems from unauthorized access. Privacy specifically relates to protecting personal information and ensuring that people have control over what happens to their data.
+In FL, privacy often refers to ensuring that the client data samples $x$ are not exposed to any honest-but-curious observer that observes the data streams or the process within the server. Security then corresponds to protecting client's data and software against malicious adversaries. 
+In this essay, we focus on Model poisoning attacks, that are a commonly researched attack for FL. In model poisoning, the attacker changes the parameters of the global model, causing errors in the global model or leaving a backdoor. For example, there can be malicious clients, who change their model parameters to degrade the global model's performance.  
+%In model inference attacks, the adversary has access to the global model and feeds random records to the model until it returns a high confidence. At this point, the record the adversary fed to the model is similar to examples used to train the model. This means that the adversary has successfully recovered inputs, despite only having access to the trained model. 
+
+In SE, \textbf{automated software testing} protocols, where the code is tested based on generated test cases, form an important basis to verify that code performs the computation that it is supposed to compute. Since model poisoning relies on perturbing models that are being sent to the server, \textit{SE testing techniques could help detect model poisoning}. Note that in FL, when the performance of the global model decreases, this can be due to model poisoning or other issues in any of the clients, such that finding the exact client where this problem occurred and the round at which the problem started arising, is difficult. Therefore, automated software testing for FL is non-trivial, as analyzed by e.g. the authors of FedDebug \cite{gill2023feddebug}. 
+
+Since automated software testing relies on the quality of generated test cases, generating appropriate test cases is an active area of research. One way to automatically generate test cases is \textbf{boundary value testing}. Here, the intuition is that correct software has the correct boundaries, such that boundary cases should behave as expected. Exploration of boundary cases can thus reveal undesired behaviour. This idea is used to detect backdoor attacks in AEVA \cite{guo2021aeva}. Here, we have access to a batch of legitimate samples $X_i$ for each class $i$ and create adversarial examples for testing by, for each class $t$, pushing the samples of other samples towards the decision boundary. 
+
+Machine Learning models often suffer from \textbf{the oracle problem}: It is not always clear what the desired output $f(x)$ of an input $x$ to a machine learning model should be. This is especially true for unlabeled datasets, or for datasets with unreliable annotations. Instead, one can check whether the output of two inputs that are similar to each other, are also similar. The difference between outputs can then be quantified in terms of some sort of Euclidean distance metric. This technique is used to detect model poisoning attacks in \cite{zhang2022fldetector}. The difference between a client's update at time $t-1$ and $t$ is bounded by the difference between the global model at $t-1$ and $t$, such that an expectation can be made of the client's update at $t$. Zhang et al \cite{zhang2022fldetector} then compare the predicted model update of each client to the actual model update of said client using the Euclidean distance to detect malicious clients. The computation of the predicted model update requires estimation of a Hessian, which can be subject to inaccuracies. Further reseach could focus on improving the prediction of the client's model update. 
+
+Instead of a malicious client poisoning the global model, we can also think of an attack model where there is another actor that had access to the server and poisoned the model. In this case, it is important to detect \textit{where} the model was poisoned. Most techniques discussed thusfar are black-box testing techniques, which means that we can only detect that a model has been perturbed, not where it was altered. In contrast, in a \textbf{white-box testing} context, we have access to all lines of code corresponding to the model during test time and focus on analyzing on which line of code undesired behaviour occurs. AUDEE \cite{guo2020audee} can detect inconsistencies, crashes and NaN errors in machine learning models and report the neural network layer where the bug occurs. Test scenarios were created using a genetic algorithm, so that the inputs and weights used would trigger bugs more easily. The buggy layer was localized using the intuition that buggy layers will change the output of the layer more than other layers, so the layer with the highest change rate is outputted as the buggy layer. Although I haven't been able to find concrete examples of such white-box testing being used to detect adversarial server operators, I think it could be used for that purpose. Furthermore, one could also think of using such a process in addition to the other methods to detect perturbations to the global model that have gone unnoticed. 
+
+Lastly, I want to highlight the importance of \textbf{data validation} when applying measures to improve the robustness of FL systems against model poisoning attacks. As mentioned in Ditto \cite{li2021ditto}, improving the robustness against poisoning attacks often goes hand in hand with compromising on the fairness of neural networks: Robust methods might filter out updates from rare clients and incorrectly label these clients as adversaries, resulting in unfairness. Ditto is a personalized FL method that identifies heterogeneity in the dataset, which is one of the main causes of the apparent trade-off between robustness and fairness. I think it could be interesting to analyze to which extent the other methods mentioned in this paper introduce degradation when it comes to fairness of the model: How often do they mark statistically heterogeneous clients as malicious adversaries? 
+
+In general, I believe that lessons learned from Software Engineering can help build FL systems that are more resilient against model poisoning attacks. In addition, I think there are quite a lot of open questions within SE for FL that have been undervalued, such as how to properly debug FL systems, evaluate them, and how to detect errors during deployment. This is not only important to create better maintainable FL systems, but also to detect adversarial attacks at any stage of the development. In my opinion, such matters have to be fixed properly before FL can be used more widely, and some of the solutions could extend beyond FL and teach ML engineers in general valuable lessons on ML code maintenance. 
+
+\section*{REFERENCES}
+\bibliographystyle{ieeetr}
+\bibliography{bibliography_file}
+
+\end{document}
+
+
+%For each of the two topics you have selected, first briefly discuss your understanding of them. Then describe areas of opportunity (new research challenges, commercial opportunities, application of Software Engineering ideas, methods and tools in AI/ML) with regard to these topics and your area of interest/research (in your PhD project). This should be approximately 1.5 A4 pages in length. For each topic, search for and find at least one recent (published in the last 4 years) paper to inform your writing and thinking about the topic and its connection to your own research. As much as possible, relate the topics to your own experience and research / project.
+
+%5. Discuss your thoughts regarding the future trends and directions of Software Engineering in relation to your topic, your career (either in academia or in industry), and AI/ML in general. You should at least discuss ML/AI Engineering and how you think it and its importance will change in the coming 5-10 years.
