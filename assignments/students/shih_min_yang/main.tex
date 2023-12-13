@@ -1,0 +1,124 @@
+\documentclass[11pt]{article}
+
+
+% Language setting
+\usepackage[english]{babel}
+
+% Set page size and margins
+\usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\title{WASP Software Engineering Course\\SOFTWARE ENGINEERING ASSIGNMENT}
+\author{\Large Shih-Min Yang\\ \Large Örebro University}
+\date{}
+
+\begin{document}
+\maketitle
+
+% \begin{abstract}
+% Your abstract.
+% \end{abstract}
+
+\section*{Introduction}
+% 1. Begin with an introduction/abstract to your research and topic area. This should be a maximum of 400 words.
+In recent years, the field of robotics has witnessed remarkable advancements, with reinforcement learning (RL) techniques emerging as a transformative approach for enhancing the capabilities of robotic systems. This paradigm shift has opened up exciting possibilities in various domains, including contact-rich manipulation tasks and automated order-picking systems in warehouse logistics. The ability to enable robots to interact with their environments, perceive visual information, and learn efficient behaviors through sparse rewards represents a profound shift in how we design and deploy robotic systems. My research delves into the intersection of these critical areas, focusing on RL for robotic manipulation, particularly in contact-rich manipulation tasks, and its implications in the automation of order-picking processes in warehouse logistics.
+
+Robotic manipulation enables robots to manipulate objects, which has always been a central challenge in robotics. While traditional approaches relied on handcrafted control strategies and heuristics, reinforcement learning has emerged as a promising avenue to endow robots with the ability to learn manipulation skills autonomously. The incorporation of RL algorithms has enabled robots to adapt and generalize their behaviors in response to complex and dynamic environments, making them more capable of performing a wide range of manipulation tasks.
+
+One crucial subset of manipulation tasks involves contact-rich scenarios, where robots must interact with objects and their surroundings in a tactile and forceful manner. These tasks, which include grasping, pushing, and assembly operations, present unique challenges due to the complexity of modeling contact dynamics and the uncertainty associated with tactile sensing. Reinforcement learning offers a powerful framework to address these challenges by allowing robots to learn contact-rich manipulation skills from experience. Moreover, RL can enable robots to transfer these skills across different objects and environments, thus enhancing their versatility.
+
+Efficiently learning manipulation skills from image observations and sparse rewards is another crucial research focus. Leveraging vision sensors to provide robots with visual feedback and utilizing sparse rewards that only provide feedback at specific milestones are essential for real-world applications. Achieving efficient learning.
+
+
+\section*{AI/ML Software Design and Construction}
+% Slides link: https://canvas.kth.se/courses/42328/modules
+
+% 2. Select at least 2 principles/ideas/concepts/techniques from Robert's lectures and discuss how they relate to your research and topic area.
+% As much as possible, relate the topics to your own experience and research / project.
+% Find at least one paper (published in the last 4 years) for each topic
+    % helping your writing and thinking about the topic and its connection to your own research.
+
+
+% 1 briefly discuss your understanding of them
+AI/ML software design is a phase that involves the high-level planning and conceptualization of an AI/ML system. It encompasses tasks such as defining the problem to be solved, selecting the appropriate algorithms and models, designing the system's architecture, and outlining the data flow. AI/ML Software Design lays the foundation for the subsequent development phase. After the software design, software construction is the next phase which design concepts are translated into actionable code and implemented into a functional AI/ML system. It encompasses tasks such as data pre-processing, feature engineering, model development and training, integration with hardware or other systems, and optimization for performance and scalability. AI/ML Software Construction brings the design to life and results in a working ML application.
+
+% 2 describe areas of opportunity with regard to these topics and your research:
+    % new research challenges, 
+    % commercial opportunities, 
+    % application of Software Engineering ideas, 
+The software design phase is fundamental to defining the problem of applying RL in robotic manipulation and order-picking systems~\cite{garcia2020robotics}. During this phase, we would determine which aspects of the robotics tasks can benefit from RL, what types of sensors and data are required, and how the RL algorithms should be integrated into the robotic systems. The design decisions will significantly influence the success of the system, as they shape the subsequent implementation. In the construction phase, directly involves implementing and developing the RL algorithms and models for robotic manipulation and order-picking~\cite{macenski2022robot}. It includes tasks like coding the RL agents, data pre-processing from visual sensors, and fine-tuning hyper-parameters for efficient learning. The robotic solution systems rely heavily on the AI/ML Software construction phase to bring the RL-based solutions to life and make them applicable in real-world scenarios.
+
+Integrating RL into robotic systems presents several research challenges. These include developing efficient RL algorithms that can handle contact-rich manipulation tasks, designing robust sensor interfaces for visual perception, and addressing the inherent uncertainty in tactile sensing. Furthermore, optimizing the RL training process to reduce the time and resources required is a significant challenge. However, the commercial potential of this direction is substantial. AI/ML-powered robotic manipulation and automated order-picking systems can revolutionize industries relying on logistics and warehousing. Improved efficiency, reduced operational costs, and increased adaptability are some of the potential benefits. By bridging the gap between AI/ML Software Design and Construction, we could develop practical AI-driven solutions with broad commercial applicability.
+
+\section*{Sentiment Analysis and AutoML Techniques}
+% 3. Select at least 2 principles/ideas/concepts/techniques from one of the three guest lectures and discuss how they relate to your research and topic area.
+% one is Boundary Value Testing (BVT) and another is Sentiment Analysis (with AutoML)
+% As much as possible, relate the topics to your own experience and research / project.
+% Find at least one paper (published in the last 4 years) for each topic
+   % 3-1 helping your writing and thinking about the topic and its connection to your own research.
+
+% 1 Briefly discuss your understanding of them
+Sentiment analysis examines human sentiment or emotions conveyed in text and typically categorizes it as positive, negative, or neutral. For instance, it aims to understand customer sentiments based on sentences. Methods in this field encompass various approaches, including supervised learning, unsupervised learning, and text pre-processing. AutoML is one of the techniques used to address sentiment analysis challenges. This technology automates the entire process of applying machine learning to a given task, encompassing data preprocessing, feature selection, model selection, and hyperparameter tuning.
+
+% 2 Describe areas of opportunity with regard to these topics and your research:
+    % new research challenges, 
+    % commercial opportunities, 
+    % application of Software Engineering ideas, 
+AutoML techniques offer a dual benefit by not only addressing sentiment analysis but also bolstering reinforcement learning in the field of robotics~\cite{parker2022automated}. They can be effectively employed to optimize and automate various facets of reinforcement learning models. AutoML further excels in the fine-tuning of hyperparameters and automating the selection of appropriate reinforcement learning algorithms tailored to specific robotic manipulation tasks~\cite{he2021automl}. This streamlined approach not only saves valuable time but also conserves resources throughout the research and development process.
+Nonetheless, it's imperative to acknowledge that reinforcement learning in the context of robotic manipulation typically demands extended training periods when compared to supervised learning. The current landscape of AutoML in reinforcement learning predominantly focuses on simpler tasks, leaving complex robotic manipulation challenges relatively unexplored. This underscores the necessity for continued research and development efforts to expedite the training process and render it practical for real-world deployment scenarios.
+The potential benefits stemming from the integration of AutoML techniques into robotic reinforcement learning are substantial. They extend beyond mere cost savings to encompass enhanced adaptability and responsiveness in real-world scenarios. These opportunities pave the way for the deployment of robots in diverse and dynamic environments while simultaneously mitigating deployment costs.
+
+As our robot is designed to collaborate with humans, the ability to understand human sentiments and emotions becomes pivotal in enhancing our methods, including the implementation of safer motions and more reasonable speeds. However, existing research, such as the work by Szaboova et al.~\cite{szaboova2020emotion}, primarily focuses on sentiment analysis through textual data. In our context, textual data may not always be available for analysis. Therefore, delving into the realm of analyzing human reactions through visual information and natural language presents a challenging yet highly valuable direction.
+
+
+
+\section*{Quality assurance and Continuous Deployment}
+% 4. Choose two topics from the following list:
+% Automated Software Testing
+% Sustainability (of software products and/or (internally for) developers/engineering)
+% Requirements Engineering
+% Quality assurance
+% Architecture and Design
+% Behavioral Software Engineering (psychology in SE)
+% Human factors / aspects
+% Human-Computer Interaction
+% Continuous Deployment
+% Project Management
+% Security and Privacy
+% Maintenance and Evolution
+% Regulations and Compliance
+
+% Find at least one paper (published in the last 4 years) for each topic
+    % 3-1 helping your writing and thinking about the topic and its connection to your own research.
+% As much as possible, relate the topics to your own experience and research / project.
+
+% 1 briefly discuss your understanding of them
+Quality assurance is a set of processes and activities aimed at ensuring that a product or service meets specified quality standards and satisfies customer expectations. In the context of software development, QA involves testing, reviewing, and verifying that software functions correctly, is reliable, and performs as intended. Continuous deployment involves automating the process of deploying new software updates or changes to production environments continuously and rapidly. It enables the seamless delivery of new features and bug fixes to end-users, ensuring that the software is always up-to-date and improving.
+
+% 2 describe areas of opportunity with regard to these topics and your research:
+    % new research challenges, 
+    % commercial opportunities, 
+    % application of Software Engineering ideas, 
+My research focuses on reinforcement learning for robotic manipulation and its application in warehouse logistics.
+In the context of robotic manipulation, ensuring the quality and reliability of robot actions is a main task. QA processes can be integrated into the robot system to thoroughly test and validate the RL algorithms and robotic manipulation techniques~\cite{byambasuren2020application}. This involves verifying that the robots can consistently and accurately perform tasks like grasping, pushing, and assembly in various scenarios. QA helps identify and address issues related to uncertainty in tactile sensing, contact dynamics modeling, and vision-based perception.
+In warehouse logistics, there is a constant influx of new objects into the warehouse. This dynamic environment necessitates continuous updates and improvements to the robotic systems. CD practices can be applied to deploy new RL-based models, algorithms, and control strategies to robots in the warehouse as new objects and challenges arise~\cite{scher2020warehouse}. This ensures that the robots remain adaptable and capable of efficiently handling changing warehouse conditions.
+The challenge of integrating CD into warehouse logistics involves developing mechanisms for real-time adaptation of RL models and control policies to accommodate new objects and tasks seamlessly. Ensuring the safety of robotic systems when continuously deploying new models is critical. However, they are important. By implementing CD in warehouse logistics, businesses can continuously improve the efficiency of their order-picking processes, leading to faster order fulfillment and reduced operational costs.
+
+    
+\section*{Future Trends}
+% 5. Discuss your thoughts regarding the future trends and directions of Software Engineering in relation to your topic, your career (either in academia or in industry), and AI/ML in general. You should at least discuss ML/AI Engineering and how you think it and its importance will change in the coming 5-10 years.
+
+The landscape of Software Engineering is poised for a profound transformation, deeply interwoven with the ever-evolving domains of AI and ML. As we peer into the future spanning the next 5-10 years, a multitude of consequential trends is expected to shape the discipline. Foremost among these is the burgeoning significance of ML/AI Engineering, a field that effectively bridges the traditional realms of software development with the intricacies of AI and ML solutions. In the coming years, ML/AI Engineering professionals will ascend to a pivotal role, ensuring that AI systems are not only crafted with technical prowess but also designed, developed, and deployed responsibly and efficiently. As someone embarking on a career specializing in AI/ML and robotics, I envision playing a crucial part in creating intelligent systems capable of adaptation and continuous learning, thereby reshaping the very fabric of warehouse logistics and beyond.
+
+Furthermore, the horizon ahead is characterized by a pronounced emphasis on real-time learning and adaptation within AI/ML systems. Within this landscape, RL for robotic manipulation holds the potential to occupy a central position, profoundly influencing this trend. In the dynamic fields of robotics and autonomous systems, the imperative for AI systems to swiftly adapt to ever-shifting environments and dynamic data streams becomes increasingly paramount. AI/ML engineers, who direct their expertise towards enhancing real-time learning capabilities, will be instrumental in propelling the development of robots that exhibit the remarkable capacity to autonomously acquire new skills and seamlessly adjust to evolving tasks. This trajectory is not limited to robotics; it extends its reach across a multitude of domains, from logistics and manufacturing to healthcare and myriad others. Thus, the anticipated journey ahead promises not only to augment the versatility of robotic systems but also to extend their applications, catalyzing transformative change in diverse sectors.
+
+\bibliographystyle{alpha}
+\bibliography{sample}
+
+\end{document}
