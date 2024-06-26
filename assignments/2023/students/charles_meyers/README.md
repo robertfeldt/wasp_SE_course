@@ -1,0 +1,1 @@
+This folder contains the assignment for the WASP Cloud and Software Engineering Course. The `main.tex` file compiles into the `wasp_SE_course.pdf` using the biliography file (`bibliography.bib`). 
