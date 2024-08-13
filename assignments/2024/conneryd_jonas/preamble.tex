@@ -1,0 +1,156 @@
+\documentclass[11pt, oneside]{article}
+\usepackage[a4paper,width=160mm,top=30mm,bottom=30mm]{geometry}                % See geometry.pdf to learn the layout options. There are lots.
+\geometry{a4paper}                   % ... or a4paper or a5paper or ...
+%\geometry{landscape}                % Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage[font=small,labelfont=bf]{caption} % Required for specifying captions to tables
+%\usepackage{dirtytalk}
+%\usepackage[version=3]{mhchem}
+%\usepackage{subcaption}
+
+%\usepackage{epstopdf}
+\usepackage{booktabs}
+\usepackage[compact,small]{titlesec}
+%\usepackage{complexity}
+%\usepackage[sc, osf]{mathpazo} % add possibly `sc` and `osf` options
+%\usepackage{eulervm}
+%\usepackage{textcomp}
+
+\clubpenalty = 10000
+\widowpenalty = 10000
+%\usepackage[altbullet]{lucidabr}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage[justification=centering]{caption}
+\usepackage[
+colorlinks = true,
+urlcolor = blue
+]{hyperref}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\usepackage[section]{placeins}
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+
+%\usepackage[swedish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{comment}
+\usepackage{enumitem}
+\titleformat{\section}[block]{\large\centering}{\thesection.}{1em}{}
+\titleformat{\subsection}[block]{\large}{\thesubsection.}{1em}{}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat = 1.15}
+
+\usepackage[T1]{fontenc}
+
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily,breaklines=true}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+
+%\usepackage{times}
+%\usepackage{kpfonts}
+%\usepackage{txfonts}
+%\usepackage{newtx}
+%\usepackage{stix}
+%\usepackage[proportional]{libertine}
+%\usepackage{lmodern}
+%\usepackage[charter]{mathdesign}
+%\usepackage{libertine}
+%\usepackage[libertine]{newtxmath}
+
+\usepackage{newpxtext}
+\usepackage{newpxmath}
+
+%\usepackage{newtxtext}
+%\usepackage{newtxmath}
+%\usepackage{libertinust1math}
+\usepackage[T1]{fontenc}
+\usepackage{inconsolata}
+
+\usepackage{microtype}
+%\usepackage{stix}
+%\usepackage[compact,small]{titlesec}
+\titleformat*{\section}{\Large\bfseries\sffamily}
+
+\titleformat*{\subsection}{\large\bfseries\sffamily}
+%\titleformat*{\subsubsection}{\large\bfseries\scshape}
+%\renewcommand{\section}{\section*}
+\newcommand{\ibits}{\{0, 1\}^*}
+%\renewcommand{\familydefault}{\sfdefault}
+\usepackage{marginnote}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems}
+
+
+\renewcommand*{\marginfont}{\color{red}\sffamily\footnotesize}
+\usepackage{hyperref, xcolor}
+\usepackage[capitalise, nameinlink]{cleveref}
+%\usepackage{makeidx}
+\definecolor{winered}{rgb}{0.5,0,0}
+\hypersetup{
+     pdfauthor={Jonas Conneryd},
+%    colorlinks=false,
+     pdfborder={0 0 0},
+%You can set individual colors for links as below:
+colorlinks=true,
+  linkcolor=winered,
+urlcolor={winered},
+filecolor={winered},
+citecolor={winered},
+allcolors={winered}
+}
+
+\usepackage[english]{babel}
+\usepackage[
+backend=biber,
+style=ieee,
+hyperref=true,
+maxbibnames=7,
+url=false,
+eprint=false,
+doi=false,
+isbn=false
+%natbib
+]{biblatex}
+
+\DeclareLanguageMapping{english}{english-apa}
+
+\newbibmacro{string+doiurlisbn}[1]{%
+  \iffieldundef{doi}{%
+    \iffieldundef{url}{%
+      \iffieldundef{isbn}{%
+        \iffieldundef{issn}{%
+          #1%
+        }{%
+          \href{http://books.google.com/books?vid=ISSN\thefield{issn}}{#1}%
+        }%
+      }{%
+        \href{http://books.google.com/books?vid=ISBN\thefield{isbn}}{#1}%
+      }%
+    }{%
+      \href{\thefield{url}}{#1}%
+    }%
+  }{%
+    \href{http://dx.doi.org/\thefield{doi}}{#1}%
+  }%
+}
+
+\DeclareFieldFormat{title}{\usebibmacro{string+doiurlisbn}{\mkbibemph{#1}}}
+\DeclareFieldFormat[article,incollection, inproceedings, thesis, web page]{title}%
+    {\usebibmacro{string+doiurlisbn}{\mkbibquote{#1}}}
+
+
+
+
+\addbibresource{bibliotek.bib}
