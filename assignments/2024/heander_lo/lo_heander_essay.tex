@@ -1,4 +1,4 @@
-\documentclass[a4paper]{article}
+\documentclass[a4paper,twocolumn]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{url}
 \usepackage{graphicx}
@@ -14,7 +14,44 @@
 
 \section*{Introduction}
 
+The DAPPER project's goal is to answer the research question \textbf{``how can code reviews be made
+fit for purpose?''}, which is a question that is more and more relevant today with more and more of
+software development being done remotely to some degree. The advent of AI-supported development
+tools like Copilot\cite{bird_taking_2023} and ChatGPT\cite{sobania_analysis_2023} also shifts the
+focus for developers even more from writing new code to reviewing code and integrating it into their
+code bases. 
+
+Code review is a task with a high cognitive load\cite{pascarella_information_2018}, requiring the
+reviewer to focus, hold the code in their memory, look for problems and connections, keep the goal
+of the merge request in mind and also take decisions around writing comments and approving or
+rejecting the merge request. This limits how long a developer can keep doing code reviews
+and how many they can complete before they are fatigued and the benefits decrease. 
+
+Despite these problems, code review tools have changed surprisingly little since the first software
+tool for code view, ICICLE\cite{brothers_icicle_1990}, was introduced over three decades ago. More
+modern tools have colored diff-views and run in the browser, but ICICLE already had many of the core
+features such as the central diff view, the ability to add comments, support for annotations by
+static analyzers and support for working in a distributed network environment. This, I 
+think, indicates a superlativist assumption\cite{green1991comprehensibility} where 
+one tool is assumed to be the best regardless of context. It favors certain kinds of software
+development, for example writing code over UI prototyping and promotes a file-centric
+view with a lexical diff over looking at code changes through the lens of exported APIs,
+inheritance structures or execution flow. 
+
+To explore these goals and the research question I use an interdisciplinary approach combining
+computer science with methods from sociology and psychology such as
+ethnography\cite{h_sharp_role_2016}, grounded theory\cite{adolph_using_2011} and distributed
+cognition\cite{hutchins1995cognition}. I believe that to find the answers here, the practices,
+tools, interactions and patterns \emph{needs} to be observed from an interdisciplinary perspective
+to raise the perspective to a higher level. To observe the effects and the outcomes and acknowledge
+that these systems work in interaction with a team and with their process for version control,
+continuous integration, code review, code merging, deployment and maintenance. 
+
 \section*{Software Engineering principles from lectures}
+
+\subsection*{Behavioral Software Engineering}
+
+\subsection*{Quality Assurance in Software Engineering}
 
 \section*{Software Engineering principles from guest lectures}
 
