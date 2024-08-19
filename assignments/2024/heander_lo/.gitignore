@@ -1,0 +1,8 @@
+*.aux
+*.bbl
+*.blg
+*.fdb_*
+*.fls
+*.log
+*.synctex.gz
+lo_heander_essay.pdf
