@@ -24,19 +24,7 @@
 % 3. Select at least 2 principles/ideas/concepts/techniques from the guest
 %    lectures and discuss how they relate to your research and topic area.
 
-% 4. Find two full/long papers published in one of the CAIN conferences (3 have
-%    been held so far, all linked from
-%    https://conf.researchr.org/series/cainLinks to an external site.), download
-%    and read them and then write in your assignment, for each paper: a,
-%    Describe the core idea(s) of the paper and why it/they are important to the
-%    engineering of AI systems b, How the paper relates to your own research c,
-%    How your research and its results would fit into a larger AI-intensive
-%    software project where one of the core ideas from the paper would benefit
-%    the project if applied. Describe both how the paper could help improve the
-%    project and how your WASP research would fit into the project. d, Discuss
-%    briefly how your research could be potentially adapted/changed to make AI
-%    engineering in the project based on the idea of the paper even
-%    better/easier.
+
 
 % Your answers to question 4 is the main part of your essay and should be
 % approximately 2 A4 pages in length, 1 page per paper.
@@ -104,14 +92,55 @@ integration, code review, code merging, deployment and maintenance.
 
 \section*{Related work}
 
+% 4. Find two full/long papers published in one of the CAIN conferences (3 have
+%    been held so far, all linked from
+%    https://conf.researchr.org/series/cainLinks to an external site.), download
+%    and read them and then write in your assignment, for each paper: a,
+%    Describe the core idea(s) of the paper and why it/they are important to the
+%    engineering of AI systems b, How the paper relates to your own research c,
+%    How your research and its results would fit into a larger AI-intensive
+%    software project where one of the core ideas from the paper would benefit
+%    the project if applied. Describe both how the paper could help improve the
+%    project and how your WASP research would fit into the project. d, Discuss
+%    briefly how your research could be potentially adapted/changed to make AI
+%    engineering in the project based on the idea of the paper even
+%    better/easier.
+
 \subsection*{Design Patterns for AI-based Systems}
 
 ``Design Patterns'' is a concept in Software Engineering that describes and
 names proven and reusable solutions to frequently occuring
-problems~\cite{Gamma2001}. The first article I have chosen, by Heiland et al.~\cite{heiland_design_2023} presents an
-extensive overview over both traditional Software Engineering Design Patterns
-that are applicable also to AI-based system, as well as new emerging patterns
-that are unique to, or more applicable to, these systems.
+problems~\cite{Gamma2001}. In my first chosen article, Heiland et
+al.~\cite{heiland_design_2023} presents an multivocal literature review over both traditional
+Software Engineering Design Patterns that are applicable to AI-based system, as
+well as new emerging patterns that are unique to, or more relevant to, these
+systems. The authors motivation for the study is that since there are
+indications that design patterns improves the overall software quality, they are
+likely to give similar effects on system quality for AI-based systems as well.
+Having a comprehensive overview over possible patterns will help both in future
+research of this as well as when implementing and refactoring AI-based systems.
+
+Heiland et al. finds 70 design patterns described both in academic and
+practitioner literature. Roughly half of these, 34 patterns, are specific to
+AI-based system while the rest are applicable to both AI-based system and
+traditional software systems. An interesting finding is that these categories of
+patterns address different areas of the system quality. Traditional design
+patterns are applied predominately to improve process and implementation aspects
+while new AI-system-specific patterns focus on improving security, safety and
+deployment aspects.
+
+Techniques and best practices to improve system quality is closely related to my
+research field. Because code review in itself is (among other things) a quality
+assurance tool, identifying proven design patterns in the code under review
+could help the reviewers understand and critique the code. 
+
+Further, my research project also aims to propose improvements in code review
+tools that address the shortcomings and frictions found by both other
+researchers and in my initial studies. One important avenue to explore here is
+how to leverage AI-based system to assist software developers better before,
+during and after code reviews. To make these systems perform well, using
+established design patterns for both implementation, architecture, security,
+etc. would be both useful and important.
 
 
 \bibliography{references.bib}
