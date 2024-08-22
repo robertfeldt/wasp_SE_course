@@ -24,21 +24,21 @@
 % 3. Select at least 2 principles/ideas/concepts/techniques from the guest
 %    lectures and discuss how they relate to your research and topic area.
 
+\newcommand{\Section}[1]{Section~\ref{#1}}
+\newcommand{\Figure}[1]{Figure~\ref{#1}}
+\newcommand{\Table}[1]{Table~\ref{#1}}
+\newcommand{\Appendix}[1]{Appendix~\ref{#1}}
 
-
-% Your answers to question 4 is the main part of your essay and should be
-% approximately 2 A4 pages in length, 1 page per paper.
+\begin{document}
 
 \title{Behavioral Software Engineering for Code Review Tools\\
 \large WASP Software Engineering Assignment} \author{\small Lo Heander,
 \texttt{\small lo.heander@cs.lth.se}}
 \date{}
 
-\begin{document}
-
 \maketitle
 
-\section*{Introduction}
+\section{Introduction}
 
 The DAPPER project's goal is to answer the research question \textbf{``how can
 code reviews be made fit for purpose?''}, which is a question that is more and
@@ -80,17 +80,109 @@ observe the effects and the outcomes and acknowledge that these systems work in
 interaction with a team and with their process for version control, continuous
 integration, code review, code merging, deployment and maintenance. 
 
-\section*{Software Engineering principles from lectures}
+\section{Software Engineering principles from lectures}
 
-\subsection*{Behavioral Software Engineering}
+\subsection{Behavioral Software Engineering}
 
-\subsection*{Quality Assurance in Software Engineering}
+The core perspective of Behavioral Software Engineering is to focus on the
+people involved in developing, maintaining, using, specifying, deploying and
+testing software systems. The argument is that since these people are human and
+not rational, focusing on the technical aspects or the process is not enough.
+The individuals, groups and organizations needs to be an important factor in how
+the systems are engineered and having this as the main focus can be at least as
+effective as focusing on the technology if not more so.
 
-\section*{Software Engineering principles from guest lectures}
+This brings in many ideas and concepts from psychology into the software
+engineering field. A key figure in this movement is Professor Daniel Kahneman
+who have made important contributions within the theories of loss aversion,
+prospect theory, hedonic psychology and more. While Kahneman applied these
+theories mainly to economics, they have a reflection in the behavior of the
+people involved also in software engineering. By better understanding the humans
+involved, we can better understand the dynamics and motivations that drive
+software projects to succeed or fail.
 
-\subsection*{Levels of assistance and automation}
+These aspects are central to my research on trying to make the specific software
+process of code review fit for the humans involved in it. To find and understand
+the effects of both the code review process and the tools used on software
+quality, software teams and collaboration within an organization the focus must
+be on the humans involved. This, I believe, is best studied using methods from
+the social sciences and psychology in order to understand the tools and
+processes not just as a list of features but as a cause and effect relationship
+on the individuals and their organizations.
 
-\section*{Related work}
+\subsection{Quality Assurance in Software Engineering}
+
+In the lecture about Quality Assurance in Software Engineering, Robert Feldt
+starts by introducing the difference between Verification and Validation.
+Verification is checking whether we are building the product right and can be
+acheived for example through automated software testing and code reviews.
+Validation on the other hand is about checking whether we are building the right
+product, which brings us into the domain of Requirements Engineering. 
+
+To validate a system we must ensure that the system fulfills a real need and is
+possible to be deployed, maintained and used successfully. For ML-systems, this
+will often extend to also validate the input data used for training and
+benchmarks and make sure that it is representative and corrected for biases that
+could make the system have undesired unfairness or poor performance.
+
+For efficient verification, one technique stood out as particularily interesting
+to me: Property-based Testing. The idea is to combine invariant parameterised
+properties of a system with generation of random test data. This makes it
+possible to express the expected behavior in a compact way that is easy to
+understand, and still create and test thousands of test cases to be able to find
+corner cases where the expected properties break. In for example autonomous
+driving, I have seen this combined with machine-learning algorithms that try to
+predict the most tricky data possible and generate a higher density of random
+values around these boundaries to really challenge the system and improve its
+robustness~\cite{Song2024}. 
+
+\section{Software Engineering principles from guest lectures}
+
+\subsection{Levels of assistance and automation}
+\label{sec:lenberg}
+
+Per Lenberg held a very interesting guest lecture explaining why Behavioral
+Software Engineering was especially interesting and necessary to create and
+maintain the complex systems built by SAAB Air Trafic Management. He highlighted
+how organizational charts may look simple and heirarchical, but in practice they
+are full of hidden interpersonal connections that are what truly defines how the
+organization behaves. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\columnwidth]{automation_levels.png}
+    \caption{Automation levels by Per Lenberg}
+    \label{fig:alevels}
+\end{figure}
+
+Lenberg also talked about automation levels (figure \ref{fig:alevels}), ranging from
+level 1 where the computer does nothing at all up to level 10 where the computer
+takes and executes all decisions without involving the humans at all. It is an
+interesting discussion both what level of automation that is desired and safe
+for an application such as Air Trafic Management, but also applied to something
+like code review, testing and software engineering.
+
+\subsection{System Verification using AI-based systems}
+
+Dhasarathy Parthasarathy from Volvo introduced how they used an AI-based system
+to generate new test cases for system verification. They used large language
+models to analyze the documentation and system specifications across the
+different subsystems involved in the operation of a truck and translate for
+example different API-names and constants and then automatically write test
+cases.
+
+I do find the approach a bit odd. In an environment that is already very complex
+and safety critical, such as for a truck driving on the highway during a
+long-haul delivery, it seems counter-intuitive to introduce another complex
+system that is even harder to explain and verify. If there are systematic faults
+or misunderstandings in the tests generated that don't cause the tests to fail
+but rather to enforce unwanted behavior, how will that be discovered? How can
+the test generation system be re-trained to correct for this? In many ways, it
+ties into the discussions raised under Lenberg's lecture
+(section \ref{sec:lenberg}): what level of automation is appropriate, safe and
+desired for which tasks?
+
+\section{Related work}
 
 % 4. Find two full/long papers published in one of the CAIN conferences (3 have
 %    been held so far, all linked from
@@ -105,8 +197,11 @@ integration, code review, code merging, deployment and maintenance.
 %    briefly how your research could be potentially adapted/changed to make AI
 %    engineering in the project based on the idea of the paper even
 %    better/easier.
+% 
+% Your answers to question 4 is the main part of your essay and should be
+% approximately 2 A4 pages in length, 1 page per paper.
 
-\subsection*{Design Patterns for AI-based Systems}
+\subsection{Design Patterns for AI-based Systems}
 
 ``Design Patterns'' is a concept in Software Engineering that describes and
 names proven and reusable solutions to frequently occuring
@@ -127,21 +222,32 @@ traditional software systems. An interesting finding is that these categories of
 patterns address different areas of the system quality. Traditional design
 patterns are applied predominately to improve process and implementation aspects
 while new AI-system-specific patterns focus on improving security, safety and
-deployment aspects.
+deployment aspects. The authors see this as an argument in the debate around if
+there is a need for a new field of ML Engineering distinct from Software
+Engineering. If around half of the patterns are specific to AI-based systems and
+also address aspects unique to this domain, that is an indicator on
+the differences between traditional software systems and AI-based systems are
+large enough to merit their own research fields and professional disciplines.
 
 Techniques and best practices to improve system quality is closely related to my
 research field. Because code review in itself is (among other things) a quality
 assurance tool, identifying proven design patterns in the code under review
-could help the reviewers understand and critique the code. 
+could help the reviewers understand and critique the code. In the paper, Heiland
+et al. presents a web-based application they developed to make the patterns
+accessible and easily
+browsable\footnote{\url{https://swe4ai.github.io/ai-patterns/}}. 
+Through this app, the design patterns are stored and described in a
+machine-readable JSON format. This could assist in building tools that both
+gives developers access to this database during code reviews or automatically
+tries to identify and mark out the patterns in the code under review.
 
 Further, my research project also aims to propose improvements in code review
 tools that address the shortcomings and frictions found by both other
 researchers and in my initial studies. One important avenue to explore here is
-how to leverage AI-based system to assist software developers better before,
-during and after code reviews. To make these systems perform well, using
-established design patterns for both implementation, architecture, security,
-etc. would be both useful and important.
-
+how to leverage AI-based system to assist software developers before,
+during and after code reviews. To make these systems perform well it would make
+sense to use established design patterns for both implementation, architecture,
+security, and so on.
 
 \bibliography{references.bib}
 \bibliographystyle{ieeetr}
