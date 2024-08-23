@@ -255,7 +255,53 @@ SOLID design principles are principles for improving the design of
 object-oriented software~\cite{Martin2009} that are well-know and widely applied
 in the industry. In my second chosen CAIN research paper Cabral et
 al.~\cite{Cabral2024} studies if applying these principles also improves code
-understanding of Machine Learning code. 
+understanding of Machine Learning code. The acronym stands for
+\textbf{S}ingle-responsibility principle, \textbf{O}pen-closed principle,
+\textbf{L}iskov substitution principle, \textbf{I}nterface segregation principle
+and \textbf{D}ependency inversion principle. When applying all of them, the goal
+is to get code that is both easy to read and possible to refactor and extend
+without extensive modification.
+
+The study was structured as a controlled experiment where code for training and
+evaluating machine learning models was presented both as it was first written
+and then in a refactored variant applying the SOLID principles. The participants
+each got a code variant selected randomly and rated the code on a scale of how
+hard the code was to understand. To get a baseline for the participants
+familiarity with the SOLID principles, they also rated their agreement with each
+of the principles. 
+
+The result show a statistical significance for the SOLID principles improving
+the readablility of the ML-code and the participants rating it as easier to
+understand. While this is not very surprising in itself, I do feel that there is
+an opinion in parts of the ML community that ML code is special, more
+experimental and should have an emphasis on being fast to write rather than easy
+to read or understand. This is in many ways similar to how some programmers
+thought about software in the early days of professional software development.
+That it was supposed to be hard, and if you didn't understand the code you
+simply were not smart enough. Over time, traditional software have matured and
+realized that all code is read hundreds of times more than it is written and the
+person not understanding it is often the same person who wrote it, just a few
+months later and after forgetting the context or the clever tricks they used. 
+
+In the end, code that has a clear design and is easy to read, extend and reason
+about is always an asset. And often not harder or slower to write in the first
+place. Many of the examples in the study show simple things such as breaking up
+a huge training code block into functions that handle each separate part of it
+and breaking out a controller that manages the overall flow. Not only does this
+make the code easier to read, it is also much easier to re-use controllers,
+training loops and evaluation functions for the next ML project or to compare
+different models with each other. 
+
+In the end, I think this is also an argument in the debate over ML Engineering
+versus Software Engineering. While there are definitely challenges and solutions
+that are unique to AI-based systems, there is also much to learn and apply from
+traditional software engineering. After all, the code for data analysis,
+training and evaluation is just software. And so is much of the services and
+systems gluing together a trained model into a product or service trying to
+fulfill a need out in the world. Considering best practices both from
+traditional software engineering and putting the humans front-and-center through
+behavioral software engineering has the potential to unlock the true performance
+and usefulness of these systems.
 
 \bibliography{references.bib}
 \bibliographystyle{ieeetr}
