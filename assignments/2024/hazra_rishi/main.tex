@@ -1,0 +1,113 @@
+\documentclass[11pt]{article}
+
+% Set Times New Roman font
+\usepackage{times}
+
+% Set margins
+\usepackage[margin=1in]{geometry}
+
+% Support for adding .bib file references
+\usepackage[backend=bibtex,style=numeric,sorting=none]{biblatex}
+\addbibresource{references.bib} % Replace 'references.bib' with your .bib file name
+
+% Additional packages (optional)
+\usepackage{graphicx}  % For including graphics
+\usepackage{amsmath}   % For mathematical symbols
+\usepackage{hyperref}  % For hyperlinks
+\usepackage{enumitem}  % For customized lists
+
+\begin{document}
+
+\title{WASP Software Engineering Assignment Course Module 2024}
+\author{Rishi Hazra}
+\date{\today}
+\maketitle
+
+% \begin{abstract}
+% This is where your abstract will go. It provides a brief summary of your paper.
+% \end{abstract}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+Large Language Models (LLMs) have shown remarkable capabilities in text understanding and generation. This has sparked widespread interest and debate on whether LLMs are capable of reasoning. Recent studies suggest that LLMs are inherently capable of zero-shot reasoning~\cite{llms_zero_shot_reasoners} that can emerge and improve with scale~\cite{wei2022emergent}, and can be further enhanced by using smart prompting techniques~\cite{chain_of_thought,leasttomost}. Demonstrations include, planning~\cite{llms_zero_shot_planners,saycanpay}, theorem proving~\cite{natural_prover}, search and optimization~\cite{llms_as_optimizers}. 
+
+Conversely, a growing body of research presents a more critical view of these emergent abilities~\cite{gpt4_cant_reason,llms_cant_plan,gpt_graph_coloring}. During training, LMs can fit on statistical features~\cite{paradox_of_learning_to_reason} or identify reasoning shortcuts~\cite{pitfalls_of_next_token_prediction}. There is also growing concern about dataset contamination from open-source benchmarks~\cite{zhang2024careful}.
+
+\vspace{5mm}
+\hspace{-6mm}My research seeks to address these discrepancies by asking the following questions:
+\vspace{-5mm}
+\paragraph{Can Large Language Models \emph{truly}  reason, and if so, to what extent?}~\cite{can_llms_reason_3sat}
+Current methods for assessing the reasoning abilities of LLMs rely on open-source benchmarks that may be over-represented in LLM training data~\cite{zhang2024careful}. We instead provide a computational theory perspective of reasoning, using 3-SAT – the NP-complete problem that underlies logical reasoning~\cite{Gomes,garey_johnson}. Our experiments show that LLMs cannot perform true reasoning.
+
+\paragraph{How can we enhance the reasoning abilities of LLMs?}
+Recent studies have explored \emph{LLM-Modulo} frameworks~\cite{llm_modulo_frameworks} to enhance reasoning capabilities by augmenting LLMs with critics and verifiers~\cite{verify_step_by_step,saycanpay}, recognizing them as approximate idea-generators rather than direct problem-solvers. This approach is aligned with neurosymbolic techniques~\cite{deraedt2020statistical} that combine neural networks and symbolic reasoning. Specifically, my research focuses on LLM-Modulo \emph{agents} that perform tasks reliably and autonomously while interacting with their environment, including humans. Some frameworks I have worked on include:
+
+\begin{itemize}[leftmargin=*]
+  \item \textbf{EgoTV:}~\cite{egotv} A benchmark and dataset that assesses egocentric agents on tracking and verifying everyday tasks specified in natural language. This requires comprehensive reasoning abilities that Visual Language Models (VLMs) struggle with. We also present a novel framework that combines VLMs with symbolic reasoning to improve their performance. 
+  \item \textbf{SayCanPay:}~\cite{saycanpay} Planning with LLMs often leads to infeasible and sub-optimal plans~\cite{valmeekam2023planning}. We combine the power of LLMs and heuristic planning by leveraging the world knowledge of LLMs and the principles of heuristic search to enhance planning.
+  \item \textbf{REvolve:}~\cite{revolve} Designing reward functions for reinforcement learning (RL) requires huge human efforts due to the subjective nature of certain tasks that are hard to quantify explicitly~\cite{reward_misdesign_ad}. We use LLMs, guided by human feedback, to formulate human-aligned reward functions (in python code) and demonstrate it on Autonomous Driving.
+  \item \textbf{Bident:}~\cite{bident} A framework to integrate LLMs-based robots into shared spaces with humans. Potential applications include personalized education, and healthcare, companionship, and everyday assistance.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Ideas from Robert's lectures}
+\textbf{Humans as oracles in Code testing.} In code testing, poorly stated problem specifications and incomplete requirements can lead to incorrect tests, ultimately causing the software to exhibit unintended behavior. The concept of ``humans as oracles" refers to the practice of relying on human judgment to determine the correctness of the output of a software system during testing. This is the mainly due to the subjective (i.e. not explicit) nature of the output that automated systems may fail to capture. For instance, a voice recognition software whose accuracy can be validated through automated processes, but subjective aspects like politeness or contextual relevance need human intervention. This mirrors the challenge in REvolve, where wrong or vague reward functions can misguide reinforcement learning (RL) agents, leading to behavior that does not align with human expectations. Just like developers can provide insight and judgment to detect issues and correct or refine requirements, REvolve employs human feedback to iteratively refine reward functions, ensuring that the behavior of the RL agent aligns more closely with human standards. In both cases, human involvement is crucial in bridging the gap between poorly defined specifications and the desired outcomes. This parallel highlights the importance of human judgment in refining and guiding automated processes to ensure that they meet real-world needs effectively, whether in software testing or autonomous system training. 
+
+\hspace{-6mm}\textbf{Core AI research vs. AI/ML system development.}
+My research completely focuses on the core AI research which involves laying mathematical foundations and formulating new algorithms. A key challenge in this area is that the frameworks I create are primarily designed as proof-of-concepts and are not immediately deployable in real-world applications. My models often rely on assumptions such as deterministic (or minimally stochastic) and ergodic environments (all relevant states are reachable by the agent), whereas real-world systems are typically highly stochastic and non-ergodic. Consequently, a significant effort in pipelining and integration is necessary to make these systems operational in practical settings. Despite these challenges, both core AI research and AI/ML system development are essential and complementary in advancing AI capabilities.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Ideas from Guest lectures}
+
+\textbf{Behavioral Software Engineering.} A critical challenge in this field is understanding and mitigating the cognitive load that developers experience, which can directly impact their productivity, job satisfaction, and the quality of the software they produce. For instance, programming, adn understanding and navigating large codebases, which require cricial and creative thinking. A hybrid approach that integrates Behavioral Software Engineering with AI tools can significantly reduce cognitive load and enhance developer productivity -- i.e. LLMs to automate routine tasks and assist developers in more complex activities. Frameworks like Github Copilot and Amazon CodeWhisperer are already being used~\cite{codex}. Developers can interact with the software development environment using natural language commands, significantly reducing the cognitive burden associated with remembering and typing specific syntax or commands. LLMs can generate code snippets, suggest refactorings, and even draft documentation based on natural language inputs, making the development process more intuitive. Much like LLM-Modulo frameworks, LLMs can serve as idea generators, helping developers brainstorm solutions or explore multiple approaches to a problem. Moreover, memory-based tools are being developed that can be customized to the needs of the specific user by learning patterns from interactions. This can further simplify the cognitive load and enhance efficiency.
+
+\hspace{-6mm}\textbf{How AI/ML will affect Software Engineering products}
+In the previous discussion, I emphasized how integrating AI tools with software engineering can benefit developers. However, AI can also play a crucial role in simplifying and enhancing the experience for (non-expert) end-users by helping them refine and customize software.
+
+Similar to how frameworks like REvolve translate implicit human concepts into explicit code snippets, Large Language Models (LLMs) can serve as intuitive interfaces that leverage human feedback to improve code generation. These AI-driven interfaces can interpret subjective and abstract natural language input from end-users, allowing them to tailor software outputs to their specific needs without requiring technical expertise. This not only empowers users to have greater control over the software but also bridges the gap between user intent and technical implementation.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+\section*{Paper Discussions}
+
+\textbf{Welcome Your New AI Teammate: On Safety Analysis by Leashing Large Language Models}, Nouri et al., CAIN 2024~\cite{ai_teammate}
+
+\begin{enumerate}[label=(\alph*),leftmargin=*]
+    \item This paper explores the potential application of Large Language Models (LLMs), particularly GPT-4, in the field of safety engineering, specifically for performing Hazard Analysis and Risk Assessment (HARA) in Autonomous Driving. Traditional methods for HARA are time-consuming and require significant intellectual input, which slows down the SafetyOps process. Since several key steps in HARA –, e.g. identifying and describing hazards, outlining safety goals and requirements, documentation and communication, etc. –  involve the use of natural language, LLMs offer a potential means to automate some of these tasks, thereby speeding up the process. The authors aim to accelerate the iterative loops in SafetyOps by automating parts of the safety analysis process using LLMs. Specifically, the authors designed a pipeline consisting of multiple prompts, each corresponding to a specific sub-task within the HARA process. The prompts guide the LLM in generating outputs such as hazardous event identification, scenario generation, severity classification, and safety goal formulation. The paper concludes that while LLMs can contribute significantly to accelerating the HARA process, their outputs should be used with caution and always reviewed by experts.
+    
+    \item In LLM-Modulo frameworks, while LLMs are used to generate ideas, candidate plans, or approximate models, humans play a crucial role in validating and refining these outputs. For instance, in REvolve, we argue that LLMs, by themselves, lack the ability to ensure correctness and reliability, especially in complex reward design for autonomous driving. Human experts are needed to help refine the outputs for better alignment. Both approaches advocate for a collaborative interaction between AI and human experts. In the HARA context, the AI teammate provides a ``version zero" of the HARA, which human engineers then refine. This is analogous to the LLM-Modulo Framework, where LLMs generate candidate solutions or plans that are refined through human intervention or external model-based critiques. 
+    
+    \item Autonomous driving systems in the real world involve multiple complex components such as route planning~\cite{REDA2024104630}, energy optimization~\cite{10213996}, real-time decision-making~\cite{llm4drive}, and safety analysis~\cite{reward_misdesign_ad}. Each of these components can have varying levels of automation. An effective strategy to manage this complexity is to systematically break down these tasks into manageable subtasks. Each sub-task can then utilize dedicated prompts, as proposed in the AI teammate paper, to guide AI models (like LLMs) in generating relevant outputs.
+
+    As stated in the AI teammate paper, \emph{LLMs can contribute significantly \dots, their outputs should
+    be used with caution and always reviewed by experts.} On one hand, LLM-Modulo frameworks can address this problem by integrating external critics and verifiers to improve the reliability and robustness of the outputs. The flexible nature of the framework also allows for human-in-the-loop approaches~\cite{teachable_robots,drl_hf,tamer} for situations where subjective evaluation is necessary and where performance indicators are difficult to quantify explicitly. A practical example of this is REvolve~\cite{revolve}.
+
+     On the other hand, the pipelined approach consisting of multiple prompts from the AI teammate paper could be used to expand LLM-Modulo frameworks to the real-world. In this setup, each module would function as an LLM-Modulo instantiation, with dedicated prompts automating specific subtasks within a larger, more complex task. 
+    
+    % For example, in the case of real-time decision-making, an LLM could be prompted to determine the next action based on the current observation and safety constraints. Following the LLM-Modulo framework, external verifiers (such as driving simulators~\cite{shah2018airsim}) could be used to test the generated actions across various scenarios. If the initial output requires refinement, further feedback from experts (e.g., experienced drivers) could be incorporated to enhance the decision-making process. Specific prompts (similar to AI Teammate) could then be used to guide the LLM in integrating this feedback into subsequent decisions, ensuring continuous improvement. The inclusion of external verifiers not only refines the AI’s decision-making but also enhances safety, robustness, and reliability.
+    
+    % In essence, each module would be an instantiation of the LLM-Modulo framework wherein, by incorporating human feedback and external verification tools, the AI teammate could offer more robust analyses, with formal guarantees that the AI-generated hazards and risk assessments meet industry standards (like model-based tests with simulators). 
+
+    \item Suppose the LLM-Modulo framework is used in an autonomous driving scenario where it needs to plan a route. The AI Teammate approach could contribute by providing a series of structured prompts that guide the LLM through the decision-making process. Instead of relying on a single, broad prompt, the AI Teammate’s structured approach would allow the LLM-Modulo framework to break down the route planning task into smaller, more manageable prompts. For example, one prompt could be focused on identifying potential routes, another on evaluating these routes based on traffic and weather data, and a final prompt on selecting the optimal route. This is also akin to chain-of-thought reasoning used for LLM prompting~\cite{chain_of_thought}.
+
+\end{enumerate}
+
+\hspace{-6mm}\textbf{Mutation-based Consistency Testing for Evaluating the Code Understanding Capability of LLMs}, Li et al., CAIN 2024~\cite{10.1145/3644815.3644946}
+
+\begin{enumerate}[label=(\alph*),leftmargin=*]
+    \item The paper emphasizes the importance of evaluating LLMs beyond code generation, focusing on their ability to understand and reason about code semantics.  Traditional benchmarks for code generation (HumanEval~\cite{humaneval}) do not adequately assess the code understanding capabilities of Large Language Models (LLMs). The paper presents a novel method called Mutation-based Consistency Testing (MCT), wherein, given a pair of inputs – program description and implementation – LLMs are asked to identify whether the implementation is consistent with the description. The authors produce subtle inconsistencies between code and its corresponding natural language descriptions by introducing code mutations. These mutations  (e.g., Arithmetic Operator Replacement, Relational Operator Replacement) are small changes that alter the semantics of the original code, thus creating mismatches with the descriptions. The findings suggest that LLMs show significant variation in their code understanding performance and that they have different strengths and weaknesses depending on the mutation type and language.
+    
+    \item Code understanding plays a critical role in the design and refinement of reward functions. In REvolve, the process involves feeding the LLM with the reward function from the previous generation along with performance feedback from the trained agents. The LLM must not only parse and comprehend the syntax of the reward function code but also deeply understand its semantics—how the code implements specific behavioral incentives and constraints. This understanding enables the LLM to make informed modifications and refinements to the reward function, ensuring that the changes are both syntactically correct and semantically aligned with the desired outcomes.
+
+    The proposed idea can also be extended to other domains like AI Planning wherein, given a plan, the LLM must understand whether the plan achieves the goal. This is akin to our work on EgoTV~\cite{egotv}. For instance, for a hypothetical task description \emph{heat and clean a bowl}, the LLM must understand that heating and cleaning can be done in any order, while for another task \emph{heat then clean a bowl}, the heating must be performed before cleaning. This also requires semantic understanding. Task and Plan verification, as proposed in EgoTV could immensely benefit from training with hard negatives constructed through mutation. This is also useful for evaluating and improving the self-reflection abilities of LLMs~\cite{selfrefine,reflexion} wherein LLMs are required to analyze their own outputs and propose refinements. Moreover, this would also lead to improved heuristics for AI reasoning and decision-making as proposed in our work SayCanPay~\cite{saycanpay}. Existing research shows that LLMs struggle to self-reflect~\cite{gpt_graph_coloring}.
+    
+    \item Code testing is an area that could be significantly automated with the help of AI, particularly through the use of LLMs. LLMs, with their ability to understand and generate natural language, have been increasingly applied to code-related tasks, such as code generation, documentation, and debugging. In the context of code testing, LLMs can automate the creation of test cases, predict potential bugs, and even suggest fixes. However, the effectiveness of this automation hinges on their understanding of the underlying code. An LLM that lacks a deep, innate understanding of code may produce outputs that appear correct but fail to address the nuances and complexities of real-world programming. 
+    
+   While LLM-Modulo frameworks are designed to enhance output reliability by integrating critics and verifiers, the approach discussed here aims to directly strengthen the inherent code understanding of LLMs. By improving this foundational understanding, even greater advancements can be achieved when applied within an LLM-Modulo framework. One effective method to enhance this understanding is through training the LLM using code mutations and evaluating its performance to assess its comprehension of code. This approach is elaborated in the next section. The same approach can similarly be applied to other domains like task and plan verification.
+    
+    \item LLM-Modulo frameworks -- which are currently limited to inference systems -- could be extended to incorporate training where the train data is generated from specialized modules that mutate input code. This approach would establish a continuous feedback loop for training LLMs during code testing. In this loop, LLM-generated pseudo labels—indicating whether the code meets its intended goal—can be verified by experts or through automated test cases. Failed cases can be immediately added back into the training data, while successful cases can be further mutated (automatically) to create additional training examples. This process would continuously expand and diversify the training dataset, leading to more robust and reliable LLM performance.
+\end{enumerate}
+
+
+
+% Print the bibliography
+\printbibliography
+
+\end{document}
