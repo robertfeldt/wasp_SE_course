@@ -34,13 +34,9 @@ Since I work a lot with stochastic algorithms, finding good test oracles can be 
 
 When I wrote my PDMP library I tried this with a little bit of testing sprinkled through-out, mainly unit tests for all functions. The algorithmic flexibility of JAX comes at a cost of fairly restrictive rules for conditional expressions and requires pure functions. This lead to a problem for me when writing some fairly low level implementations of solutions to an integral equation. I sketched out the algorithm first in a more permissive language, and then later used this implementation as my test oracle. Since I had introduced a bug in the test oracle, this cemented a bug into my library for a pretty long time. 
 
-
 \section*{Guest lectures}
 
-
 \subsection*{Behavioral software engineering}
-
-% 3. Select at least 2 principles/ideas/concepts/techniques from the guest lectures and discuss how they relate to your research and topic area.
 
 Traditional top-down organizational structures can obfuscate some of the day-to-day interactions that impact the product of a team. One aspect of behavioral software engineering is to consider more the psychological and social relations that affect an engineer\cite{lenberg2015behavioral}.
 
