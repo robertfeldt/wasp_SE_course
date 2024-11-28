@@ -1,0 +1,170 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\graphicspath{ {./images/} }
+
+\usepackage{minted}
+
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\usepackage[sorting=none]{biblatex}
+\usepackage{fancyhdr}
+\usepackage{multicol, caption}
+\newenvironment{Figure}
+  {\par\medskip\noindent\minipage{\linewidth}}
+  {\endminipage\par\medskip}
+
+\newenvironment{Listing}
+  {\par\medskip\noindent\minipage{\linewidth}}
+  {\endminipage\par\medskip}
+
+\addbibresource{ref.bib}
+\setlength{\columnsep}{40pt}
+\setlength{\headsep}{40pt}
+\geometry{legalpaper, portrait, margin=2.38cm}
+\renewcommand{\baselinestretch}{1.25} 
+
+
+% Title page
+\title{Assignment\\\Large{WASP Software Engineering Course Module 2024}}
+\author{Bruno Kreyssig \\ Umeå University\\ Department of Computing Science}
+\date{\today}
+
+% Header and footer
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\textbf{WASP Software Engineering Course}\\\textbf{48805}}
+\fancyhead[R]{\textbf{Bruno Kreyssig}\\ bruno.kreyssig@umu.se}
+\fancyfoot{}
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy}
+\clearpage
+\tableofcontents
+\thispagestyle{fancy}
+
+\clearpage
+% Begin page numbers
+\fancyfoot[C]{\thepage}
+\pagenumbering{arabic}
+
+\section*{Introduction}
+\addcontentsline{toc}{section}{Introduction} % For the contents page
+
+Our research focuses on the analysis of deserialization vulnerabilities in Java. Specifically, we are concerned with the code reuse attack vector in deserialization gadget chains. The Java serialization API provides convenient functionality for converting object state in runtime into a transfer format, to later be reconstructed (deserialized) by a receiving JVM. During deserialization custom callback methods may be invoked to ensure the reconstructed object can be used within the new environment. For instance, a \textit{HashMap} is required to recalculate the hash values of its keys according to the native (platform dependent) hash function implementation. An attacker can leverage this knowledge to find classes overriding deserialization callback methods (e.g., \textit{HashMap}), which themselves invoke further methods (i.e., gadgets). The idea is then to chain such gadgets together to reach a security sensitive method. 
+
+A trivial instance of a gadget chain is shown in the three code snippets below. Going from a deserialization entry point (upper left) one could assume that only instances of \textit{MyClass} can be retrieved from the serialized data stream. Yet, before the object is cast to its intended type, the object is reconstructed. An attacker could supply a \textit{HashMap} containing an object of type \textit{Sink}. Then, upon deserialization and before the cast is resolved, an arbitrary command is executed (lower left).
+
+\vspace{0.5cm}
+
+\noindent\begin{minipage}{.48\textwidth}
+
+ \begin{minted}[frame=single]{java}
+ObjectInputStream s;
+// ...
+MyClass c = (MyClass) s.readObject();    
+\end{minted}
+ \begin{minted}[frame=single]{java}
+class Sink implements Serializable {
+  public int hashCode() {
+    Runtime.getRuntime().exec(param);
+}}
+\end{minted}
+\end{minipage}\hfill
+\begin{minipage}{.48\textwidth}
+\begin{minted}[frame=single]{java}
+class HashMap implements Serializable {
+  Object key;
+  void readObject(ObjectInpusStream s) {
+    //...
+    key.hashCode();
+  }
+}
+\end{minted}
+\end{minipage}
+
+\vspace{0.5cm}
+
+\noindent We are primarily interested in the development of novel algorithms to detect deserialization gadget chains in Java projects. In addition, we consider evaluation strategies for such algorithms and platform specific questions, e.g., the impact of insecure deserialization on Android.
+
+
+\section*{Related Principles}
+\addcontentsline{toc}{section}{Related Principles}
+
+\subsection{Robert's Lectures}
+\label{sec:lecture}
+
+Our research project is directly related to software engineering in the sense that we aim to research and develop specific, security-related \textbf{software verification} solutions. Indeed, when it comes to detecting gadget chains current research relies heavily on \textbf{static analysis} techniques \cite{haken_automated_2018, buccioli_jchainz_2023, chen_tabby_2023, wu_static_2022, luo_rev_2024, cao_improving_2023}, which may be enhanced through the usage of a \textbf{fuzzer} \cite{rasheed_hybrid_2021, cao_oddfuzz_2023, srivastava_crystallizer_2023, chen_efficient_2024}. The trend leans into using both techniques, due to the high imprecision of relying solely on static analysis. That is to say, findings through taint and callgraph analysis get piped into a fuzzer to verify, whether these gadget chains can actually be exploited.
+
+In a recent project we developed a benchmark for the evaluation of gadget chain detection algorithms. The idea of the benchmark was to deliver a set of Java libraries (i.e, JAR files) which contain synthetic gadget chains which individually require tools to detect different techniques to chain gadgets together. To verify whether these gadget chains truly existed within the libraries, we wrote \textbf{unit tests} to check if the chain was executed. Our software artifact is maintained in a Github repository for \textbf{version control}.
+
+\subsection{Guest Lectures}
+
+There weren't any technically applicable principles in the first presentation by SAAB. However, I can relate to the general \textbf{reluctance to use AI} or \textbf{ignorance} towards it. So far AI was not used in my research area, even though it received abundant attention recently. Furthermore, speaking for myself, I keep the idea in the back of my head, yet lean into using traditional software verification techniques. My priorities right now are to learn frameworks for static analysis such as \textit{SootUp} and fuzzers such as \textit{Jazzer}. According to the literature review in \cite{wang_systematic_2020}, there is merit to applying machine learning to laborious manual stages of the fuzzing process (e.g., test case generation and exploitability analysis). While I don't believe that AI/ML will be the major contributing factor to my PhD thesis, I found the notion in the guest presentation to be a good reminder. Likely it is possible for me to replace some subtask in my research projects with machine learning. In continuation, the Volvo presentation brought up an interesting concept.
+
+I can see a use case for applying \textbf{fuzzy lookups} in an upcoming research project. One of the unsolved problems in deserialization gadget chain detection is determining a holistic set of security sensitive call sites. \textit{Rasthofer et al.} \cite{rasthofer_machine-learning_2014} made use of machine learning to determine sink methods within Android APIs through strict features. For instance, methods containing a certain string (\textit{set}) are an indicator for a sink method. There may be an angle to loosen this definition and use fuzzy lookups to evaluate class and method names whether they are likely to be considered a sink method.
+
+
+\section*{CAIN Conference Publications}
+\addcontentsline{toc}{section}{CAIN Conference Publications}
+
+\subsection{Task Description}
+
+\begin{enumerate}
+    \item Describe the core ideas
+    \item How does it relate to your research
+    \item How would your research in combination with the paper fit into a larger AI project
+    \item How could your project be changed/adapted to make AI engineering in your project easier (based on the ideas in the paper)
+\end{enumerate}
+
+\subsection{FuzzSlice: Pruning False Positives in Static Analysis Warnings through Function-Level Fuzzing (ICSE 2024) \cite{fuzzslice}}
+
+Usually fuzzing is used to confirm potential warnings discovered through static analysis. I.e., it outputs true positives for which a crashing input could be generated. Given an exhaustive list of warnings from a static application security testing tools (SAST), it however becomes infeasible to fuzz all warnings within reasonable time \cite{fuzzing2020}. In contrast, \textit{FuzzSlice} \cite{fuzzslice} describes the novel concept of using fuzzing to prune false positive warnings generated by static analysis. 
+
+Instead of fuzzing the entire program from an entry point (e.g., the \textit{main} method), \textit{FuzzSlice} determines the enclosing function of the SAST warning's location. Then, the tool recompiles a function slice including all dependencies required for the execution of a minimal program containing only this function. The idea ultimately is to fuzz only the inputs of this minimal function slice. While observing a crash at the statement flagged as a warning provides no proof of a true positive (it may not be possible to pollute the function with the fuzzed parameters), should the fuzzer fail to generate a crash within a time frame the warning most likely is a false positive. Thus, \textit{FuzzSlice} focusses specifically on the reduction of false positives in SAST reports by elimination of warnings, rather than confirmation of these. \textit{FuzzSlice} showed promising results both on the synthetic \textit{Juliet} benchmark and on three open-source, real-world applications.
+
+This line of work is of high relevance to my field of research. As outlined in Section \ref{sec:lecture}, the research trend for Java deserialization gadget chain detection leans towards the usage of hybrid approaches. This makes sense, since in isolation, static analysis and fuzzing are either lacklustre in precision or soundness. More importantly, the idea of analyzing function slices in isolation could potentially be ported to the verification of gadget chain findings. Given a statically observed gadget chain (e.g., using control flow,  class hierarchy and taint analysis), there may be merit in fuzzing each gadget individually and if for any gadget within the chain the fuzzer is incapable of reaching the statement invoking the following gadget, then the gadget chain likely is a false positive. 
+
+To apply the publication to my research I first need to evaluate the requirements for minimal function slice creation in Java (\textit{FuzzSlice} is used for projects based on C). The naive approach would be to invoke the function directly from a \textit{fuzzerTestOneInput()} call (e.g., using \textit{Jazzer} \cite{codeintelligencetesting-no-date}) and replace the statement containing the call to the next gadget with an exception. The idea of instrumenting Java bytecode prior to fuzzing in such a way was already used in \cite{srivastava_crystallizer_2023} and \cite{rasheed_hybrid_2021}. However, instead of only replacing the known sink method with an exception, I would replace each linking gadget within the gadget chain with such an exception and then fuzz all these gadgets individually. The instrumentation step is easiest achieved using the ASM bytecode manipulation framework.
+
+Also, in the publication fully-fledged SAST tools (\textit{RATS} and \textit{INFER}) are employed to generate the static analysis report. The research towards static deserialization gadget chain detection has not reached a level of maturity, where one could take a previous tool and expect a high degree of soundness within the results. For example, finding gadget chains relying on reflection or dynamic proxies remains an unsolved challenge. Thus, the static analysis proportion of the project would have to be developed by us as well, likely using and extending \textit{Soot} in process.
+
+Let us consider how this work relates to AI/ML projects. Larger AI projects are certain to contain sophisticated ETL pipelines for data evaluation and cleansing. Popular Big Data frameworks such as \textit{Apache Hadoop}, \textit{Flink} and \textit{Spark} are all based on the Java platform. Deserialization vulnerabilities were discovered recently in Hadoop (CVE-2023-46674). Consequently, the usage of SAST and fuzzing for the detection of deserialization gadget chains (my research) or any type of vulnerability in general (\cite{fuzzslice}) is invaluable for keeping AI/ML pipelines secure.
+
+
+
+
+
+\subsection{Automatically Resolving Data Source Dependency Hell in Large Scale Data Science Projects (CAIN 2023)  \cite{datahell}}
+
+The authors describe an approach to automatically determine data source dependencies in machine learning from Azure activity graphs. Comprehensive visibility of data source dependencies (including transitive) is crucial to the development of stable ML pipelines in order to keep track of the effects a change in a singular data source has on which parts of the overall model (see pre-reading paper \cite{hidden_debt})
+
+While the implementation is described specifically for Azure, the concept is generic when substituting the terms \textbf{activities} with \textbf{machine learning code} and \textbf{activity graphs} with \textbf{ML pipeline blocks}. For instance, an ML project could be composed of two activity graphs ($G_1, G_2$), each containing an activity ($A_1, A_2$) to train a model and a set of dependant data sources. Further the graph $G_2$ could depend on the output of $G_1$. From here the authors develop a high level procedure to determine the data source dependencies of an activity graph.
+
+First, the nodes of an activity graph are taken in a FIFO structure, thus ensuring the analysis starts from the last node in the graph. Then, the algorithm propagates backwards until it reaches only initial data sources or a fixpoint, e.g., another connected activity graph. During this process activity nodes are statically analyzed to determine their data source dependencies. 
+
+This leads to the low level procedure of how to determine the data source dependencies of a single activity in isolation. Recall that an activity is equivalent to a block of ML code, usually a Python script. At this point the publication ties in with my area of research. While in my project, deserialization entry points or deserialization callbacks are used as a set of source methods, the publication takes a set of typical read input methods (e.g., \textit{pd.read\_csv()}) as sources. Analogously, sink methods in my project are security sensitive call sites, whereas in the publication sink methods are model training statements. The task is then to determine a data flow path from the sources to the sinks. 
+
+In \cite{hidden_debt} data dependency debts were highlighted as the most costly debt in ML systems with the difference to traditional SE projects being that they are more difficult to detect than dependency debts. Thus, in a larger AI project using program analysis helps to provide visibility on the actual data dependencies (including hidden and transitive) of different parts of ML code. The authors of \cite{datahell} describe three use cases of their project:
+
+\begin{itemize}
+    \item \textbf{Interactive dashboards:} consuming the data of the analysis and connecting it to the data source dependencies. Then, when changes in the upstream data sources are detected, developers can be alerted of these changes and take immediate responsive actions.
+    \item \textbf{Knowledge graphs:} as a means to power the interactive dashboards and execute actions upon data source changes.
+    \item \textbf{Feature stores:} to detect feature re-usability and thereby reduce storage requirements
+\end{itemize}
+
+Since I work with program analysis in my project, I can see the indirect benefit of improving techniques in this field to the research area of AI engineering, as was seen in the CAIN paper described here. In the context of a larger scale AI project my research could also prove directly useful in detecting vulnerabilities in certain parts of the project. To give a concrete example, Big Data frameworks such as Hadoop or Apache Flink rely on the Java platform. Due to the inherent interconnection of Big Data and ML, it seems very likely to find at least some blocks of an AI project relying on Java. Furthermore, in our recent research \cite{kreysig_analyzing_2024}, we were able to confirm the existence of deserialization gadget chains within these Big Data frameworks. Indeed, within Hadoop a deserialization vulnerability was found very recently (CVE-2023-46674). Therefore, overall, I can see how my research is vital to keeping AI projects safe from malicious actors. 
+
+
+\clearpage
+\addcontentsline{toc}{section}{References}
+\printbibliography
+
+\end{document}
