@@ -1,0 +1,193 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath,amssymb}
+\title{Assignment for module 2 in "Software engineering and cloud computing"}
+\author{mans.williamson }
+\date{June 2024}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+My research topic is about optimization algorithms for machine learning problems. The inspiration for the project was the observation that the gradient descent algorithm
+\begin{align}\label{eq:gd}
+w_{k+1} = w_k - h \nabla F(w_k),
+\end{align}
+where $h$ is the learning rate or step size, can be viewed as an explicit Euler discretization of the gradient flow equation
+\begin{align}\label{eq:gf}
+\dot{w} = - \nabla F(w).
+\end{align}
+An issue with the explicit-Euler method is that it has a small stability region; when applied to the linear test equation
+\begin{align}\label{eq:lintest}
+\dot{y} = \lambda y, \ \lambda \in \mathbb{C},
+\end{align}
+one obtains the expression $y_{k} = (1-\lambda h)^k y_0$, which means that one has to choose $h \leq \frac{2}{\lambda}$ in order for the scheme to be stable. The relevance of this for equations such as
+\eqref{eq:gf} can be seen by linearizing the equation around an equilibrium point $w_*$:
+\begin{align}\label{eq:gf}
+\dot{w} \approx -H_F(w_*)w,
+\end{align}
+where $H_F$ denotes the hessian of $F$. If the hessian is diagonalizable, the previous equation is equivalent to a set of systems of the form \eqref{eq:lintest}, where each $\lambda_i$ is an eigenvalue of the hessian.
+
+In the context of optimization, one obtain a similar condition on the step size if the function is L-smooth; in this case it holds that
+\begin{align*}
+F(w_{k+1}) - F(w_k) \leq \langle \nabla F(w_k), w_{k+1} - w_k \rangle + \frac{L}{2}\lVert w_{k+1} - w_k \rVert_2^2.
+\end{align*}
+After making use of \eqref{eq:gd}, we obtain that
+\begin{align*}
+\min_{1 \leq k \leq K} \lVert \nabla F(w_k) \rVert_2^2  \leq \frac{2 \left( F(w_0) -F_* \right)}{Kh},
+\end{align*}
+if $h \leq \frac{1}{L}$. This means that a subsequence of $\{w_k\}_{k \geq 0}$ converges to a stationary point of $F$, even in the non-convex case.
+
+Hence, it is natural to consider other schemes for solving differential equations numerically that has better stability properties than the explicit-Euler/gradient descent scheme.
+
+The first idea is the implicit-Euler scheme. For \eqref{eq:gf} this is given by
+\begin{align*}
+w_{k+1} = w_k - h \nabla F(w_{k+1}).
+\end{align*}
+In the optimization literature this goes under the name of the proximal point method. 
+In general, a non-linear equation has to be solved to obtain $w_{k+1}$ from $w_k$ and hence this method is not ideal for large scaled machine learning problems when it might be computationally expensive to evaluate the objective function.
+Other schemes that has larger stability region are the Runge--Kutta methods; some of these are explicit but still have less severe step size restrictions than the \eqref{eq:gd}.
+
+Yet another class of methods are the so-called momentum based algorithms. These methods can be viewed as discretizations of the system of equations
+\begin{align*}
+\dot{p} = - \nabla F(q) - \gamma p,\\
+\dot{q} = p.
+\end{align*}
+They have proven to work better in the machine learning setting than vanilla gradient descent, but it is less clear from the stability perspective that was described above why this is the case. 
+A possible reason could be that machine learning problems often tend to be non-convex, and then the stability analysis based on the linear test equation \eqref{eq:lintest} is less relevant for the behavior of the optimization or time-integration scheme.
+
+When we develop new algorithms, we test them on machine learning problems to illustrate and investigate their behavior. For this reason, testing of machine learning algorithms and software is very relevant to my research.
+
+
+\section{Ideas from Roberts lectures}
+
+% The first idea from the lectures that I found inspiring was the notion of \emph{surprise adequacy} introduced in \cite{feldt_2019} to test Deep learning models. While it is possible to write unit tests for deep learning models, it can often be very cumbersome to write 
+
+
+Ideas from the lectures that I found inspiring was the notion of \emph{Property based testing}. One should aim to write tests that can be used for many cases. The example in the lectures was that if the goal of a function is to reverse a list, there are certain properties, such as the reverse of the reversed list being equal to the list itself, that can be exploited and turned into general useful test cases.
+For such a test, it is very easy to generate a large number of random sets since one only needs to generate a random list that one applies the test case to. 
+
+I also thought that the concept of boundary value testing is useful to keep in mind; bugs in code often tend to occur for boundary cases, such as a user withdrawing all the money from a bank account. 
+
+The concept \emph{design by contract} was also inspiring; write functions that are their own test cases. In python one can make use of the key word 'assert' to make sure certain properties hold in a program. There is also the python library contracts which contain s the '@contract'-decorator which seems useful.
+
+I will also keep in mind the notion of \emph{meta-morphic testing}; input pairs that are different but yields the same output of a function. 
+
+Although the machine learning models that I have been implementing in my research are small in comparison with say, chat GPT, since the output is random, it is often a good idea to thoroughly test the code to make sure that there's no error in it. In computational mathematics, it can often be hard to know if an experiment is giving strange results because of a problem in the code or some strange values in the system one is modelling.
+I think the concepts from the lectures were very inspiring for this reason, and I will try to apply it in my research in the future.
+
+\section{Ideas from guest lectures}
+
+From Per Lenberg's guest lecture, I took away that the psychological and behavioral aspects are important when selling in new concepts to a company or team. This appears very much to be the case when trying to make a team transition into using AI. Many people have opinions and beliefs around AI (such as "AI will take my job") and this is something that 
+one has to take into consideration; you cannot run over people's feelings if you truly want them to be "onboard" and take part in the transition.
+
+Another thing that stayed with me from this lecture, was one of the answers to the study on the last slide.
+The question was "How do you foresee Software Engineering relevance changing with the integration of AI/ML in
+your products?" and a common answer was "We will randomly invest a lot of money to reduce the risk of falling behind."
+It seems that this sums up the attitude of the industry towards AI; it's something that they don't really understand and whose utility they are unsure of. They are still willing to invest money in it out of fear for falling behind.
+
+\section{Papers from CAIN}
+
+\subsection{Paper 1}
+
+The first that I would like to treat is \emph{Exploring ML testing in practice – Lessons learned from an
+interactive rapid review with Axis Communications} by Ardö et al. \cite{axis}
+The paper is a study of software testing practices for machine learning development that was performed at Axis communications, done by so-called \emph{interactive rapid reviews} (IRR). The contributions of the article are the following:
+\begin{enumerate}
+    \item The authors develop a taxonomy around the practical challenges around ML testing. \label{item1}
+    \item They compile a list of twelve practical challenges that were identified during the interviews.
+    \label{item2}
+    \item They propose a "mapping"; a ranked literature review of 180 studies that can be used by practitioners that face issues in ML testing. The ranking of studies was done according to percieved importance. \label {item3}
+    \item An in-depth review of 35 studies that were percieved to be the most important ("How to test the data set").
+\end{enumerate}
+
+%\subsubsection*{\ref{item1}}
+The taxonomy is based on the SERP-taxonomy architecture, compare \cite{engstrom_2014}. 
+It identified three different parts: scope, effect and context of ML interventions.
+Scope refers to a part of a testing activity on which an intervention may focus. The effect is "described in terms of its observed or desired impact". Context, refers to factors that affect an intervention, such as programming language being used and degree of access to a system's components.
+
+Of the twelve challenges, the one that was perceived to be the most crucial was how to test or ensure that the dataset used was of high quality. Important challenges were among other things how to find mislabeled examples in the data and how to test if the data is biased.
+
+The two other, second and third most important challenges was if there are any complementary metrics to assess model correctness and how one can generate new test cases for testing an ML model.
+
+The second challenge on the list was how to diagnose and improve unit testing of ML algorithms. This is the question that I'm the most interested in for my own research, since I'm currently not working that much with real world datasets. 
+
+From the studies that treat what was perceived to be the most important challenge, how to test the data, 
+a list of technological rules was formulated. Some of these rules include
+\begin{itemize}
+    \item To measure the quality of test data for deep learning sys-
+tems, use an adapted form of mutation testing.
+\item To test the correctness and robustness of deep learning
+systems, test the systems’ behaviour with respect to their
+training data.
+\item To increase test effectiveness when testing deep neural
+networks in safety-critical systems, prioritize test input.
+\item To improve the robustness of machine learning systems,
+identify critical situations.
+\end{itemize}
+I.e. a set of guidelines that machine learning engineers can adhere to when testing machine learning systems.
+
+Although the setting that was studied in \cite{axis} is quite far from my research, it is good to keep rules like this in mind.
+
+If my research, stability of stochastic optimization algorithms were to be applied in a real world scenario like this, testing the ML algorithm first to ensure that the code is actually correct would be very important. In such a setting, unit testing would obviously be very important, but perhaps also the second rule on the list above could be applied.
+
+\subsection{Paper 2}
+
+The second paper that I would like to discuss is \emph{A Combinatorial Approach to Hyperparameter Optimization} by Khadka et al. \cite{khadka_2024}.
+They propose $t-$way testing as an alternative to traditional hyperparameter optimization methods such as Baysian optimization and grid search. 
+
+In my research, I often need to compare different optimization algorithms on machine learning problems. Due to the random nature of the problems it often difficult to give a fair comparison. Should one show a single experiment or an average? To give a fair comparison we often need to do some form of hyperparameter optimization procedure for each algorithms so that we can claim that each algorithm was tested in its ideal comparison and that for this reason the comparison is fair.
+
+T-way testing is based on the principle that "most failures are induced by single factor faults or by the joint combinatorial effect of two factors, with progressively fewer failures induced by interactions between three or more factors." \cite{Kuhn}
+
+The approach starts with first identifying the important hyperparameters, along with their relevant values (for instance the maximum number of hidden layers, and the upper bound for the learning rate).
+This is then passed to a combinatorial testing tool, which generates combinations of tests where all the possible $t$combinations of the hyperparameters are covered by some test.
+
+The best of these $t$ configurations is then chosen according to some evaluation metric, such as accuracy or F1 score.
+
+The $t-$way testing approach, is compared to other classical hyperparameter optimization procedures on some standard data sets such as the Breast cancer dataset and the California housing dataset.
+These data sets are relatively small compared to e.g. MNIST and Cifar10. The learning algorithms that were tested was a random forest, XGboost and a feed forward neural network.
+
+This is a systematic approach to trying out different combinations of hyperparameters, and an interesting alternative to classical hyperparameter optimization procedures. 
+
+If my research were to be used in a large scale AI intensive project, we would make use of the t-way testing approach to find the optimal step size for the stochastic optimization algorithms, in combination with other hyperparameters to find the optimal hyperparameter configuration.
+
+My research could definitely benefit from making use of the testing approach presented in \cite{khadka_2024}. The only hurdle I can think of is that it is not implemented in Tensorflow, which is currently the framework that I'm using, and therefore it might be more convenient to keep using classical approaches such as Grid Search or Bayesian optimization. I will definitely keep the combinatorial approach in mind for future work, since it gives a systematic approach to an intuitive concept.
+
+
+
+\begin{thebibliography}{9}
+% \bibitem{feldt_2019}
+% Kim, J., Feldt, R., Yoo, S. \emph{Guiding Deep Learning System Testing using
+% Surprise Adequacy}, 2019, ACM 41st International Conference on Software Engineering (ICSE).
+
+\bibitem{axis}
+Song, Q. Borg, M., Engström, E., Ardö, H., and Rico, S.
+\emph{Exploring ML testing in practice – Lessons learned from an
+interactive rapid review with Axis Communications}
+In Proceedings of International
+Conference on AI Engineering (CAIN ’22). ACM, New York, NY, USA, 12 pages.
+https://doi.org/10.1145/nnnnnnn.nnnnnnn
+
+\bibitem{engstrom_2014}
+Petersen, K., Engström, E. (2014). \emph{Finding Relevant Research Solutions
+for Practical Problems: The Serp Taxonomy Architecture.} In Proceedings of the
+2014 International Workshop on Long-Term Industrial Collaboration on Software
+Engineering (WISE ’14). Association for Computing Machinery, New York, NY,
+USA, 13–20. https://doi.org/10.1145/2647648.2647650
+
+
+
+\bibitem{khadka_2024}
+Khadka, K., Chandrasekaran, J., Lei, Y., Kacker, R. N., Kuhn, R.D., (2024)\emph{A Combinatorial Approach to Hyperparameter Optimization},
+In Proceedings of International Conference on AI Engineering – Software Engineering for AI (CAIN). 
+
+
+\bibitem{Kuhn}
+Kuhn, D. R., Kacker, R. N. and Lei, Y. \emph{Introduction to combinatorial testing}
+Chapman \& Hall, 2013.
+\end{thebibliography}
+ 
+\end{document}
