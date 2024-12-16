@@ -1,0 +1,79 @@
+\documentclass[11 pt]{article}        	%sets the font to 12 pt and says this is an article (as opposed to book or other documents)
+\usepackage{amsfonts, amssymb}	
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{url}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{xcolor}
+\usepackage{cite}
+\usepackage{amsmath}% packages to get the fonts, symbols used in most math
+  
+%\usepackage{setspace}               		% Together with \doublespacing below allows for doublespacing of the document
+
+\oddsidemargin=-0.5cm                 	% These three commands create the margins required for class
+\setlength{\textwidth}{6in}  
+\setlength{\textheight}{8in}%
+% \addtolength{\voffset}{-50pt}        		%
+\addtolength{\hoffset}{30pt}
+% \addtolength{\headsep}{-10pt}           	%
+
+
+\pagestyle{myheadings}                           	% tells LaTeX to allow you to enter information in the heading
+\markright{\hfill 13th December 2024 \quad}
+
+%%% CHAT BOX
+
+%%% END CHAT BOX
+
+\newcommand{\eqn}[0]{\begin{array}{rcl}}%begin an aligned equation - allows for aligning = or inequalities.  Always use with $$ $$
+\newcommand{\eqnend}[0]{\end{array} }  	%end the aligned equation
+
+\newcommand{\qed}[0]{$\square$}        	% make an unfilled square the default for ending a proof
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+  \left. % automatically resize the bar with \right
+  #1 % the function
+  \right|_{#2} % this is the delimiter
+  }}
+\newcommand{\sign}[0]{\textrm{sign}}
+%\doublespacing                         	% Together with the package setspace above allows for doublespacing of the document
+
+\begin{document}
+
+
+\vspace{2em}
+\begin{center}
+    {\Huge Software Engineering for AI}\\
+    \vspace{1.5em}
+    Amir Mehrpanah (\url{amirme@kth.se})
+\end{center}
+
+\section{Introduction to My Research Area}
+
+My research focuses on making AI easier to understand, which is often referred to as explainable AI (XAI). There’s still a lot of discussion about what “explainability” really means, but we already have some methods to dig into these models and try to figure out how they operate.
+So explainability is about understanding how AI makes decisions and why it performs the way it does.  As AI grows more complex and is applied in areas where mistakes can have serious consequences, this becomes more and more important.
+
+
+
+While much of AI research is focused on improving performance, my work is more about ensuring that AI systems are safe, reliable, and trustworthy. This is more related to things like accountability and transparency, which are indispensable for using AI responsibly in real-world scenarios.
+
+
+
+For example, imagine an AI that functions as a black box, and you have no idea why it’s making certain decisions. I look at how to uncover the patterns or features in the data that the AI relies on to make those decisions. In my PhD, I’m specifically working on explainability for vision models, such as those used for classification, but my interest extends to explainability in all types of AI systems.
+
+
+
+Given my background in mathematics, I approach these explainability problems with a formal perspective. I try to employ mathematical tools to analyze and formulate the challenges rigorously. 
+I hope that it results in a more precise and structured examination of XAI methods, which in turn leads to models that can be trusted in practical, real-world scenarios. I realized that without math it is almost impossible to develop objective, robust, and interpretable explanations.
+
+
+\input{p1}
+\input{p2}
+
+\section{Discussions on Papers}
+\input{pp1}
+\input{pp2}
+\newpage
+\bibliographystyle{plain}
+\bibliography{bib}
+\end{document}
