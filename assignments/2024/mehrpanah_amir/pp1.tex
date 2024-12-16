@@ -1,0 +1,22 @@
+\subsection{Novel Contract-based Runtime Explainability Framework for End-to-End Ensemble Machine Learning Serving \cite{pp1}}
+
+This paper talks about making machine learning (ML) services more understandable and trustworthy, with an important constraint that they're used in real-time applications. This constraint that XAI methods should be real-time is not relevant at the current state of my research. 
+
+
+
+They introduce a new framework that allows AI service providers "explain" (more on this later) how their models are working real-time. This includes showing consumers the quality of their predictions, for example by showing accuracy, a measure of confidence. 
+
+
+
+They do this by adding explainability rules directly into service contracts (a contract between the service provider and the consumer), so that they know what to expect for. Another constraint in this paper is that it focuses on ensemble of AI models, where multiple models work together to improve predictions. This is a quite common practice in machine learning to use voting of multiple models to reach to a conclusion. Nonetheless, it makes it hard to provide one explanation for multiple models, specially when there are many of them.
+
+
+
+The framework proposed in this paper makes it easier to monitor these systems and adjust them in real time based on consumer feedback, and the claim is that it improves service quality and trust. The authors test their approach on two real-world applications: malware detection and CCTV surveillance, to verify their claims that it works in practice.
+
+
+
+I found this paper particularly interesting as it shows how the definition for explainability of AI systems can change from context to context. Here, explainability is defined as companies being "honest" with the consumer and show them some of the classical metrics. In contrast, in my thesis we define it very much differently, hence it cannot be achieved merely by showing a few numbers.
+
+I believe my research can give more depth to the report that a consumer might ask for, both in terms of content and type. So on top of classical metrics, we can pinpoint some of the features that has led to the current outcome. This way, the consumer can make sure that the outcome is fair, and is not based on wrong reasons.
+

@@ -1,0 +1,26 @@
+\section{Ideas from the Invited Speakers}
+
+\subsection{Adopting Transparent AI Transparent into Software Development}
+Many companies are fearing that they are falling behind in the AI race. 
+This concern makes them to try to integrate AI into their software by any means or use AI as a software development tool at the very least.
+This urge is in conflict with the safety concerns of SAAB and many other companies that are active in critical domains, such as military. Therefore, they cannot simply use AI tools provided online as it risks the unwanted leakage of information.
+
+
+
+I think this is the direct result of AI models being opaque. 
+As an example, we cannot make sure that these models have memorized parts of the code used in their training phase, neither we know how to remove or recover such information if any.
+
+\subsection{Using AI for Writing Tests}
+As I pointed this out in class during the Dhasarathy's presentation, I think it is safer to write the tests first, then let AI generate the code that passes the tests. 
+I think this is much safer and becomes easier for AI in the long run, since it is getting better and better at filling the gaps every day.
+
+
+
+It is important to note that writing tests is where a human judgement is necessary.
+Assuming that there is a bug in the code, and letting the AI decide to write the test for it, gives the AI the freedom to choose if it should pass the test or not.
+The AI model then may decide by mistake to incorporate a behavior coming from a bug into the test it generates, hence letting a bug pass as an expected behavior. 
+This can lead to drastic consequences if the bug gets noticed when the car is in the streets.
+
+
+
+This problem gets worse when we note that AI models are currently black boxes, so no one can make sure if the decisions that model is producing follows a certain logic, which is writing the correct test for a wrong code.

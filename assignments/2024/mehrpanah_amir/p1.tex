@@ -1,0 +1,43 @@
+\section{Ideas from Robert's lectures}
+
+\subsection{Validation and Verification in Software vs AI}
+Explanations for AI models arise from the fundamental need to verify human-made systems before integrating them into our daily lives. 
+Software systems are explicitly defined by humans, making them inherently explainable and interpretable. 
+In contrast, the behavior of AI systems emerges from the optimization of a continuous objective, making it unclear how they arrive at their conclusions.
+Hence, I believe the behavior of AI models is harder to investigate and attribute to certain parameters or input patterns.
+
+
+
+
+I believe XAI still lacks robust definitions for validation and verification. 
+In terms of validation, we still do not know if we are truly addressing the right questions. 
+Humans do not yet have a clear definition of what identifies a good explanation. 
+This uncertainty is likely a result of XAI research being in its early stages.
+
+
+
+When it comes to verifying explanations, I think we really need better ways to check if a model is making the right decisions for the wrong reasons. It’s a lot harder than regular software testing because models can seem super accurate but still rely on totally flawed logic. Unlike software, where we can usually predict how things will behave, AI models are optimized for specific outcomes, which can sometimes lead to surprising or even weird results.
+
+
+
+For example, a model might assume dogs always appear on grass and wolves on snow, which doesn’t hold up in the real world. This kind of faulty logic could make it label a dog on snow as a wolf. Right now, there’s no clear way to measure or explain this kind of behavior for individual examples, and that’s a big challenge we still need to figure out.
+
+
+
+Maybe one important aspect that is usually missed when comparing software testing and AI explainability, is the fact that variables defined by human are usually human understandable. On the other hand, input variables of an AI model can be pixels, and then the model creates different variables based on a 3x3 block of pixels. Despite the effort to make sense of these variables, the interpretation of those variables is still a mystery.
+
+
+\subsection{AI's Hidden Technical Debt}
+This phenomenon can also be seen in AI, where researchers often use common approaches simply because of convenience.
+From the perspective of an AI researcher who is focused on showing what is possible to do with AI, almost everything can be tried.
+They do not care if their decisions make sense in mathematics or if it can be justified in all cases.
+
+
+
+However, from the viewpoint of a XAI researcher, including myself, these decisions have accumulated and created a huge hidden technical debt.
+Because we do not know what are the long-term implications of such decisions, how they interact with each other, and how they can be explained.
+
+
+
+This issue is particularly everywhere in the AI community, where many large-scale models have become black boxes. 
+Despite their capabilities, we lack a clear understanding of how these models make decisions.
