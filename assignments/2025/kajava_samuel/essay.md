@@ -40,6 +40,26 @@ my research, since the tools I produce are useful beyond producing results for a
 • Discuss how each relates to your research and topic.
 -->
 
+### Confirmation bias
+
+An interesting point brought up during the behavioral software
+engineering lecture was confirmation bias during debugging -- a developer is
+tasked with tracking down a bug. This process seemed to be guided by the
+person's bias towards what part of the code base they might deem more likely to
+be "buggy". This makes sense, you have to start somewhere! However, what is
+deemed "buggy" is not for sure the culprit, and it may lead to wasted effort,
+since the problem might be somewhere entirely else (or god forbid, they introduced
+it themselves).
+
+Since my research involves a lot of bug-finding, it is only natural that this
+applies to me. My analysis is often inspired by previous contributions, which
+makes me look for certain patterns. However, we are also trying to find novel
+buggy patterns, and my bias towards what seems bugprone might affect this effort
+negatively. Doing security research requires some thinking out-of-the-box, and
+confirmation bias might slow down that process at times. However, I do not think
+it is entirely negative, I think this bias represents my "hunch" as well, which
+has proven to be correct more than once.
+
 ## 3. Guest-Lecture Principles
 <!--
 • Pick two principles/ideas/concepts/techniques from the guest lectures.
