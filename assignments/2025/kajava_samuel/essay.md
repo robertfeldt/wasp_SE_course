@@ -1,5 +1,5 @@
 ---
-title: "WASP Software Engineering Course Module"
+title: "WASP Software Engineering Course Module 2025"
 author: "Samuel Kajava"
 output:
   pdf_document:
@@ -32,7 +32,7 @@ problems within the web context. As a bonus, I do not only want to detect and
 fix bugs, I would like my work to be applicable for anyone. Therefore, I put
 considerable effort into making my methods easily reproducible for anyone who
 would like to secure their own code base. I believe this increases the value of
-my research, since the tools I produce are useful beyond producing a paper.
+my research, since the tools I produce are useful beyond producing results for a paper.
 
 ## 2. Lecture principles
 <!--
