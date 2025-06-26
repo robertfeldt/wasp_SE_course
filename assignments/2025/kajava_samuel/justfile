@@ -1,0 +1,14 @@
+default: build test
+
+build:
+    pandoc essay.md -s -V fontsize=11pt -V papersize:a4 --citeproc -o essay.pdf
+
+test:
+    #!/usr/bin/env bash
+    set -euxo pipefail
+    # assert that the page count is 5-6 pages
+    page_count=$(qpdf --show-npages essay.pdf)
+    if [ "$page_count" -lt 5 ] || [ "$page_count" -gt 6 ]; then \
+        echo "error: page count is $page_count, but expected 5-6 pages."; \
+        exit 1; \
+    fi
