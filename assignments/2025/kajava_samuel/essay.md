@@ -94,7 +94,7 @@ solution might be unclear before sitting down and defining a course of action.
 The consequences here is that you might have to refactor a lot of the code, or
 even start from the beginning. I strongly relate to this, and the lecture
 pinpointed the need to slow down before starting, which is something I am
-bringing with me for upcoming endeavours.
+bringing with me for future endeavours.
 
 ## 4. Data Scientists versus Software Engineers
 <!--
