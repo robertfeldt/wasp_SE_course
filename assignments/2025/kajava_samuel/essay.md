@@ -107,7 +107,7 @@ There are many ways to provide a solution to this statement, and the one you are
 most comfortable with might not be the best way. In my research, I would have
 benefited from modeling my problem in this way, for sure: at the moment, I am
 building most of our software artefacts in Rust, which in hindsight seems
-overkill. A lot of the work could simply be done with Lua or Python, and the
+overkill. A lot of the work could simply be done with Lua or Python, as the
 strong type system is not of too much value. We depend on external processes
 which may introduce many runtime faults, which makes the overhead of writing
 Rust code unnecessary. I very much appreciated the lecture, as it provided a
