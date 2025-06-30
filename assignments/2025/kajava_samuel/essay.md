@@ -72,7 +72,8 @@ software in e.g., Ericsson's base stations, I still think there is value to
 ensuring quality throughout the development of a research project. Writing
 useful tests increases the likelihood of identifying mistakes, while also
 ensuring some kind of correctness (not formally, but your confidence in its
-functionality increases).
+functionality increases). In other words, utilizing QA and testing is vital for
+ensuring high-quality software -- I think the same applies for research.
 
 
 ## 3. Guest-Lecture Principles
