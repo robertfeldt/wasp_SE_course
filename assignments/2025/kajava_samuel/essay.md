@@ -82,6 +82,20 @@ ensuring high-quality software -- I think the same applies for research.
 • Discuss how each relates to your research and topic.
 -->
 
+### Requirements Engineering
+
+On key point that stuck with me after Julian Frattini's lecture was to
+"understand the problem before you build the solution". By understanding the
+problem domain, identifying goals and defining what the problem is useful. I
+have a tendency to jump straight to coding when I start a project. The problem
+with this, as highlighted during the lecture, is that the idea of what I am
+trying to achieve is quite fuzzy. The problem here is that key components of the
+solution might be unclear before sitting down and defining a course of action.
+The consequences here is that you might have to refactor a lot of the code, or
+even start from the beginning. I strongly relate to this, and the lecture
+pinpointed the need to slow down before starting, which is something I am
+bringing with me for upcoming endeavours.
+
 ## 4. Data Scientists versus Software Engineers
 <!--
 Read chapters “1. Introduction” and “2. From Models to Systems” of the CMU
