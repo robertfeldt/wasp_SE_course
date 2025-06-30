@@ -96,6 +96,24 @@ even start from the beginning. I strongly relate to this, and the lecture
 pinpointed the need to slow down before starting, which is something I am
 bringing with me for future endeavours.
 
+### Problem vs. Solution Space
+
+Another point I found interesting from the lecture on requirements engineering 
+was the contrast between problem space and solution space. When modeling a
+problem you are trying to solve, it is a good idea to formulate your
+requirements in terms of solution-space statements. An example from the lecture
+was "[t]he purpose of the website is to make static information available".
+There are many ways to provide a solution to this statement, and the one you are
+most comfortable with might not be the best way. In my research, I would have
+benefited from modeling my problem in this way, for sure: at the moment, I am
+building most of our software artefacts in Rust, which in hindsight seems
+overkill. A lot of the work could simply be done with Lua or Python, and the
+strong type system is not of too much value. We depend on external processes
+which may introduce many runtime faults, which makes the overhead of writing
+Rust code unnecessary. I very much appreciated the lecture, as it provided a
+solid foundation I can reason about in my research -- I probably won't be using
+Rust for my next project (even if I enjoy the language).
+
 ## 4. Data Scientists versus Software Engineers
 <!--
 Read chapters “1. Introduction” and “2. From Models to Systems” of the CMU
