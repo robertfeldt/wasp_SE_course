@@ -71,7 +71,7 @@ process is often overlooked. While the projects are not as long-lived as the
 software in e.g., Ericsson's base stations, I still think there is value to
 ensuring quality throughout the development of a research project. Writing
 useful tests increases the likelihood of identifying mistakes, while also
-ensuring some kind of correctness (not literally, but your confidence in its
+ensuring some kind of correctness (not formally, but your confidence in its
 functionality increases).
 
 
