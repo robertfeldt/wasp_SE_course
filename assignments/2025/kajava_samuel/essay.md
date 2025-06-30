@@ -60,6 +60,21 @@ confirmation bias might slow down that process at times. However, I do not think
 it is entirely negative, I think this bias represents my "hunch" as well, which
 has proven to be correct more than once.
 
+### QA - Testing
+
+The QA lecture provided an overview of why QA and testing is vital for software
+engineering. Testing is commonly used, and companies tend to ensure all software
+artefacts are thoroughly tested from unit tests to large scale system tests.
+While verification and validation of results are both very important aspects 
+of my research, I feel like the value of testing throughout the whole
+process is often overlooked. While the projects are not as long-lived as the
+software in e.g., Ericsson's base stations, I still think there is value to
+ensuring quality throughout the development of a research project. Writing
+useful tests increases the likelihood of identifying mistakes, while also
+ensuring some kind of correctness (not literally, but your confidence in its
+functionality increases).
+
+
 ## 3. Guest-Lecture Principles
 <!--
 • Pick two principles/ideas/concepts/techniques from the guest lectures.
