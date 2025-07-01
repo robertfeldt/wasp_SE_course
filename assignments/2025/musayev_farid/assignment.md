@@ -73,3 +73,32 @@ As always, these are problems that are easier to identify than to solve.
 My main takeaway is the importance of increasing our awareness and understanding of these systems.
 As someone whose interest in mathematics has grown significantly in recent years, I believe it is essential that research continues to thoroughly analyze these complex systems.
 Otherwise, we risk creating massive (synthetic) neural networks that may ultimately be beyond our comprehension.
+
+
+## 4. Data Scientists versus Software Engineers
+
+I agree that there is a clear difference between two disciplines.
+As mentioned in the book, in traditional software engineering, the engineer knows exactly what function needs to be implemented, and this function can often be hard-coded.
+The input to this function is also well understood and carefully studied during problem formulation.
+Additionally, unit tests are designed to continuously verify the correctness of the implementation.
+
+How is a function implemented in Machine Learning (ML)?
+In this case, we do not know the exact form of the function in advance.
+The primary goal of ML is to learn a function from a set of data points.
+We may have a general idea of what the function should do, but its precise form is unknown.
+Essentially, the engineer has to write software for a function whose form is undetermined.
+This *undetermined* aspect highlights the role and value of the data scientist.
+The nature of the data, the process of learning a function (or a model) from it, its testing and verification are all integral components that are not clearly defined in traditional software engineering.
+All of this now requires a significant amount of mathematics, which would typically be abstracted away in traditional software engineering.
+
+From my limited experience exploring the job market before starting my PhD, it seemed that most companies were searching for **unicorns**—people capable of designing robust data pipelines, building strong models, and possessing MLOps skills to deploy and continuously monitor those models.M
+At least, that was my impression at the time.
+Why is this the case?
+First, it is cost-effective for companies.
+Second, it is a low-risk investment, as companies (before the LLM boom) were cautious about adopting ML.
+Finally, they hope these unicorns can eventually build strong teams and have a comprehensive understanding of all critical aspects of ML engineering.
+I do not have much information about the current job market, but I believe this pattern may still persist.
+One example is the AI engineer role, which I have encountered several times.
+
+If we set aside the profit-driven motives of businesses and consider the nature of these roles more deeply, the **T-shaped** approach mentioned in the book offers a good balance between two extremes.
+Both disciplines can learn from each other with the focus on mutual understanding and complementarity rather than replacement.
