@@ -9,6 +9,7 @@ csl: ieee-with-url.csl
 ---
 
 ## 1. Introduction
+
 <!--
 Briefly introduce your research area and topic so the rest of your essay stands
 on its own. (Maximum 500 words)
@@ -20,7 +21,7 @@ on prototype pollution in JavaScript, a vulnerability that allows attackers to
 insert arbitrary properties into the global prototype object. We aim to detect
 such vulnerabilities by utilizing a combination of static and dynamic analysis in order
 to both identify and verify vulnerabilities that may lead to cross-site
-scripting (XSS). 
+scripting (XSS).
 
 If unfamiliar, XSS is a web security vulnerability that allows
 attackers to inject arbitrary JavaScript into websites, which opens up for
@@ -36,6 +37,7 @@ my research, since the tools I produce are useful beyond advancing my research
 field.
 
 ## 2. Lecture principles
+
 <!--
 • Pick two principles/ideas/concepts/techniques from Robert’s lectures.
 • Discuss how each relates to your research and topic.
@@ -66,7 +68,7 @@ has proven to be correct more than once.
 The QA lecture provided an overview of why QA and testing is vital for software
 engineering. Testing is commonly used, and companies tend to ensure all software
 artefacts are thoroughly tested from unit tests to large scale system tests.
-While verification and validation of results are both very important aspects 
+While verification and validation of results are both very important aspects
 of my research, I feel like the value of testing throughout the whole
 process is often overlooked. While the projects are not as long-lived as the
 software in e.g., Ericsson's base stations, I still think there is value to
@@ -76,8 +78,8 @@ ensuring some kind of correctness (not formally, but your confidence in its
 functionality increases). In other words, utilizing QA and testing is vital for
 ensuring high-quality software -- I think the same applies for research.
 
-
 ## 3. Guest-Lecture Principles
+
 <!--
 • Pick two principles/ideas/concepts/techniques from the guest lectures.
 • Discuss how each relates to your research and topic.
@@ -99,7 +101,7 @@ bringing with me for future endeavours.
 
 ### Problem vs. Solution Space
 
-Another point I found interesting from the lecture on requirements engineering 
+Another point I found interesting from the lecture on requirements engineering
 was the contrast between problem space and solution space. When modeling a
 problem you are trying to solve, it is a good idea to formulate your
 requirements in terms of solution-space statements. An example from the lecture
@@ -116,6 +118,7 @@ solid foundation I can reason about in my research -- I probably won't be using
 Rust for my next project (even if I enjoy the language).
 
 ## 4. Data Scientists versus Software Engineers
+
 <!--
 Read chapters “1. Introduction” and “2. From Models to Systems” of the CMU
 “Machine Learning in Production” book (https://mlip-cmu.github.io/book/01-
@@ -144,20 +147,21 @@ additional challenges that might not be as relevant in data science.
 
 ### Will the roles merge?
 
-Regarding the question of whether the roles of software engineers and data 
+Regarding the question of whether the roles of software engineers and data
 scientists will merge or specialise further, I think the concept of
-"unicorn"-engineers is a good indication of what the future might look like. 
-People with skills in both data science and software engineering is rare at 
+"unicorn"-engineers is a good indication of what the future might look like.
+People with skills in both data science and software engineering is rare at
 the moment, and I believe it will stay that way. Data science requires a
 different skill set than software engineering, and it will attract different
 people for this reason. Rather than teaching data science to a software
-engineer (or vice-versa), I agree with the book that it is important to 
+engineer (or vice-versa), I agree with the book that it is important to
 create interdisciplinary teams. So no, the "other side" will not have to learn
 the skills of the other. What needs to change, however, is how data scientists
 and software engineers collaborate in order to build good teams and,
 consequently, good products.
 
 ## 5. Paper analysis
+
 <!--
 Find two full/long papers from any CAIN conference (links at https://conf.researchr.org/series/cain),
 download and read each, then for each paper cover:
@@ -180,6 +184,7 @@ approximately 2 A4 pages in length, 1 page per paper.
 -->
 
 ## 6. Research Ethics & Synthesis Reflection
+
 <!--
 To make your own literature search transparent describe exactly how you found
 and selected the papers you based your question 4 answer on:
@@ -194,22 +199,22 @@ not effective
 -->
 
 1. Search and screening process.
-    - Collect all papers in a list from the CAIN website.
-    - Read through the titles. Save the ones that suits the question (i.e., does
-      it propose something that might be integrated in a project, and does my
-      research somehow fit in it as well?)
-    - Read abstracts. Discard ones that do not fit the above criteria.
-    - If an abstract is deemed interesting, start reading the paper. The first
-      two papers that were deemed interesting where chosen.
+   - Collect all papers in a list from the CAIN website.
+   - Read through the titles. Save the ones that suits the question (i.e., does
+     it propose something that might be integrated in a project, and does my
+     research somehow fit in it as well?)
+   - Read abstracts. Discard ones that do not fit the above criteria.
+   - If an abstract is deemed interesting, start reading the paper. The first
+     two papers that were deemed interesting where chosen.
 2. Pitfalls and mitigations.
-    - None of the discarded papers were misleading per se, but e.g., "exploratory
-      studies" all seemed irrelevant based on the criteria mentioned above. I
-      decided to exclude such papers from my search.
+   - None of the discarded papers were misleading per se, but e.g., "exploratory
+     studies" all seemed irrelevant based on the criteria mentioned above. I
+     decided to exclude such papers from my search.
 3. Ethical considerations.
-    - I did not use any LLMs for the contents of this essay. 
-    - Spell checking was done with the builtin solution for 
-      [Neovim](https://neovim.io/doc/user/spell.html).
-    - I did use an LLM for setting up the LaTeX preamble in the markdown
-      document to get the correct output from pandoc.
+   - I did not use any LLMs for the contents of this essay.
+   - Spell checking was done with the builtin solution for
+     [Neovim](https://neovim.io/doc/user/spell.html).
+   - I did use an LLM for setting up the LaTeX preamble in the markdown
+     document to get the correct output from pandoc.
 
 ## References
