@@ -193,4 +193,23 @@ not effective
 • Steps taken to ensure originality (no copying from LLMs or sources
 -->
 
+1. Search and screening process.
+    - Collect all papers in a list from the CAIN website.
+    - Read through the titles. Save the ones that suits the question (i.e., does
+      it propose something that might be integrated in a project, and does my
+      research somehow fit in it as well?)
+    - Read abstracts. Discard ones that do not fit the above criteria.
+    - If an abstract is deemed interesting, start reading the paper. The first
+      two papers that were deemed interesting where chosen.
+2. Pitfalls and mitigations.
+    - None of the discarded papers were misleading per se, but e.g., "exploratory
+      studies" all seemed irrelevant based on the criteria mentioned above. I
+      decided to exclude such papers from my search.
+3. Ethical considerations.
+    - I did not use any LLMs for the contents of this essay. 
+    - Spell checking was done with the builtin solution for 
+      [Neovim](https://neovim.io/doc/user/spell.html).
+    - I did use an LLM for setting up the LaTeX preamble in the markdown
+      document to get the correct output from pandoc.
+
 ## References
