@@ -128,6 +128,35 @@ roles somehow will merge? Explain your reasoning.
 1
 -->
 
+### Differences between data scientists and software engineers
+
+I agree that there are differences between data scientists and software
+engineers. The most important distinction, in my opinion, stems from the
+different goals that the two roles have. The introduction mentions that data
+scientists commonly aim for pushing the state of the art in controlled
+scenarios. For instance, training a model to beat previous ones in various
+performance metrics is interesting from an academic point of view - but it
+might be relatively expensive computationally; this does not directly translate
+to the goals of a software engineer. The goal for a software engineer is to,
+among other things, consider scalability and maintainability. Iterating on a
+massive model requiring re-training and large-scale depoloyment introduces
+additional challenges that might not be as relevant in data science.
+
+### Will the roles merge?
+
+Regarding the question of whether the roles of software engineers and data 
+scientists will merge or specialise further, I think the concept of
+"unicorn"-engineers is a good indication of what the future might look like. 
+People with skills in both data science and software engineering is rare at 
+the moment, and I believe it will stay that way. Data science requires a
+different skillset than software engineering, and it will attract different
+people for this reason. Rather than teaching data science to a software
+engineer (or vice-versa), I agree with the book that it is important to 
+create interdisciplinary teams. So no, the "other side" will not have to learn
+the skills of the other. What needs to change, however, is how data scientists
+and software engineers collaborate in order to build good teams and,
+consequently, good products.
+
 ## 5. Paper analysis
 <!--
 Find two full/long papers from any CAIN conference (links at https://conf.researchr.org/series/cain),
