@@ -12,6 +12,7 @@
 \usepackage{wasysym}
 
 \usepackage{geometry}
+\usepackage{hyperref}
  \geometry{
  a4paper,
  top=20mm,
@@ -31,23 +32,23 @@
 
 \section{Introduction}
 
-My research lies at the intersection of Software Engineering (SE) and Artificial Intelligence (AI), with a particular focus on guiding Large Language Models (LLMs) to generate code that is not only functionally correct but also efficient in terms of execution time and memory usage. While models like GPT, Gemini, and Claude have made significant progress in automated code generation, studies show that their outputs are often inefficient. As LLM-generated code becomes more integrated into real-world software systems, these inefficiencies can lead to degraded application performance, increased operational costs, and greater energy consumption.
+My research lies at the intersection of Software Engineering (SE) and Artificial Intelligence (AI), with a particular focus on guiding Large Language Models (LLMs) to generate code that is not only functionally correct but also efficient in terms of execution time and memory usage. Although models like GPT, Gemini, and Claude have made significant progress in automated code generation, studies show that their outputs are often inefficient. As LLM-generated code becomes more integrated into real-world software systems, these inefficiencies can lead to degraded application performance, increased operational costs, and greater energy consumption.
 
-The core problem addressed in my work is the disconnect between the correctness and performance of LLM-generated code. My goal is to explore techniques that steer LLMs toward generating code that satisfies both functional and non-functional requirements. To that end, I am developing a benchmark suite composed of real-world Java programming tasks. This benchmark supports a systematic evaluation of LLM-generated code by comparing it against expert-written implementations. The evaluation includes both runtime behavior and resource usage, as well as functional correctness. This dual focus aims to identify typical inefficiency patterns and inform the development of new software engineering techniques for improving LLM-driven code generation.
+The core problem addressed in my work is the disconnect between the accuracy and performance of the LLM-generated code. My goal is to explore techniques that steer LLMs toward generating code that satisfies both functional and non-functional requirements. To that end, I am developing a benchmark suite composed of real-world Java programming tasks. This benchmark supports a systematic evaluation of LLM-generated code by comparing it with expert-written implementations. The evaluation includes both runtime behavior and resource usage, as well as functional correctness. This dual focus aims to identify typical inefficiency patterns and inform the development of new software engineering techniques to improve LLM-driven code generation.
 
 \section{Robert’s Lectures}
 
 \subsection{Data Validation}
 
-Data validation ensures that inputs, outputs, and intermediate data meet expected formats and quality standards. In traditional software systems, it involves checking user inputs or system-generated data to ensure they follow required rules. In the context of AI and machine learning, the scope is broader—it includes the quality, relevance, and consistency of training data, as well as runtime data used by models.
+Data validation ensures that inputs, outputs, and intermediate data meet expected formats and quality standards. In traditional software systems, it involves checking user inputs or system-generated data to ensure they follow required rules. In the context of AI and machine learning, the scope is broader, encompassing the quality, relevance, and consistency of training data, as well as the runtime data used by models.
 
-This concept is integral to my research. First, prompts to LLMs are a form of input data and must be validated—not just syntactically, but in terms of their ability to elicit correct and efficient code. One goal of my project is to investigate how to craft prompts that incorporate performance-related guidance. Second, I rely on a curated dataset of real-world Java performance problems and corresponding expert-written fixes, which serve as the ground truth for evaluating LLM output. Ensuring the correctness of these examples is essential, as they form the foundation for my benchmark. Finally, the code produced by LLMs must also be validated, not only for syntax and functional correctness but for runtime efficiency. My benchmark thus acts as a comprehensive validation framework, assessing the quality of LLM-generated code on both functional and performance criteria.
+This concept is integral to my research. First, LLM prompts are a form of input data and must be validated not just syntactically, but in terms of their ability to elicit correct and efficient code. One goal of my project is to investigate how to craft prompts that incorporate performance-related guidance. Second, I rely on a curated dataset of real-world Java performance problems and corresponding expert-written fixes, which serve as the ground truth for evaluating LLM output. Ensuring the correctness of these examples is essential, as they form the foundation for my benchmark. Finally, the code produced by LLMs must also be validated, not only for syntax and functional correctness but for runtime efficiency. My benchmark thus acts as a comprehensive validation framework, assessing the quality of LLM-generated code on both functional and performance criteria.
 
 \subsection{Quality Assurance (QA)}
 
 Quality Assurance (QA) involves ensuring that software systems meet defined quality standards across the entire development lifecycle. Rather than just identifying defects, QA focuses on building processes that prevent them.
 
-This concept underpins my research. While traditional QA targets code written by humans, my work applies QA principles to the code generation process of LLMs. I treat performance—measured by execution time and memory usage—as a key quality attribute, alongside functional correctness. By creating a standardized Java benchmark, I provide a structured way to evaluate and improve the quality of code generated by LLMs. My benchmark acts as a QA framework: it highlights inefficiencies, identifies common issues, and guides prompt engineering or fine-tuning strategies that can lead to better LLM behavior. The ultimate aim is not just assessment but prevention—reducing the occurrence of inefficient code through improved generation strategies.
+This concept is the basis for my research. While traditional QA targets code written by humans, my work applies QA principles to the code generation process of LLMs. Performance, measured by execution time and memory usage, is treated as a key quality attribute along with functional correctness. By creating a standardized Java benchmark, I provide a structured way to evaluate and improve the quality of code generated by LLMs. My benchmark acts as a QA framework: it highlights inefficiencies, identifies common issues, and guides prompt engineering or fine-tuning strategies that can lead to better LLM behavior. The ultimate aim is not just assessment but prevention, reducing the occurrence of inefficient code through improved generation strategies.
 
 \section{Guest Lectures}
 
@@ -55,13 +56,13 @@ This concept underpins my research. While traditional QA targets code written by
 
 Julian's lecture emphasized the importance of capturing both functional and non-functional requirements early in the software development lifecycle. This is especially relevant when considering LLMs as coding assistants or autonomous developers.
 
-Current LLMs are generally optimized to meet functional requirements (e.g., producing syntactically correct and compilable code) but often ignore non-functional ones such as performance, memory usage, or platform compatibility. My research treats performance as a first-class requirement and explores how to encode it into prompts or provide feedback mechanisms that align LLM behavior with these goals. This connection to requirements engineering is valuable, as it provides a structured lens through which to think about aligning LLM-generated code with broader system goals.
+Current LLMs are generally optimized to meet functional requirements (e.g., producing syntactically correct and compilable code), but often ignore nonfunctional ones such as performance, memory usage, or platform compatibility. My research treats performance as a first-class requirement and explores how to encode it into prompts or provide feedback mechanisms that align LLM behavior with these goals. This connection to requirements engineering is valuable, as it provides a structured lens through which to think about aligning LLM-generated code with broader system goals.
 
 \subsection{Behavioral Software Engineering}
 
-Behavioral Software Engineering explores how cognitive and social factors influence software development. One of its key insights is that developers are not always rational—they rely on heuristics, are influenced by habits, and may make decisions based on trust rather than analysis.
+Behavioral Software Engineering explores how cognitive and social factors influence software development. One of its key insights is that developers are not always rational; they rely on heuristics, are influenced by habits, and may make decisions based on trust rather than analysis.
 
-This perspective is crucial in understanding how developers interact with LLM-generated code. Even when the code compiles and passes basic tests, developers may trust it without evaluating its efficiency. This can lead to performance regressions being overlooked. My research addresses this issue by providing clear performance evaluations of generated code. In future tools, I plan to present this information in a developer-friendly format—e.g., highlighting bottlenecks or suggesting faster alternatives—so that developers can make informed decisions without cognitive overload. This aligns with the human-centered focus of behavioral software engineering and aims to bridge the gap between AI tools and developer behavior.
+This perspective is crucial in understanding how developers interact with LLM-generated code. Even when the code compiles and passes basic tests, developers may trust it without evaluating its efficiency. This can lead to performance regressions being overlooked. My research addresses this issue by providing clear performance evaluations of generated code. In future tools, I plan to present this information in a developer-friendly format, e.g., by highlighting bottlenecks or suggesting faster alternatives, so that developers can make informed decisions without cognitive overload. This aligns with the human-centered focus of behavioral software engineering and aims to bridge the gap between AI tools and developer behavior.
 
 
 \section{Data Scientists versus Software Engineers}
@@ -126,17 +127,25 @@ The paper talks about a new way to test if LLMs really understand code, not just
 
 \textbf{Core Idea 2}: Using Code Mutation. To make these conflicts for testing, the method uses something called "code mutation". This is a technique from software testing. It makes small changes in the working code, like changing a + to a -, or deleting a line. These small changes create mutants. The mutants are used to test if the LLM is smart enough to see that the code no longer matches the description.
 
-This is very important for Software Engineering for AI. Now many people use AI tools like Copilot to help them write code. But we need to be sure these tools really understand what they are doing. If an LLM just copies patterns without deep understanding, it can make very hard-to-find bugs. This MCT method gives us a way to do quality check on the LLM's understanding ability. It helps us trust these AI tools more and helps researchers to build better, more reliable AI for software development. It's like a deeper health check for the AI's brain.
+This is very important for Software Engineering for AI. Now, many people use AI tools like Copilot to help them write code. But we need to be sure these tools really understand what they are doing. If an LLM just copies patterns without a deep understanding, it can make very hard-to-find bugs. This MCT method gives us a way to do a quality check on the LLM's understanding ability. It helps us trust these AI tools more and helps researchers to build better, more reliable AI for software development. It's like a deeper health check for the AI's brain.
 
-This paper is very related to my own research, even though it does a different thing. My research is about making LLMs write efficient code. This paper is about testing if LLMs understand code. We both want to improve the quality of LLMs for software engineering. The paper looks at the quality of understanding. I look at the quality of generation, specifically performance. It's like we are checking two different skills of the same student. The paper checks the student's reading skill, I check the student's writing skill. My research uses a benchmark with real-world Java performance problems to test LLMs. The paper uses a systematic way (mutation) to create test cases. Both of our works use a structured, engineering way to measure the LLM's ability. This is better than just guessing if the LLM is good or not. We both use data and clear steps to get results.
+This paper is very related to my own research, even though it does a different. My research is about making LLMs write efficient code. This paper is about testing if LLMs understand code. We both want to improve the quality of LLMs for software engineering. The paper looks at the quality of understanding. I look at the quality of generation, specifically performance. It's like we are checking two different skills of the same student. The paper checks the student's reading skill, I check the student's writing skill. My research uses a benchmark with real-world Java performance problems to test LLMs. The paper uses a systematic way (mutation) to create test cases. Both of our works use a structured, engineering way to measure the LLM's ability. This is better than just guessing if the LLM is good or not. We both use data and clear steps to get results.
 
 The paper gives me many ideas on how to make my own research better and bigger in the long term. My project is about guiding LLMs to generate efficient code. 
 The paper uses mutation for testing. I can use the same spirit for guiding generation. My research is about guiding, and one way to guide is to show bad examples. These bad examples can be like "negative mutants". By showing the LLM these "anti-patterns", I am not just telling it what to do, but also very clearly what not to do. This can be a very powerful way to guide the LLM to the correct, efficient solution. This directly adapts the paper's core idea of using mutants from a testing tool to a teaching tool.
 
 \section{Research Ethics \& Synthesis Reflection}
 
-I scanned the CAIN conference website using terms like LLM, code generation, and code quality. I filtered papers by titles, abstracts, and key sections to ensure relevance.
+I began by scanning recent CAIN conference proceedings (2024 and 2025) with terms such as LLM, code generation, and code quality. I focused on the latest long paper tracks listed on:
+\begin{itemize}
+    \item \url{https://conf.researchr.org/track/cain-2025/cain-2025-call-for-papers#long-papers}
+    \item \url{https://conf.researchr.org/track/cain-2024/cain-2024-call-for-papers#long-papers}
+\end{itemize}
 
-I wrote my analysis in my own words, using the LLM only to help with the writing and clarity, not to generate ideas.
+I prioritized the most recent publications and selected papers based on title, abstract, and relevant sections, ensuring alignment with my research question. This process quickly led me to two papers directly relevant to LLMs and code performance.
+
+I did not encounter misleading titles or abstracts during screening. The initial results were highly relevant, so no major adjustments to the search process were necessary.
+
+I wrote my analysis entirely in my own words, ensuring originality. The LLM was used only for language clarity and structure, not for generating ideas or copying content.
 
 \end{document}
