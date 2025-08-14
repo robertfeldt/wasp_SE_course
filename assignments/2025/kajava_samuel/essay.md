@@ -51,7 +51,7 @@ tasked with tracking down a bug. This process seemed to be guided by the
 person's bias towards what part of the code base they might deem more likely to
 be "buggy". This makes sense, you have to start somewhere! However, what is
 deemed "buggy" is not for sure the culprit, and it may lead to wasted effort,
-since the problem might be somewhere entirely else (or god forbid, they introduced
+since the problem might be somewhere entirely else (or they introduced
 it themselves).
 
 Since my research involves a lot of bug-finding, it is only natural that this
