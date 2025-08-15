@@ -1,10 +1,10 @@
 ---
 title: "WASP Software Engineering Course Module 2025"
 author: "Samuel Kajava"
+bibliography: ./refs.bibtex
 output:
   pdf_document:
     path: essay.pdf
-bibliography: refs.bibtex
 csl: ieee-with-url.csl
 ---
 
@@ -182,6 +182,59 @@ to) address
 Your answers to question 4 is the main part of your essay and should be
 approximately 2 A4 pages in length, 1 page per paper.
 -->
+
+### Investigating the Impact of Solid Design Principles on Machine Learning Code Understanding
+
+#### Core ideas and SE importance
+
+The core idea of the paper is to see if the source code of ML projects becomes
+more comprehensible when applying the SOLID principles [@solid]. They investigated
+this by
+performing a qualitative study where participants review the code of an ML
+project in two groups - the control group looked at the original source code of
+the project, and the experimental group observed a refactored version adhering
+to the SOLID principles. The results show that, indeed, the ability to
+understand the code increases when written with the design principles in mind.
+The authors point out that while the benefit of SOLID and other design
+principles are well studied in SE, no such work has been made in the realm of
+ML. Filling this gap is important, given the increasing amount of ML in
+production - long-lived projects need to be maintainable, after all, and is
+therefore important to study. 
+
+Personally, I do not think the results are very
+surprising, but what I do find important is that they surveyed data
+scientists from varying academic backgrounds. This is an interesting observation,
+since it shows how important standarized practices are for data scientists
+despite the different area of expertise they possess compared to a traditional software
+engineer.
+
+#### Relation to my research
+
+While I do not research anything ML related, the data science aspects brought up
+in the paper applies to mine. The authors mention that the code for the control
+group is written in computational notebooks which they point out tends to
+"encourage poor coding practices" [@solid]. I perform data analysis in a
+similar fashion, and I agree that it quickly gets messy. If I were to be more
+strict in terms of coding practices, my results could get easier to reproduce.
+
+#### Integration into a larger AI-intensive project
+
+A fictional project utilizes ML to generate proof-of-concent security exploits.
+It utilizes a RAG based on known vulnerable code snippets. The amount of
+different vulnerabilities quickly rises and needs to be represented in a
+maintanable way. By incorporating the idea of using the SOLID principles for
+these tasks makes it easier to extend in the future, especially considering that
+all vulnerabilities share a common interface - code snippets. I could
+incorporate my research into this by supplying the vulnerabilities I find on the
+web along with the insight I gain from learning how they typically look.
+
+#### Adaption of my research
+
+As briefly mentioned above, adapting the SOLID principles in places where I
+would otherwise use quick notebooks is something I will keep in mind in the future. 
+I think notebooks are useful, but they often get riddled with hacky solutions;
+if I apply the SOLID principles, the code will unevitably get more
+comprehensible, even if it is only me working on it.
 
 ## 6. Research Ethics & Synthesis Reflection
 
