@@ -15,26 +15,18 @@ Briefly introduce your research area and topic so the rest of your essay stands
 on its own. (Maximum 500 words)
 -->
 
-My research area is software security with heavy emphasis on identifying and
-mitigating vulnerabilities in web applications. My current research focuses
+My research area is in it's broadest sense language-based security. Therefore,
+anything including programming languages is on the table. My current research focuses
 on prototype pollution in JavaScript, a vulnerability that allows attackers to
 insert arbitrary properties into the global prototype object. We aim to detect
 such vulnerabilities by utilizing a combination of static and dynamic analysis in order
 to both identify and verify vulnerabilities that may lead to cross-site
-scripting (XSS).
+scripting (XSS). 
 
-If unfamiliar, XSS is a web security vulnerability that allows
-attackers to inject arbitrary JavaScript into websites, which opens up for
-issues like session-hijacking or unauthorized data access. My research topic
-revolves around issues like these, how do we keep the web safe? In the majority
-of cases (if not all), software bugs are the reason these exploits are possible.
-Therefore, I aim to increase security by providing means for detecting such
-problems within the web context. As a bonus, I do not only want to detect and
-fix bugs, I would like my work to be applicable for anyone. Therefore, I put
-considerable effort into making my methods easily reproducible for anyone who
-would like to secure their own code base. I believe this increases the value of
-my research, since the tools I produce are useful beyond advancing my research
-field.
+Another topic that is relevant to my area is security
+involving LLMs: *how can LLMs aid us in writing secure code?*, and *how can we secure
+LLM-based systems from prompt injection vulnerabilities?* are two interesting
+topics worth exploring.
 
 ## 2. Lecture principles
 
