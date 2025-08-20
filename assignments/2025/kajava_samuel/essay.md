@@ -15,7 +15,7 @@ Briefly introduce your research area and topic so the rest of your essay stands
 on its own. (Maximum 500 words)
 -->
 
-My research area is in it's broadest sense language-based security. Therefore,
+My research area is, in its broadest sense, language-based security. Therefore,
 anything including programming languages is on the table. My current research focuses
 on prototype pollution in JavaScript, a vulnerability that allows attackers to
 insert arbitrary properties into the global prototype object. We aim to detect
@@ -211,10 +211,10 @@ strict in terms of coding practices, my results could get easier to reproduce.
 
 #### Integration into a larger AI-intensive project
 
-A fictional project utilizes ML to generate proof-of-concent security exploits.
+A fictional project utilizes ML to generate proof-of-concept security exploits.
 It utilizes a RAG based on known vulnerable code snippets. The amount of
 different vulnerabilities quickly rises and needs to be represented in a
-maintanable way. By incorporating the idea of using the SOLID principles for
+maintainable way. By incorporating the idea of using the SOLID principles for
 these tasks makes it easier to extend in the future, especially considering that
 all vulnerabilities share a common interface - code snippets. I could
 incorporate my research into this by supplying the vulnerabilities I find on the
