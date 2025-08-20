@@ -23,8 +23,8 @@ such vulnerabilities by utilizing a combination of static and dynamic analysis i
 to both identify and verify vulnerabilities that may lead to cross-site
 scripting (XSS). 
 
-Another topic that is relevant to my area is security
-involving LLMs: *how can LLMs aid us in writing secure code?*, and *how can we secure
+Another topic that is relevant to my area is security involving LLMs:
+*how can LLMs aid us in writing secure code?*, and *how can we secure
 LLM-based systems from prompt injection vulnerabilities?* are two interesting
 topics worth exploring.
 
@@ -225,8 +225,83 @@ web along with the insight I gain from learning how they typically look.
 As briefly mentioned above, adapting the SOLID principles in places where I
 would otherwise use quick notebooks is something I will keep in mind in the future. 
 I think notebooks are useful, but they often get riddled with hacky solutions;
-if I apply the SOLID principles, the code will unevitably get more
+if I apply the SOLID principles, the code will inevitably get more
 comprehensible, even if it is only me working on it.
+
+### Welcome Your New AI Teammate: On Safety Analysis by Leashing Large Language Models
+
+<!--
+1. Core ideas and their SE importance
+• Describe the core idea(s) of the paper and why it/they are important
+to the engineering of AI systems
+-->
+
+#### Core ideas and SE importance
+
+The core idea of the paper by Nouri et. al [@mlsafe] is to determine whether it
+is feasible to apply LLMs in safety engineering in terms of improved automation.
+To explore their idea, they task GPT-4 with creating "Hazard Analysis & Risk
+Assessment" (HARA) documents, which is important to complete before creating 
+safety requirements in autonomous vehicles. Through prompt engineering and
+utilization of GPT-4, they conclude that it, indeed, is useful to apply LLMs in
+safety critical scenarios, but not without limitations. The outputs need to be
+verified by experts, and is mostly useful as grounds for brainstorming or as an
+early version that can be expanded.
+
+The importance for SE is clear. LLMs can save time in SE settings by providing a
+starting point for engineers to expand upon. In terms of relevance to AI systems
+in general, providing insight into the use of LLMs in safety related domains is
+for sure a useful contribution. 
+
+<!--
+2. Relation to your research
+• How the paper relates to your own research
+-->
+
+#### Relation to my research
+
+In security research, similar to safety engineering, it is important to consider processes
+that handle challenges with risks and requirements. Like the paper generates
+HARAs, LLMs could be applied in security related areas as well. For instance,
+consider threat modelling or security requirements. Much like hazard analysis,
+tasks like these can be repetitive, and would benefit from automation.
+
+<!--
+3. Integration into a larger AI-intensive project
+• Describe a (real or fictional) larger AI-intensive software project,
+where AI/ML is a core aspect of the system’s functionality
+• Describe how the paper’s ideas could be used in this project
+• How your own WASP research could fit into this project
+-->
+
+#### Integration into a larger AI-intensive project
+
+A fictional cybersecurity company focusing on helping customers with assessing
+their security of their projects uses ML at the core of their product.
+The paper describes the prompt engineering effort used for creating HARAs in a
+structured manner [@mlsafe]. It involves identifying the potential hazards of a
+given item, specifying scenarios were they may occur, expanding on those,
+evaluating the severity, before finally specifying goals. This effort is domain
+specific, but can serve as a modular way of solving similar problems. The
+fictional company can adopt this process on a per-customer basis, or choose to
+create a general solution. However, this does not resolve the issue of needing
+experts analysing the output, and this is where my research comes in. Given the
+wide scope of language-based security, bringing in threat-modelling research
+into this can help create a good product.
+
+<!--
+4. Adaptation of your research
+• How you might tweak your research project to (long-term) better
+support the paper’s AI-engineering idea and the challenges it is (trying
+to) address
+-->
+
+#### Adaption of my research
+
+Adapting the ideas presented in this paper is quite tricky since we are not
+incorporating anything AI-related into it. However, a similar effort [@follow]
+leverages LLMs (see [@git]) for exploit payload generation, and could possibly be improved by
+applying the framework of prompt engineering presented in the paper.
 
 ## 6. Research Ethics & Synthesis Reflection
 
