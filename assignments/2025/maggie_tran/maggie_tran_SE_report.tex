@@ -1,0 +1,125 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper, total={6in, 9in}]{geometry}
+\renewcommand{\baselinestretch}{1.2} 
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+\usepackage{url}
+
+\begin{document}
+\pagenumbering{gobble}
+\title{WASP Software Engineering Course Module Report }
+\author{Maggie Tran}
+\maketitle
+\cleardoublepage
+\pagenumbering{arabic}
+
+\section{Introduction of Research Area}\label{introRA}
+%AI-based side-channel attacks and countermeasures for autonomous systems
+%max 500 words
+We research side-channel attacks on post-quantum cryptosystems. Shor's algorithm and development in quantum computers pose a threat to our current public key crytosystems that rely on two hard problems: factoring large integers and the discrete log problem. In 2016, the National Institute of Standards and Technology (NIST) took the initiative to ask the research community to create new cryptographic systems that can resist both classical and quantum computers. In order to ensure and improve the security of these new cryptographic schemes, there is much effort in designing attacks to break them. 
+\\
+Our research focuses on exploiting side channel information that is leaked through the implementation of these new schemes in order to retrieve the secret key. Examples of side-channel information are electromagnetic radiation, timing, and power consumption that can be measured when a device does operations that involve the secret keys. Of these attacks, the most common and stronger attacks are power-based side channel attacks, which is also the focus of our research. One famous example of a simple power analysis attack is an attack on the implementation of RSA on smartcards. The Kerchoff's principle says that the security of the cryptographic system should rely solely on the secrecy of the key, all the information on the encryption and decryption algorithms, including how to implement them should be publicly known. RSA is a public key cryptographic algorithm that performs a series of modular exponentiation loops through each bit of the secret key (exponent \texttt{d}). \\
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.75\textwidth]{images/RSAleak.png}
+    \caption{Power leak from an RSA implementation. \cite{kocher2011introduction}}
+    \label{fig:rsaLeak}
+\end{figure}
+As can be seen from Figure \ref{fig:rsaLeak}, multiplications consume more power than the squaring, resulting in higher peaks in the power trace. While squaring is performed in each iteration of the exponentiation loop, multiplications are only done when a bit of the exponent is 1. Using this fact, we can see the pattern for "1" bit in the exponent being the higher peaks, and "0" being the shorter spikes without a subsequent taller one. This is how a secret key can be recovered from simple power analysis of the power leakage in the implementation of a cryptographic algorithm.
+
+
+\section{Lecture Principles}
+
+\begin{enumerate}
+
+\item \textbf{Software Testing} is very important in cryptographic systems. Rigorous testing is required to make sure that the implementation performs as intended, is reliable and secure. For my research topic, that includes tests for leakage of side information such as power consumption, whether these signal have structures more than just noise, and can give information on the secret key. Moreover, there are also tests for the effectiveness of proposed countermeasures for known attacks.
+\item \textbf{Science vs. Engineering}: Scientists ask why the system works while engineers ask how we can make it work reliably, and our research area is very much both science and engineering. Mathematicians and cryptographers design and prove security of cryptographic systems. While engineers are not required to understand all the underlying mathematics for why such systems work or are theoretically secure, there are many details in the implementations that could compromise such systems, case in point, side-channel information leakage. 
+
+\end{enumerate}
+
+\section{Guest Lecture Principles}
+\begin{enumerate}
+\item First lecture: Requirement Engineering,
+\begin{enumerate}
+\item Elicitation of Security Requirements\\
+Identify Security Needs: During the requirements elicitation phase, stakeholders should specify security requirements that address potential vulnerabilities to different side-channel attacks. This includes defining acceptable levels of resistance against such attacks as well as guidelines for code practice during development to protect against attacks such as timing attacks.
+\item Analysis of Security Requirements\\
+Feasibility and Impact Assessment: Analyze the feasibility of implementing security measures against side-channel attacks and assess the potential impact of these attacks on the system's integrity and confidentiality.
+
+\end{enumerate}
+
+\item Second lecture: Importance of Human Aspects in Software and AI/ML Engineering\\
+The lecturer raised a point that people could be resistant to change, such as less willing to adapt and use new tools, such as ML, AI. In the area of security, we face similar problems, systems that are known to have been broken in the research community are still in use for many applications. Moreover, despite many known attacks being entirely avoidable, well-studied and effective countermeasures are not adopted as a common practice in industry. One could argue that in this case it was not scepticism that stopped people from adopting new techniques, but lack of knowledge or perhaps industry standards that are difficult to change.
+
+\end{enumerate}
+
+
+
+\section{Data Scientists versus Software Engineers}\label{ds_se}
+% 1 page
+I fully agree with the author on the essential differences between data scientists and software engineers in the first two chapters \cite{kastner2025}. Firstly, those who work these two roles typically come from different education programs, with software engineering focusing more on software development such as design, testing, and even security,and data science emphasizing more on mathematics, statistics and different machine learning algorithms. This results in two quite different types of expertise. Secondly, the two roles also have very different work experience. While software engineers work more with developing large systems with the intention of deploying and scaling without too much effort, data scientists often work with Jupyter notebooks, in order to quickly develop and test different models. Both types of expertise and work experience are required in developing ML-based products.
+\\
+In the future, I believe that both roles will not merge but continue to exist. The main reason is the very different educational background and work experience for the two roles. There is much knowledge to obtain in each field alone, hence, it will not be easy to find those who excel at both. However, I also believe that both roles will also learn many of the skills of "the other side". For example, as a data scientist, improvement in programming skills will also result in higher productivity as it will help them set up and test different or newly developed models faster. Better understanding of computer architecture and algorithms will also save computing resources, make it more efficient when developing new models. It is also beneficial for product development if data scientists are aware of good practice in requirement engineering, software deployment and scaling.
+
+\section{Paper Analysis}\label{paan}
+%pick two papers, write at least 1.2 page for each paper
+\subsection{POLARIS: A framework to guide the development of Trustworthy AI systems \cite{baldas2024}}\label{paper1}
+\subsubsection*{Core ideas and their SE importance}
+Over the past few years, we have observed the fast development of AI, and how AI has taken part in my critical building blocks of society, such as banking and finance, education, healthcare, drug development, etc..
+Along with the benefits also come series of doubts on how trustworthy these systems are.
+The paper is part of the effort to build guidelines for AI practitioners to apply in the development of their products.
+The authors review the current research and practice of Trustworthy AI and analyse the results from their surveys and interviews with AI professionals to  find out the different challenges and what is lacking.
+They then propose POLARIS, a framework with different components detailing what actions AI practitioners can take during the software development life cycle (SDLC) of their products to ensure AI trustworthiness.
+
+\subsubsection*{Relation to my research}
+As explained in section \ref{introRA}, my research's focus is on side channel attacks on post-quantum cryptographic systems.
+While we do use deep learning techniques in some attacks, we do not have any focus on developing AI algorithms or AI-enabled systems.
+Due to the fast development of AI, I find the topic of AI trustworthiness to be very interesting and relevant. 
+
+\subsubsection*{Integration into a larger AI-intensive project}
+From the survey results, it seemed the AI practitioners questioned were aware of the different solutions to make their AI-enabled systems trustworthy.
+However, they are concerned that these solutions often lead to system's performance decrease as well as extended time and effort to implement these solutions.
+One issue that the authors highlight is there is a lack of tools that make AI-enabled systems explainable expressed by the interviewed AI professionals.
+\\
+The framework, POLARIS, has four knowledge components: Privacy, Security, Fairness and Explainability. For each component, the framework provides identification of different issues related to that component in each SDLC phase, as well as proposed actions to address these issues.
+For example, for the Security component, they go through each SDLC phase and identify the threats and subthreats, provide descriptions of such threats, the resulting vulnerabilities, then an actionable plan to address each of those said threats.
+\\
+POLARIS seems to be a systematic and convenient tool to integrate in the development of a large AI-intensive project. For each phase of the SDLC, professionals can consult the framework and find out what actions to take in order to achieve the four properties: Privacy, Security, Fairness and Explainability in their systems.
+
+\subsubsection*{Adaptation of my research}
+In my research, we are the attackers, we try to figure out ways to use side-channel information in order to retrieve the secret keys. We need to assess how realistic and practical the attacks are, as well as find out the countermeasures to these attacks. The framework does not have a direct application to my research. However, it was very interesting to see its Security and Privacy components.
+
+
+\subsection{What About the Data? A Mapping Study on Data Engineering for AI Systems \cite{heck2024}}
+
+\subsubsection*{Core ideas and their SE importance}
+As discussed in section \ref{ds_se}, software engineers and data scientists are two very different roles with different focus in  educational background and work experience. In this paper, the author reviews 25 papers on the practice of another also very important role in an AI-enabled system, data engineers, those who are in charge of extracting, moving and preparing data at scale \cite{kocher2011introduction}. The contribution of this paper is by analysing and categorizing the data engineering activities, tools, and frameworks, an overview of the current research on data engineering is provided as solutions for AI practitioners. This is also beneficial for researchers to find out what is still lacking in the field.
+\\
+It is well-known that nowadays, data is considered the most integral part of any AI-based systems, but software engineers are not really equipped with knowledge to handle a large amount of data, nor are data scientists. The data preparation process requires a different type of engineering expertise, although maybe more related to software engineering than data science skills. It is without a doubt a very important part in the development as well as production phase of any AI-enabled systems.
+
+\subsubsection*{Relation to my research}
+As mentioned in parts of the analysis of paper \cite{baldas2024} in section \ref{paper1}, my research is not directly connected to developing new AI and ML algorithms, we do, however, handle a significant amount of time-series data, such as power consumption data. Hence, good practice of data engineering would also be beneficial.
+
+\subsubsection*{Integration into a larger AI-intensive project}
+Unlike the first paper \cite{baldas2024} introducing a framework, providing guidelines and clear, actionable plans for AI practitioners to make an AI-enabled system trustworthy, this paper is more a structural review, and summary of current research on data engineering. It was mentioned that even just the definition of data engineering was not clearly stated in all 25 selected papers. Moreover, different authors shared slightly different definitions. Reading this study can give AI professionals ideas for good practice in data engineering, as well as direct them to further read other research papers that tackle the problems that they are interested in. Heck \cite{heck2024} pointed out the lack of an overall data architecture since most papers focused mainly on production pipelines for AI systems. The paper also acknowledged the need for guidelines, best practices, and open-source tools to support AI practitioners. Data engineering is clearly an integral part of a large AI-intensive project; however, there is much work to be done to provide data engineers with general frameworks and tools to support them.
+
+
+\subsubsection*{Adaptation of my research}
+Data engineering can be considered a necessary part of my research, as it is common that collecting and processing a significant amount of time-series data is the first step in a study. Storing the data and making it available for other researchers to reproduce our results is also an important part of the research. A general framework or guideline of how to data-engineer will certainly be useful.
+
+\section{Research Ethics and Synthesis Reflection}
+\subsection{Search and screening process}
+Since my research area is somewhat AI-adjacent, we do not study or develop AI algorithms or software engineering frameworks and practices for AI-enabled systems, I could not find any papers on CAIN that are directly connected to my research area. I decided to  choose papers that are from more recent years, such as 2024 or 2025, and topics that I found interesting. However, not all papers that are listed on the conference website are not accessible without a licence. The two papers selected for analysis in section \ref{paan} were from arXiv. 
+
+\subsection{Pitfalls and mitigations}
+I did not encounter any problems with misleading titles or abstracts. However, as mentioned, I could not find any articles that are strongly related to my research topic on CAIN.
+\subsection{Ethical considerations}
+Since the recent research \cite{kosmyna2025} on how using LLM to write your assignments can affect your brains, I have avoided using an LLM service for this report. The two papers were read and analysed, and the report was written by me.
+
+\bibliographystyle{plain}
+\bibliography{References}
+
+
+
+
+\end{document}
