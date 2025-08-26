@@ -1,0 +1,134 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{newtxtext,newtxmath} 
+\usepackage[margin=1in]{geometry} 
+\usepackage{sectsty} 
+\usepackage{hyperref} 
+
+\title{WASP Software Engineering Course Module Assignment}
+\author{Jiarong Gong}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+My research is centered on compressive radiance fields, with a current emphasis on 3D Gaussian Splatting (3DGS). Radiance field methods aims to capture and reproduce the full light transport in a scene, enabling photorealistic rendering from arbitrary viewpoints. However, these models are often memory- and computation-intensive, especially when applied on high-resolution or dynamic scenes.
+
+The "compressive" aspect of my work targets this challenge by integrating concepts from \textit{compressed sensing} and \textit{dictionary learning} into radiance field representation. In \textit{compressed sensing}, the central idea is that a signal can be reconstructed from far fewer samples than traditionally required, provided it is sparse under some basis or dictionary. Dictionary learning extends this principle by adaptively learning such a basis from data, rather than relying on predefined transforms such as the Discrete Cosine Transform (DCT) or wavelets.
+
+In the context of 3DGS, each scene is represented as a collection of anisotropic Gaussian primitives, each carrying position, covariance, opacity, and spherical harmonics coefficients for view-dependent color. While this representation is already more compact than dense voxel grids, it still becomes heavy when representing large 3D scenes. My research investigates \textit{dictionary learning} and \textit{sparse representation} to further compress the Gaussian parameters -- for example, by storing them as sparse coefficients in a learned dictionary and reconstructing them when rendering.
+
+This approach brings together three traditionally separate domains:
+
+\begin{itemize}
+
+
+    \item \textbf{Computer Graphics} --- for scene representation and rendering via Gaussian Splatting.
+    \item \textbf{Signal Processing} --- for sparsity-driven compression and reconstruction.
+    \item \textbf{Machine Learning} --- for dictionary learning and parameter optimization.
+\end{itemize}
+
+Using these methods, my aim is to develop an end-to-end framework that maintains visual quality while significantly reducing storage and bandwidth requirements. This technique has many applications, such as VR/AR streaming, autonomous driving simulation, and digitization of cultural heritage.
+
+
+\section{Lecture Principles}
+
+My work focuses on memory- and computation-efficient radiance fields by integrating concepts from \textit{compressed sensing}. More specifically for current research, compress GAussian parameters and reconstruct them during render time while preserving perceptual qualities. There are some ideas/concepts from Roberts' lectures that can relate to my research.
+
+\subsection{Behavioral SE}
+I totally agree that people are not rational \cite{robert3-2025ppt}. Recently I had a confuse. Why does such a good rendering have low metric values (PSNR, SSIM, Lpips)? These low metric values make me think my model is not as good. Therefore I doubted if my idea is a good way to address the heavy memory footprint problem. After weeks I had a chance to talk to someone focusing on a similar area. I soon realized that I over-relied on these metrics and neglected the perceptual aspects. These metrics are not always good and direct measure of a good rendring. And they may lead me to the wrong way. So I adopt the idea that consider more from different point of views and evaluate models from at least perceptual effects.
+
+\subsection{Science-Engineering loop}
+This idea is from \cite{robert4-2025ppt}. I guess this is very common to see in most areas: perform research and experiments to develop a ML model, deploy it in production, analyze the log information, and refine it. This forms into a Science-Engineering loop.
+
+Relevance to my work is as follows.
+
+Gaussian Splatting models takes up much memory during both storage and rendering. After focusing on one research direction, I often search for many materials to see how people address such problems. Then I form into my first draft of the model and perform tests on public datasets.  If it does not reach state-of-the-art performance, I analyze the output information and find ways to improve the model like training a better dictionary. Locating the problem and doing research are the science side and performing the model testing is the engineering side. This is a very good practice and proved useful in many scenarios. I would similarly ideas like different dictionary sizes and kinds, to see if it results in better performance.
+
+
+\section{Guest-Lecture Principles}
+
+\subsection{Requirements should be specified and refined}
+The idea is from \cite{Julian2025ppt}.
+Over the entire course of my PhD, the content will not keep completely the same with the first version. In the proposal, the Neural Radiance Filed (Nerf) was the first choice. However, with the development and advantages of Gaussian Splatting (GS), a lot of attention is caught. I think maybe it is good to start with GS. 
+
+After completing the first stage of the proposed research plan, I read the proposal again and gain some deeper insights. I find a few modifications are needed. When it comes to specific research like GS, it is required to understand the specific flaws of GS. Based on the specifications, we develop a new method.
+This proposal defines the whole research content of my PhD program and serves like the requirements. It needs to be specified and refined.
+
+\subsection{Goals can be further refined}
+Goals can be further refined into sub-goals and modified due to conflicts between goals \cite{Julian2025ppt}. Very similar to my case, a shift from Nerf to GS is needed since GS has several strengths over Nerf. For example, Nerf often needs dozens of hours to train a 3D model and minutes to render a 1080p image. This makes Nerf hard to promise real-time rendering and not a good choice in AR/VR applications. GS, however, often needs half hour to train and promises a real-time rendering with an FPS over 100 while has comparable performance in terms of image quality \cite{kerbl20233d}.
+
+Based on what I have achieved so far, within the context of GS, new goals have been set: to improve image quality and to accelerate rendering speed. Additionally, I take some time to investigate extending the GS from static scene to dynamic scene, which is absolutely not included in previous goals.
+
+\section{Data Scientists versus Software Engineers}
+
+\subsection{Agreement on Differences}
+In chapter 1 of \cite{kaestner2022mlip}, data scientists and software engineers usually have different education backgrounds and focuses. I totally agree with that. From my own experience, what I focus on is the model performance, e.g. the generated image quality (measured in PSNR, SSIM, and Lpips) and rendering speed. To be offered with such a position, people might need a degree in Machine Learning or Deep Learning. Software engineers would focus on the system robustness, security, and so on. And they often have a degree in Computer Science.
+
+
+\subsection{Evolution of Roles}
+
+I think these roles will evolve and specialise further. Each research area requires much time and effort to develop. And when a great method comes out, it would spark a surge of research interest. Let's take GS for example. Before \cite{kerbl20233d}, people put much attention on Nerf. Since Nerf and its variants often requires much time on both training and rendering, some focus on accelerating Nerf \cite{yu2021plenoctrees, fridovich2022plenoxels}. However after \cite{kerbl20233d}, lots of interests are on GS. This example shows that with new breakthroughs, there would be more and more people interesting in such topic and this pushes the research to specialise further.
+
+As mentioned in chapter 2, unicorns are rare to see, which aligns well with my work experience. I used to be a computer vision engineer and have experience working in 3 different-sized companies--startup, pre-IPO growth company, and public company. The whole system needs both software for interaction with PC and vision models for vision tasks. I have never seen people who can handle both software and vision model development. 
+
+\section{Paper Analysis}
+
+\subsection{First Paper}
+The first paper I choose is \cite{parida2025model}, titled "How Do Model Export Formats Impact the Development of ML-Enabled Systems? A Case Study on Model Integration".
+
+\subsubsection{Core Ideas and Their SE Importance}
+\cite{parida2025model} conducted a holistic qualitative case study on the effects of exporting formats on the development of ML-enabled systems. They found that ONNX format is the most efficient one in most cases; for python-based systems, SavedModel and TorchScript are very convinient, but need extra work for other language-based systems; Pickle and Joblib are the most challenging to be integrated into systems.
+
+What kind of exporting format is needed should be proposed in the requirement engineering stage in the first place. As we all know that each module would be somehow dependent on other modules. We cannot completely remove such dependencies. Thus, the export formats of AI models should be specified in the requirements. However, as mentioned in \cite{parida2025model}, little work can be found to instruct us to how to select exporting formats of AI models. This paper is exactly the one we need.
+
+\subsubsection{Relation to My Research}
+My research is currently focused on GS as described detailedly in the first section Introduction. One of the purposes is to accelerate rendering. Previously in Nerf research, people try to sample a trained Nerf model into an Octree format \cite{yu2021plenoctrees} to greatly accelerate Nerf rendering. This paper, combining with PlenOctree paper, reminds me of how I can do to increase the model rendering speed. I would search for some relevant papers to read as a first step. The paper is one of the not many researches that indicate how export format relates to efficiency.
+
+\subsubsection{An example of Integration into a Large AI-Intensive Project}
+In one of the companies I used to work with, the core business is to manufacture a intelligent machine to detect defects on the surface of wafer products. In order to automatically detect defects, they integrate a ML-enabled software system to operate on the hardwares, to which the core is a computer vision model that takes images from the camera system as input and directly outputs both the images with annotated information and the location and classification of defects.
+
+Among the metrics of measuring how good the product is, the efficiency is one of them. Customers always prefer a machine detecting wafer products within less time. Therefore, as an AI algorithm engineer, picking the right export format is important. e.g., we often choose ONNX and engine. Of course before developing such software system, the export format is specified in the requirement stage.
+
+My current research also takes images as input while the difference is the need of many multi-view images. In addition, our integrated system needs to real-time render images which needs much computation while the system mentioned above just needs a window to display the annotated image.
+
+\subsubsection{Adaptation of My Research}
+For my currently specific research on GS, the trained model actually consists of 3D point coordinates, opacity, and so on. The format is often PLY. The paper might instruct me to try other formats to more quickly read the model into memory to somehow accelerate the rendering a bit.
+
+\subsection{Second Paper}
+The second paper is \cite{ximenes2025investigating}, titled "Investigating Issues that Lead to Code Technical Debt in Machine Learning Systems".
+
+\subsubsection{Core Ideas and Their SE Importance}
+Some coding issues that are common to see in SE can also happen in ML workflow, such as Wrong Data Consumption, Wrong Outlier Detection, and so on (listed in Table 3). These issues contribute a lot to Technical Debt that increases the ML system maintenance costs. \cite{ximenes2025investigating} systematically analyzes literature, interviews engineers, and refines findings. With these findings, practitioners can possibly avoid increasing long-term cost.
+
+\subsubsection{Relation to My Research}
+This paper is highly relevant to my research. The 4 phases (Data collection, Data pre-processing, Model creation \& training, and Model evaluation) are often performed by me. Even though there are public datasets like \cite{barron2022mip} for GS, we sometimes still need to produce some datasets by ourselves, e.g. real scene datasets or synthetic datasets. When producing our own datasets, synthetic datasets for example, we need to model 3D objects,render images, and export camera poses. Then we initialize and train a 3DGS model on the processed datasets. Finally, we evaluate our model. The coding issues accross all 4 phases can happen. 
+
+\subsubsection{An example of Integration into a Larger AI-Intensive Project}
+The startup example displayed in section \textbf{5.1.3} is a good one to elaborate again. Customers need machines to be not only accurate and efficient in defect detection, but also robust. Regarding the robustness, there is a word called repeatability (at least used in the startup company) to represent it. Repeatability measures how consistently a machine or system can produce the same result under the same conditions. In the wafer defect detection system, we are required to design and train a deep learning model with a repeatability of more than 95\%. This specific number can be achieved measured in several ways. For instance, you scan the same wafer multiple times (say 10) and the system outputs the detection results. This results in 10 different numbers of defects. We compute the \textbf{std} and \textbf{mean} of the 10 numbers. If $(\textbf{mean} - \textbf{std}) / \textbf{mean} > 95\%$, we think the system or machine meets the required standards in terms of robustness. Of course the machine itself also has influence on repeatability like the movement of cameras.
+
+For the accuracy and robustness purpose, there are many coding issues we need to consider and address. Finally Table 3 of \cite{ximenes2025investigating} lists 30 issues. We can first avoid the insufficient data consumption issue. Otherwise the model can overfit to insufficient data and cannot learn good features. This could lead to an unclear classification hyperplane. With the camera shake, each time you scan the wafer and you get slightly different images. The model outputs could be greatly different. Wrong data consumption can also have an effect on the robustness of the detection system. Imagine you confused A with B and you randomly assign labels to samples A and B, how can you expect the model correctly classify those defects? The last issue I would like to discuss is insufficient evaluation metric selection. In order to save the best model to disk, we often set some evaluation metric. If a model performs best on evaluation dataset, then we think it is the best model. However, if we set only PSNR to measure how good a model is, the evaluation metric is often considered insufficient.
+
+In standard 3DGS, PSNR, SSIM, and Lpips are often used to evaluate models' performance. In addition to these metrics, I also need to consider compression ratio. A model that has comparable performance with the sota methods in terms of PSNR, SSIM, Lpips, and compression ratio is what I want most. It does not have to outperform sota methods in all aspects, which is very difficult to achieve.
+
+\subsubsection{Adaptation of My Research}
+All in all, \cite{ximenes2025investigating} is a good instruction book to avoid TD in my research. I would take some time to compare what I often do in projects with the content of the paper to refine the process of the whole workflow. One modification would be the dependency version management.
+
+\section{Search and Screening Process}
+Firstly I look into the list of accepted papers. Look at the titles. If there are some familiar words like Machine Learning, Deep Learning, Gaussian Splatting, and so on, I downkload those papers. Then I read their abstracts to get a rough understanding of what problems they address so that I can decide if it is useful or relevant to my research topic. Finally I pick the 2 most relevant and useful papers to read and analyze.
+
+\subsection{Pitfalls and Mitigations}
+I met some unfamiliar research areas like LLM and Reinforcement Learning. I simply skipped them if there are some more easy-to-understand options. And a way I often use is to read those citing a paper that I'm familiar with.
+
+\subsection{Ethical Considerations}
+% Steps taken to ensure originality (no copying from LLMs or sources).
+Steps taken to ensure originality is to cite references at appropriate places. Read the references and rephrase in my own words.
+
+
+
+
+\bibliographystyle{plain}
+\bibliography{references}
+\end{document}
