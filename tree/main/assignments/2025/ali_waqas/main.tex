@@ -1,0 +1,101 @@
+\documentclass{article}
+\usepackage[a4paper]{geometry}
+
+\usepackage[utf8]{inputenc}
+\usepackage[backend=biber, style=numeric]{biblatex} % or numeric, authoryear, etc.
+\addbibresource{reference.bib} % with .bib extension
+
+\title{Assignment \\
+WASP Software Engineering Course Module 2025}
+\author{Waqas Ali}
+\date{August 2025}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+My research is focused on the design of localization and mapping algorithm for complex and large scale environments using consumer grade LiDARs. There are two main parts for this project which are the map building and the localization to directly support downstream tasks. The map building part relies on SLAM (simultaneous localization and mapping) algorithms. A SLAM system performs localization by perform frame-to-frame matching from LiDAR point cloud to estimate the motion and then registers features with motion estimate from each frame to build the map. To minimize the drift accumulated during the localization step, we perform global optimization. One essential part of global optimization is the loop closure constraints, which is detected when the robot revisits a previously seen environment. A common approach for loop closure detection is to estimate descriptor for each scan as a database and then search through the database for similar scenes. It becomes a very challenging tasks specially for large scale environment where database might contains tens of thousands of descriptors. There are two main categorizes for descriptor generation, learning-based and non-learning methods. Although non-learning methods give good performance but are require high computational time. On the other hand, learning based methods are extremely fast but report poor generalization and become unsuitable for real systems. Our first focus is to design the system that can report good performance with strong generalization. In addition to the loop closure detection, there are several challenges for mapping large scale environment. We need a multi-session mapping system that can merge sub-maps built recorded from multiple agents mapping a large environments. Another challenge is to solve the mapping problem as a lifelong system, that requires the maintenance of map to present a consistent representation of the environment with time.   
+
+The second part of the research project is the design of a localization system that can work in real-time directly supporting the downstream tasks. For an autonomous vehicle, a basic requirement the estimate of its position that is used for the downstream tasks such as path planning, perception and control to navigate from one point to destination. Therefore, the localization system is crucial for autonomous navigation and faces several challenges for real-time operation. For a real-world system, localization algorithm should be robust to environmental conditions and be computationally efficient. For the first objective, we need to design the system that can deal with sensor degradation and algorithmic failures. Secondly, the computational requirements are crucial for real-system and latency in position estimate and robot movement can cause system failure. Our focus is to design a localization system taking these consideration into account with the goal that the algorithm can directly support downstream tasks.
+
+
+\section{Lecture principles}
+
+\subsection{The SPACE of Programmer Productivity}
+
+In the context of autonomous vehicles, the developer productivity is not centered around the code but it directly impacts the physical world and safety and reliability are critical. The SPACE framework provides a thorough approach which can be applied to understand and improve the software development for the complex field of autonomous robots. Considering each element of SPACE framework individually, the satisfaction and well being of developer is important. The autonomous vehicles projects can be highly stressful and work-life balance and psychological safety must be considered. The performance for autonomous vehicles in terms of SPACE framework should be expanded to include the real-world impact. The performance metrics for individual modules must be evaluated and the success rate for the vehicle needs to be examined in complex environments. Most of the times simulation environment is used during the development and then tested on real-world scenarios. We need to take into account the gap in the simulation and real data. The activity needs to be elaborated for robotics, it can comprise of several task. The hardware should be accessible for rigorous testing, data collection and labeling is crucial task and the frequency of testing on real system after a change has been made to the software. Communication and collaboration is highly essential as an autonomous navigation system consists of several modules and design and code review across different teams can be done to improve productivity. Finally efficiency and flow for the deployment of the software to an actual system. Each element of the SPACE framework gives rigorous approach that can be applied for the improvement of autonomous robots software development.  
+
+\subsection{Dynamic Techniques for Verification and Validation}
+
+Dynamic techniques are most crucial part of software development for any autonomous vehicles. Several techniques such as simulation testing, offline testing, runtime monitoring and real-world testing are combined to effectively verify and validate the software before deployment. For a localization and mapping algorithm, we can use Gazebo or Carla simulator to get the sensor data and test our algorithm by building maps and performing localization in  the simulator environment. Next, we can use the sensor rig installed on a vehicle to collect data from several challenging scenes and test the software on a local machine to evaluate the performance of the system. Runtime monitoring involves assessing the performance of the system while running on the vehicle platform. Finally, the system can be tested in real-world application scenarios. For example of localization algorithm, we can test in most static to highly dynamic scenes and featureless environments. By combine these techniques, we need to perform an extensive evaluation of the system to make the system safe for use in real-world applications.
+
+
+\section{Guest-Lecture Principles}
+
+
+\subsection{Requirement Engineering: Problem Space}
+
+My research project is to solve the challenges of localization and mapping algorithm for complex and large scale environments. The problem space for this project is to identify the key problems for localization and mapping systems. The requirements for problem space can be defined as the system should be robust in GPS denied area, place recognition method should generalize well with large descriptor database, the system should be able to perform map merging and maintenance, localization system should give cm level accuracy with minimum latency. We defined this problem space at the start of project to have a clear outline of the needs and goals of our research project.
+
+
+\subsection{Requirement Engineering: Solution Space}
+
+After defining the problem space, we work on the solution space that is focused on solving each problem. For example taking the first problem which is improving the robustness of mapping system in GPS denied environments. We designed a system that takes HD-maps and generates prior-map constraints that are used for pose graph optimization. By applying this method, we were able to meet the required accuracy without using GPS data. So, the mapping system perform accurately by using HD-maps as prior information in the absence of GPS data, which is the solution space of our project. 
+
+
+
+\section{Data Scientists versus Software Engineers}
+
+\textbf{1. Do you agree on the essential differences between data scientists and
+ software engineers put forward in these chapters? Why or why not?}
+
+There are several arguments presented in the book regarding the difference between data scientist and software engineers. I agree with that essentially these are two different roles. The core training and mindset of  data scientist is different from that of a software engineer. A data scientist is trained to perform research, explore data and propose models that can be solve complex problem. Their work is mostly experimental with the mindset to improve the performance of the system. On the other hand, software engineers are trained to build a system that can work in real-time. Their mindset is focused on produced a reliable system. Another difference is the measure of success for both roles. For data scientist it is usually measured in terms of model specific metrics such as precision or recall rates. For software engineer the system needs to be reliable while meeting user requirements.
+\\
+
+\noindent
+\textbf{2. Do you think these roles will evolve and specialise further or that “both
+ sides” will need to learn many of the skills of “the other side” and that the
+ roles somehow will merge? Explain your reasoning.}
+
+The two roles are dependent on each other for the process of going from a model to system. A great model is of no use if it lacks a system to deploy it. Data scientists need to adopt on making model that can be implemented successfully for production. Software engineer would also need the knowledge of system and not treat it as a black box problem. While both roles need to learn about the skills of other side, the specialize roles would still remain as the depth of expertize is essential for each field to build a reliable system.
+
+
+
+\section{Paper analysis}
+
+
+\subsection{A Combinatorial Approach to Hyperparameter Optimization \cite{khadka2024combinatorial}}
+
+Author propose an efficient method of hyperparameter tuning with the application of t-way testing to improve the model performance with effective training. Their propose the use of combination testing especially t-way testing based on a small set of representative set. It replaces existing computationally expensive approaches of searching through hyperparameters such as grid search or random search. Their method starts by selecting the set of hyperpaprameters for a given model and then generate hyperparameter configurations using t-way testing. The degree of interaction between the hyperparameters is controlled by the value of `t'. Hyperparameter combinations are generated which are used for model training. Finally hyperparameters can be selected which results in best performance of the model such as AUC, F1 score and precision. The proposed method showed a substantial reduction in computational cost which is of high importance for systems with limited computational resources. Another important aspect of their contribution is the scalability to complex models with large datasets as well as reproducibility with reliable result of their method.
+
+The proposed system can prove to be important for robotics related models. One of the biggest challenges for robotics related AI model is for it to be applicable on resource constrained system. Using their method of hyperparameter tuning, we can achieve efficient training with limited resources. One example is the model for semantic annotations for LiDAR point cloud. To get accurate annotations with strong generalization ability, we need to train the model on large amount of point cloud data. By applying their method, we can cut the training time and get better accuracy for semantic labeling.
+
+Consider a robotic fire rescue and response project, that relies on multiple agents including autonomous drones and ground robots relying on visual, LiDAR and inertial data. The vehicles should be able autonomously navigate to fire location, mitigate the fire and identify any person stuck in dangerous situation. For such a project, the reliability and robustness are highly essential. The system should not fail performing its tasks. Such a system relies on AI intensive tasks such as perception to avoid obstacle and identify the target. At the same time the mobile platforms have very limited resource and we require a computationally efficient system. The method proposed in this paper can become very useful for this project. Regarding my WASP research project which is focused on designing localization and mapping solutions for challenging scenarios. It is vital for such project where the mapping and localization capabilities are the basic requirement for autonomous vehicles for performing any downstream tasks.
+
+For my research, we usually perform manual hyperparameter optimization. Taking an example of our recent project where we designed a learning based  descriptor for LiDAR point cloud with point-wise semantic labels. There are two parts of the project, first to get annotations using a learning-based method and then train our model on the data with semantic labels. For both part, we tuned the hyperparameter manually. The method presented in the paper would help to reduce the training time and improve the performance of our system for both stages.
+
+
+\subsection{An Exploratory Study of Dataset and Model Management in Open  Source Machine Learning Applications \cite{toma2024exploratory}}
+
+The vital components of a machine learning system are the model and dataset. The author perform an extensive study of the methods adopted for the management of these items in terms of version control and storage. For this purpose, they analyzed over 93 repositories. The two most important points are the storage location for models and datasets. The authors found that most commonly file-system is used for the storage of data and models. Remote storage is used for the files exceeding 60MB in size and can be accessed as needed. The use of file-system is often responsible for availability issues. The authors also point out that most of the models and datasets lack a proper version control, meaning lack of update for the datasets and models. One reason for the lack of versioning is the type of storage location used for the models and data. There is also a traceability issue for the these files stored in file-system. On the other hand files stored in repositories are naturally versioned. Overall, the study highlights that without proper storage and version control there are significant challenges to the reproducibility and traceability of machine learning models. 
+
+For our research project, public datasets play a vital role in the evaluating any proposed method. The issue of proper storage and version control poses a significant challenge in reproducibility of baseline models. As part of our research project, we built a place recognition method and performed evaluation with several existing methods to prove the efficiency of our proposed approach. As highlighted in the paper, the pre-trained model are commonly stored remotely. We found that the pre-trained models of several of existing methods for place recognition were unavailable because the remote storage were outdated and not maintained. Therefore, we spent a significant amount of time to retrain these models for the evaluation in our paper.  
+
+We consider an AI based urban traffic planning project that relies on the vision and LiDAR data collected from different location to perform analysis of traffic, pedestrian, and several other factors. The main requirement of this project would be the collection of large amount of data from different cities and large number of locations. Therefore, we must adopt a efficient approach of storage for the data that should be easily available. At the same time, a versioning methodology would also be crucial to properly account for the updates in the datasets. Similarly, we also need to apply the same storage and version control approach for the models. To consider our research project, we have proposed a map maintenance method that updates the large-scale maps with new observations of the environment. Our method can be used in this project to study the changes in the environment in a robust and efficient way.
+
+For my research, we have build a learning based model for LiDAR description. Currently, our approach is to store it remotely so that it can be accessed. As this paper has highlighted the issues that can arise from using filesystem and remote storage for storing models. We can adopt a third part platform such as Hugging Face to maintain the pretrained models. In such a way there would not be issues of availability in future. Secondly, we also collected several sequences of LiDAR and vision data that is used for the research project. We can also plan to implement a proper storage with version control these sequences.
+
+
+\section{Research Ethics \& Synthesis Reflection}
+
+I selected two of the distinguished papers from the CAIN 2024 proceedings. My main criteria was to look at the latest work in the software engineering field and find the idea that can be related to my research project. During the search, I didn't face any misleading titles.
+
+After completing the draft of the report, I used LLM to check for grammar mistakes and improve the writing style. 
+
+
+
+\printbibliography
+
+\end{document}
