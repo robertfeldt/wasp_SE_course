@@ -1,0 +1,143 @@
+\documentclass{article}
+
+\usepackage{graphicx} 
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{url}
+
+\usepackage[english]{babel}
+\usepackage[nottoc]{tocbibind}
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\usepackage{tikz}
+\usetikzlibrary{matrix, positioning, arrows.meta}
+
+
+%%% Formatting
+
+\usepackage[a4paper,
+            left=2cm,
+            right=2cm,
+            top=2cm,
+            bottom=2cm]{geometry}
+
+\renewcommand{\baselinestretch}{1.1}
+
+\renewcommand{\normalsize}{\fontsize{11pt}{13pt}\selectfont}  
+
+
+%%% Title and author
+
+\title{Assignment WASP SW \& Cloud course Module 2\\
+       \large Software Engineering Course 2025}
+\author{Riccardo Tedoldi\\
+        riccardo.tedoldi@astrazeneca.com}
+% remove date 
+\date{} % No date or % \date{April 2025}
+
+\newcommand{\xdownarrow}[2][]{%
+  \mathrel{\rotatebox{270}{$\xrightarrow{#2}$}}_{#1}%
+}
+
+
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+\textit{In-silico} drug design aims to tackle a complex problem: developing workflows to uncover potent drugs to target specific diseases. Recent advances in deep-generative modeling~\cite{Lecun1998, LeCun2015} have created new avenues to model complex data distributions, such as natural language~\cite{NEURIPS2020_1457c0d6}, images~\cite{NIPS2012_c399862d}, 3D shapes modeling~\cite{https://doi.org/10.48550/arxiv.2212.08751, https://doi.org/10.48550/arxiv.2305.02463} and, in the context of life sciences, molecular structure generation~\cite{DBLP:journals/corr/abs-2406-07266}. Computational techniques that use deep-generative models for molecular structure generation targeting specific receptors or respecting certain properties can be divided into two main categories: string-based~\cite{ArsPous2019} and 3D graph-based~\cite{BAILLIF2023102566} methods. 
+
+In the first category, a SMILES-based model is typically pre-trained on a large set of molecules (e.g., ChEMBL~\cite{Gaulton2011}, PubChem~\cite{Kim2020}) and then fine-tuned on a smaller set of molecules relevant to the target of interest (i.e., Dopamine receptor D2~\cite{He2024}). Finally, strategies such as reinforcement learning~\cite{He2024} are employed during chemical space exploration to steer the model toward favorable regions of the chemical space.
+
+On the other hand, 3D graph-based methods can be trained for unconditional generation~\cite{le2024navigating}, but they are often conditioned on protein structures or pockets for conditional generation, given that they operate in 3D~\cite{DBLP:conf/iclr/GuanQPS0M23, DBLP:conf/nips/GuXPNGKLVE24}. Although these methods have shown outstanding results in recent years, there is still room for improvement in terms of the quality of generation (e.g., conformational energy states~\cite{Tosco2014}, conditional generation based on binding affinity and potency~\cite{DBLP:conf/nips/GuXPNGKLVE24}), as well as training and inference speed~\cite{moskalev2025geometric}. My research currently focuses on 3D-based generative models, in particular on the development of new algorithms to improve the unconditional generation of molecular structures and the conditional generation that relies on contextual information, such as protein structures or Molecular Dynamics (MD) data. 
+
+As a PhD student, I am not involved on a daily basis in the development of production-level code bases with teams of more than 10 people. Instead, I typically work on smaller code bases, developed entirely from scratch either by myself or in collaboration with one or two other researchers. 
+
+Especially during the early research stages of a project, I often rely on the code developed by other researchers in the field (e.g. metrics, data processing pipelines, data splits) and then adapt it to my needs. I use GitHub to keep track of the code I develop and for versioning, but most importantly to ensure that the results I obtain at each step are reproducible. 
+
+Reproducibility is a key aspect of my research, especially because I work with diffusion models~\cite{DBLP:conf/nips/HoJA20} to generate 3D molecular structures. These deep generative modeling frameworks are particularly known for their training instability~\cite{DBLP:conf/cvpr/KarrasALHAL24, DBLP:conf/nips/KarrasAAL22}, making reproducibility crucial for publishing. Testing is another important aspect, particularly when training models or running MD simulations on large sets of structures. To address this, I perform training on a reduced dataset, sometimes with fewer training parameters or using toy problems, and I run MD simulations on a limited number of smaller systems.
+
+\section{Lecture principles}
+
+\textbf{Requirements:} As we are going through an era where not only the "software" per se, but also the weights of the ML models are programmable, new regulations and legal requirements are emerging (AI Act~\cite{DBLP:conf/aisafety/CalanzoneCTOC23}). It is important to refine these requirements according to the application domain. Here, I provide a non-exhaustive list of requirements applicable to the case of 3D molecular structure generation using diffusion models.
+
+ % remove interline space in itemize
+\begin{itemize}\setlength{\itemsep}{0pt}
+
+   
+    \item[] \textbf{Data:} Since the weights of the model depend on the training data, it is critical to ensure that the data meet quality requirements and are sufficiently representative, especially for validation and testing. Additionally, during MD simulations, it can be particularly challenging to set up and define the configuration files so that the simulation run properly. This difficulty is sometimes due to a lack of pre-made examples and can be ameliorated by developing  standardized processing pipelines to ensure consistency and scoring components to evaluate the representativeness of the data.
+    \item[] \textbf{Software Design:} Often PhD students focus on prototyping ideas rather than on software design (design patterns~\cite{Gamma1994-yj})
+    \item[] \textbf{Documentation:} Documentation is a requirement when publishing the software alongside a paper.
+    \item[] \textbf{Openness:} Openness is an important requirement in the scientific community, especially for PhD students. This involves open-sourcing code and data to ensure maximum transparency of the results obtained.
+    \item[] \textbf{Explainability/confidence value:} In the context of molecular research, several studies are still addressing explainability ~\cite{Qian2023}. This can be a very important factor when it comes to human-in-the-loop approaches.
+    \item[] \textbf{Model's limitations:} The limitations of the model are uncovered by testing it on real protein pockets for binders design. Highlighting these limitations ensures that the model is used as a tool to explore potential candidate molecules or to optimize the existing ones, rather than as an oracle for designing new molecules.
+    \item[] \textbf{Software Reproducibility and Maintenance:} When PhD students release the code along with the paper, they typically move on to the next project and do not maintain the code. Therefore, it is important to provide a make file to re-create the environment to run the code and a README file that explains how to run the code and reproduce the results. However, if someone submits a pull request on GitHub to fix a bug or add a new feature, I am always happy to review it and merge it.
+\end{itemize}
+
+
+\textbf{Pragmatic design and development:} During code development, especially when adding new features or fixing bugs, it is important to follow version control practices. I typically create new branches, which are merged into the main branch only after testing. This also ensures tracking and reversibility of the changes made, allowing a return to a previous version if needed. For commits, I write meaningful commit messages to ensure that all changes are understandable. 
+
+\section{Guest-Lecture Principles}
+
+\textbf{Protect private data:} As an industrial PhD student at AstraZeneca, I am subject to several restrictions when it comes to sharing the code and weights of the model. The weights cannot be shared publicly because they can be exploited to leak information about the data used for the training.
+
+\textbf{User oriented design and research development:} Currently, I am not working on the development of a new complete 3D molecular design software, but I am focusing instead on the development of new strategies to include new features in the current state of the art models for molecular generation present in the literature. I am prioritizing the features to be included based on a user-oriented scale and once I have a concrete idea of the functionality, I proceed by identifying the requirements needed to achieve them. Therefore, as a first step, it is fundamental to "understand the problem before you build the solution" and then define it at different levels of abstraction. This last step can be extremely challenging, but talking with people that have already worked on similar problems or have experience in the field can help, resulting in reduced wasted effort.
+
+\section{Data Scientists versus Software Engineers}
+
+\noindent
+{\small Read chapters “1. Introduction” and “2. From Models to Systems” of the CMU “Machine Learning in Production” book (https://mlip-cmu.github.io/book/01-introduction.html) and then answer: \\
+
+Q1.\textbf{ Do you agree on the essential differences between data scientists and software engineers put forward in these chapters? Why or why not?}}
+
+I agree with the differences highlighted in the chapters. Data scientists care about the data, exploiting algorithms to generate predictive models and identify patterns and trends. In other words, they focus on which information can be extracted from the data and how to do that. They are not directly concerned with creating a product. It should be noticed that, in many cases, data scientists work in contexts where production considerations are not relevant, because their analyses are directly used within the company, for example to support decision-making~\cite{Sarker2021, Ley2018}. On the other hand, software engineers are less focused on the data itself and more on building a cohesive system that is scalable and “user-friendly”, taking into account not only accuracy and robustness but also cost and time~\cite{Li2015}. A recent talk of Andrej Karpathy  (\url{https://www.youtube.com/watch?v=LCEmiRjPEtQ}), founding member of openAI and former director of Tesla AutoPilot, highlighted how the software paradigm is shifting from classical programming to querying a neural network. He predicted this transition from software 1.0 to software 2.0 in his blog post (\url{https://karpathy.medium.com/software-2-0-a64152b37c35}) already on Nov 11, 2017. In this paradigm, a new research branch of software engineering is focusing on this~\cite{Ahmed2025}, and data scientists and ML scientists can benefit from software like Copilot to quickly write, refactor, document and debug code. In his vision Andrej reports that understand how to use and prompt well it will be key. \\
+
+
+{\small Q2.\textbf{ Do you think these roles will evolve and specialise further or that “both sides” will need to learn many of the skills of “the other side” and that the roles somehow will merge? Explain your reasoning.}}
+
+
+I believe that both trends will occur at the same time, similar to the idea of T-shaped experts discussed in the chapters.
+It is important that data scientists and software engineers communicate and cooperate together in order to understand how their work fits into the bigger scheme, to remain updated on the changes in the system and to minimize the occurrence of assumptions and misconceptions, which could result in errors and therefore delays~\cite{Lewis2021}\cite{Busquim2024}. This need of constant exchange of knowledge between data scientists and software engineers requires that, despite their different backgrounds and approaches to problems, they have at least a broad understanding of each other's skills. I believe that learning some of the skills of “the other side” will result in a “shared language” that facilitates cooperation and understanding between the two groups. This concept can be translated to my own experience in applying ML to drug design. Having at least a basic knowledge of chemistry helps me to understand the data I'm working with, evaluate the reliability of the obtained outputs and communicate with chemistry experts, allowing me to interpret results and resolve problems more easily. Without this minimum background, I would lack that “shared language” necessary to communicate and understand chemists. Similarly, software engineers' understanding of the type of data used in the ML model, as well as its basic functioning may help them to properly integrate the model in the larger system~\cite{Busquim2024}. 
+However, while a shared understanding between data scientists and software engineers is useful for an effective collaboration, the increasing complexity of the tasks, the growing amount of advance knowledge available, and the competition for the positions translate into a need of expertise. Therefore, in my view, the roles will not merge but remain distinct: people will specialize in a niche while also acquiring enough understanding of the responsibilities of the other figure, facilitating a smoother communication between the two. For example, Kim et al.~\cite{Kim2018} analyzed and categorized data scientists at Microsoft into clusters based on the different tasks they perform daily. They identified a group called \textit{moonlighters}, who integrate both data science and engineering roles. They also distinguished other classes of data scientists, each focusing on specific tasks associated with data science.
+
+\section{Paper analysis}
+
+\subsection*{Paper 1: Generating and Verifying Synthetic Datasets with Requirements Engineering}
+
+
+\textbf{Core idea(s) of the paper:} As diffusion models scale well with model and dataset size, the paper propose to tackle the problem of data scarcity by generating synthetic datasets (with diffusion models) that however must match predefined requirements. To check those requirements, the authors suggest to use a verification workflow that aims to ensure a good trade-off between generation quality and requirement satisfaction. In their pipeline, they employ YOLOv8 (a well known model for object detection) to verify if the objects in the prompt are present in the generated images. They also manually inspected the results with human evaluation. The method is promising, as they were able to generate and verify some high-quality images that satisfy the requirements. However, the limitations are also clear: the generation quality with diffusion models is still not perfect, the automated verification of slightly blurred images is still challenging for the object detection model and, the current state of the art detection models are not yet able to detect all possible objects or tend  to misclassify them. Therefore, the verification model is a bottleneck of the entire pipeline.
+
+
+\textbf{Relation to my research:} The focus of my research is on 3D molecular generation of small molecules using diffusion models. Therefore, I work with a different type of data from the one used in the paper. When working on molecular generation, the aim is to produce valid and stable molecules in low energy conformations. Even when the task is more challenging, because for example you have to generate molecules that bind to a specific target or have specific properties (e.g., solubility, lipophilicity, toxicity), it is possible to use MD simulations/docking. Although computationally expensive and not always fully accurate, this approach is generally more straightforward than evaluating images. The generated images are indeed easy to evaluate just by visual inspection on MNIST, but the automated evaluation of the generation quality is not trivial, especially for more complex images. I am well aware of this because I am quite used to training diffusion models on images before testing the method on molecules, as this reduces the architectural constraints and the computational resources needed for work on small sets like CIFAR-10~\cite{krizhevsky2009learning} or MNIST~\cite{lecun1998mnist}.  
+
+\textbf{AI-intensive project for a proposal:} I think that the idea of generating synthetic data with diffusion models is very interesting, especially to counterbalance data scarcity, even if I am concerned about the automated evaluation of the generated data quality, since none of the current captioning or object detection models are perfect. Still, I would propose to apply this idea to the generation of molecular structures with diffusion models, where the requirements could include, for example, the presence of specific functional groups or substructures. These aspects can be automatically valuated by RDKiT and are crucial for chemists working on the design of new molecules. For targeted generation, I would still use docking/MD simulations to evaluate, for instance, the  binding affinity of the generated molecules to the target and the human-in-the-loop approach. In addition, I would also work on developing standardized evaluation approaches and data sheets for reporting~\cite{DBLP:conf/aisafety/CalanzoneCTOC23}.
+
+\textbf{Long-term AI-engineering tweak:} I think that building foundations to evaluate synthetic data generation is as relevant as developing new models. For instance, in drug discovery, not all the molecules generated by the model are really useful, even if valid, novel and stable. They may indeed not meet the parameters of drug-likeness or not synthetizable. Moreover, building well-defined benchmarks to evaluate these models is crucial to compare different methods and lead the field in the right direction. One of the aspects I am working on is conformational diversity metrics, trying to answer questions such as: "How diverse are the conformations generated for a molecule?" and "Is this diffusion model better than others in generating different conformational states?". These are still open questions in the field, and I believe that building solid foundations to evaluate these models is as important as developing new architectures. A currently established strategy exploits QM-based software to obtain minimal energy states for a given molecular structure and then compares the generated conformations to these reference states. However, this approach is very expensive and not always feasible when using large sets of molecules. Therefore, in my research project I work on the development of a more efficient strategy for evaluating the conformational diversity of a set of conformers. Another important aspect, especially for targeted ligand generation within a protein pocket, is to evaluate whether the generated molecules are stable in the pocket and maintain key interactions with the protein. This can be tested with MD simulations in combination with human expertise. However, also this is computationally expensive and therefore not optimal in the long term. In my opinion, if at a certain point generative models will be able to generate molecules with the desired properties (e.g., binding affinity, solubility, lipophilicity, toxicity) for a specific protein targets, then it will be important also to have intuitive interfaces that allow medicinal chemists to explore the samples generated by these models and evaluate them following a human-in-the-loop approach.
+
+\subsection*{Paper 2: Investigating the Impact of Solid Design Principles on Machine Learning Code Understanding}
+
+\textbf{Core idea(s) of the paper:} The authors of the paper claim that it is useful for data scientists to adopt the SOLID design principles from software engineering when writing ML code. The resulting code is cleaner, more readable and, therefore, easier to understand for other developers who may need to manage it. The code becomes more maintainable, reusable, modular, and flexible compared to code that doesn't follow the SOLID principles. This is important for the engineering of AI systems because other data scientists or software engineers can modify, update, extend or transfer the code with less effort, in shorter time, and without the need to drastically change the source code. This means a more maintainable and sustainable ML code.
+
+
+\textbf{Relation to my research:} The application of SOLID principles would be useful in my research at different levels. In my project, I had to use pieces of code already written by other members of my department and adapt them to my own work. This required a significant effort because I had to modify different parts of the code to resolve errors caused by breakages generated in unrelated sections. A more modular code with low coupling would have made easier to integrate and reuse the code developed by others in my own model. Moreover, the generative model for molecular design that I am working on is intended to be used by researchers working in drug discovery, who may need to modify the code to adapt it to their scope. By applying SOLID principles to my code, I can facilitate maintainability and understandability, making it easier for others to use and extend it. Additionally, I am planning to open-source the code along with the publication of the paper, and therefore the more usable and readable the code is, the more likely it is that other researchers will be able to use it.
+
+
+\textbf{AI-intensive project for a proposal:} I propose a larger AI-intensive project for developing an interface for models that generates molecules. This package would be useful for researchers working in drug discovery, who aim to design molecules, as every one can integrate his/her model and use a standardized process to evaluate it. In my current research, I am developing a generative model for molecular design, without considering target-specific (protein) information. In this way my interface could serve as a starting point to push forward the models in the field, and as new metrics are proposed we continuously update them. This can be beginning for also more complex applications that integrates target-based constraints in order to generate molecules optimized with respect to the target structure and properties. By applying the SOLID design principles, the ML code may become more modular, maintainable and adaptable, enabling other researchers to modify and extend the code according to their needs. For example, the physical-chemical properties of the molecule may be influenced by the localization of the target. The code developed in accordance with the SOLID principles could make the tool more easily customized and reusable by other research groups (under MIT licence!!). 
+
+
+\textbf{Long-term AI-engineering tweak:} The paper highlights the difficulty of writing ML code that is clean and understandable also by people other than the original developer and proposes to address this problem by adopting the SOLID design principles. Therefore, for what concern my own project, the first step to tackle the problem of limited comprehensibility will be to ensure that my code follows these principles. This will support modularity, maintainability and flexibility of the code. Additionally, to make the code more easily accessible and usable for users and other developers, it could be useful to provide clear documentation with the most relevant information, organized in a way that makes it easy to examine. Also adding comments directly in the code to clarify the role of each module and to briefly explain the most complex parts of the code can facilitate its management. Finally, it may be helpful to introduce some example tests to use both as a demonstration of how the system works and to check how the output changes after modifying the original code. I believe that by applying all these considerations to my code, it will result more accessible and understandable to others.
+
+
+\section{Research Ethics \& Synthesis Reflection}
+
+To find the papers, I initially conducted a search on Google Scholar using keywords such as "Software Engineering for AI", "Software Engineering and Data Science", and "Differences between Software Engineering and Data Science ". I prioritized papers that were published more recently and the most cited ones. During this initial screening I noticed that only a small fraction of the articles were really related to the topic I was looking for. Therefore, I then started to explore the papers cited in the most significant paper I had already identified and read, allowing me to identify additional works on the topic. The talk by Andrej Karpathy appeared instead on my YouTube homepage a few weeks ago and, since I found not only very interesting but also relevant for the discussion, I included it. To ensure originality, I based my answers primarily on my own understanding and reflections on the topic. Since I had already some prior knowledge of the differences between data scientists and software engineers, I started from the idea that I had based on what I already knew of the topic, and then I corroborated, expanded and elaborates my initial opinion based on what I found in the literature. In this way, the papers I consulted were used not to replace my reasoning but rather to refine and contextualize my opinion. To acknowledge the authors, whose works I relied on in order to write and elaborate my answers, I cited their papers in my text.
+
+\bibliographystyle{unsrt}
+\bibliography{ref}
+
+\end{document}
