@@ -1,0 +1,125 @@
+references:
+
+- id: haschor
+  type: article-journal
+  title: "HasChor: Functional Choreographic Programming for All (Functional Pearl)"
+  author:
+  - given: Gan
+    family: Shen
+  - given: Shun
+    family: Kashiwa
+  - given: Lindsey
+    family: Kuper
+  issued:
+    date-parts:
+    - - 2023
+      - 8
+  container-title: Proc. ACM Program. Lang.
+  volume: 7
+  issue: ICFP
+  doi: 10.1145/3607849
+
+- id: quickcheck
+  title: "QuickCheck: Automatic testing of Haskell programs"
+  url: https://hackage.haskell.org/package/QuickCheck
+
+- id: mlip
+  title: "Machine Learning in Production: From Models to Products"
+  author:
+  - given: Christian
+    family: Kästner
+  url: https://mlip-cmu.github.io/book/
+
+- id: mlscent
+  title: "MLScent: A Tool for Anti-Pattern Detection in ML Projects"
+  author:
+  - given: Karthik
+    family: Shivashankar
+  - given: Antonio
+    family: Martini
+  container-title: 2025 IEEE/ACM 4th International Conference on AI Engineering – Software Engineering for AI (CAIN)
+  issued:
+    date-parts:
+    - - 2025
+  doi: 10.1109/CAIN66642.2025.00026
+
+- id: hasktorch
+  title: "HaskTorch: Functional Differentiable Programming in Haskell"
+  url: http://hasktorch.org
+
+- id: hasktorch-typed-tensors
+  title: "HaskTorch Tutorial - Typed Tensors"
+  url: https://hasktorch.github.io/tutorial/07-typed-tensors.html
+
+- id: privacy-copyright-genai
+  title: "Privacy and Copyright Protection in Generative AI: A Lifecycle Perspective"
+  author:
+  - given: Dawen
+    family: Zhang
+  - given: Boming
+    family: Xia
+  - given: Yue
+    family: Liu
+  - given: Xiwei
+    family: Xu
+  - given: Thong
+    family: Hoang
+  - given: Zhenchang
+    family: Xing
+  - given: Mark
+    family: Staples
+  - given: Qinghua
+    family: Lu
+  - given: Liming
+    family: Zhu
+  container-title: 2024 IEEE/ACM 3rd International Conference on AI Engineering – Software Engineering for AI (CAIN)
+  issued:
+    date-parts:
+    - - 2024
+  doi: 10.1145/3644815.3644952
+
+- id: ai-dataset-development
+  title: "The Subjects and Stages of AI Dataset Development: A Framework for Dataset Accountability"
+  author:
+  - given: Mehtab
+    family: Khan
+  - given: Alex
+    family: Hanna
+  issued:
+    date-parts:
+    - - 2022
+  doi: 10.2139/ssrn.4217148
+
+- id: mlip-ml-process
+  title: "From Models to Systems: Traditional Model Focus (Data Science) - Machine Learning in Production"
+  author:
+  - given: Christian
+    family: Kästner
+  url: https://mlip-cmu.github.io/book/02-from-models-to-systems.html#traditional-model-focus-data-science
+
+- id: meta-policy-zones
+  title: "Policy Zones: How Meta enforces purpose limitation at scale in batch processing systems"
+  author:
+  - given: Lucas
+    family: Waye
+  - given: Wenlong
+    family: Dong
+  - given: Boris
+    family: Shulman
+  - given: Yizhou
+    family: Yan
+  - given: Yuxuan
+    family: Zhang
+  url: https://engineering.fb.com/2025/07/23/security/policy-zones-meta-purpose-limitation-batch-processing-systems/
+
+- id: ieeexplore-cain
+  title: "IEEE/ACM Workshop on AI Engineering - Software Engineering for AI (WAIN)"
+  url: https://ieeexplore.ieee.org/xpl/conhome/1842224/all-proceedings
+
+- id: researchr-cain
+  title: "CAIN conference series"
+  url: https://conf.researchr.org/series/cain
+
+- id: brainmade
+  title: "The Brainmade Mark"
+  url: https://brainmade.org/
