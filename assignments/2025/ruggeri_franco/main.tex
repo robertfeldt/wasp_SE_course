@@ -5,13 +5,15 @@
 \title{WASP Software Engineering\\Assignment}
 \author{Franco Ruggeri}
 
+% TODO: read and correct grammar
+
 \begin{document}
 
 \maketitle
 
 \section{Introduction}
 
-I'm an industrial Ph.D. student at Ericsson Research and KTH Royal Institute of Technology. My research is focused on \gls{xrl} applied to telecommunication networks.
+I'm an industrial PhD student at Ericsson Research and KTH Royal Institute of Technology. My research is focused on \gls{xrl} applied to telecommunication networks.
 
 \Gls{rl} is a branch of \gls{ml} that involves training an agent to act optimally in an environment to optimize a given reward signal. Given its closed-loop framework, \gls{rl} is a promising solution for automating the optimization of large 5G networks, which involves tuning a large number of interconnected parameters. This optimization is not feasible to perform manually by human operators given the scale of such systems. Today's commercial solutions rely on rule-based systems that are rigid and suboptimal. \Gls{rl} can instead adapt to dynamic network conditions and optimize performance in real-time.
 
@@ -29,16 +31,22 @@ The goal of \gls{xrl} is to design methods that enhance the interpretability of 
 % - Testing in RL. Maybe XRL for automated testing?
 % - AI engineering is useful also at lower readiness levels. Software engineering best practices should be applied also in fundamental research to ensure high-quality code and speed up collaboration in open science, with reusable code.
 
-% TODO: read and correct grammar
-In the second lecture, "02 - Quality Assurance and Testing in SE", we discussed principles and techniques for testing in software engineering. A particularly interesting idea that I found inspiring is the usage of Anchors \cite{ribeiro-2018-anchors-highprecision-modelagnostic} for ML invariant/metamorphic testing. In my opinion, using \gls{xai}, or \gls{xrl} in the specific case of \gls{rl} models, for automated testing is a really interesting and promising research direction. In my research experience, I had the opportunity to collaborate with engineering teams to deliver novel \gls{rl} solutions to customers. During these projects, we used \gls{xrl} methods to produce plots that were later manually analyzed to extract actionable insights for improving the models. In this context, completing this manual analysis with automated testing, using other \gls{xrl} methods, would be a key improvement to speed up iterations and bring best practices from software engineering. For instance, such automated testing would enable continuous integration pipelines to avoid bugs from code changes (e.g., in the training code).
+In the second lecture on \textit{Quality Assurance and Testing in SE}, we discussed principles and techniques for testing in software engineering. A particularly interesting idea that I found inspiring is the usage of Anchors \cite{ribeiro-2018-anchors-highprecision-modelagnostic} for ML invariant/metamorphic testing. In my opinion, using \gls{xai}, or \gls{xrl} in the specific case of \gls{rl} models, for automated testing is a really interesting and promising research direction. In my research experience, I had the opportunity to collaborate with engineering teams to deliver novel \gls{rl} solutions to customers. During these projects, we used \gls{xrl} methods to produce plots that were later manually analyzed to extract actionable insights for improving the models. In this context, completing this manual analysis with automated testing, using other \gls{xrl} methods, would be a key improvement to speed up iterations and bring best practices from software engineering. For instance, such automated testing would enable continuous integration pipelines to avoid bugs from code changes (e.g., in the training code).
 
 % TODO: commenting this because it seems too much. Uncomment or remove later depending on space.
 % In general, I believe better testing techniques is really necessary in \gls{rl} and the field is less mature than other branches of \gls{ml}. In my experience, end-to-end testing (e.g., training an agent from scratch and testing its performance) works but very expensive. I do not think it is feasible to perform such end-to-end tests in the same way standard continuous integration pipelines are performed (e.g., for each commit in a merge request).
 
-In the fourth lecture, "04 - Science vs Engineering", we discussed how machine learning is in practice a hybrid between science and engineering. I found the 9 technology readiness levels very interesting and aligned with my research experience. Personally, I had the opportunity to work at different levels. In the beginning of my PhD, I experimented with existing methods from the literature, applying them to a telecom use case and even collaborating with engineering teams to deliver production-ready solutions (higher level of technology readiness). Later, I worked on a more fundamental problem in \gls{xrl} and devised a novel \gls{xrl} method (lower level of technology readiness). An argument I would like to discuss is that, in my opinion, software engineering best practices should not be kept only for high technology readiness levels, closer to production and engineering. I believe best practices are useful also in fundamental research and can really speed up research and science in the long run. While following best practice can involve an initial investment, reusable software can help future research projects to replicate results and build on top of existing ideas. This problem is also related to the crucial need for reproducibility in machine learning.
-
+In the fourth lecture on \textit{Science vs Engineering}, we discussed how machine learning is in practice a hybrid between science and engineering. I found the 9 technology readiness levels very interesting and aligned with my research experience. Personally, I had the opportunity to work at different levels. In the beginning of my PhD, I experimented with existing methods from the literature, applying them to a telecom use case and even collaborating with engineering teams to deliver production-ready solutions (higher level of technology readiness). Later, I worked on a more fundamental problem in \gls{xrl} and devised a novel \gls{xrl} method (lower level of technology readiness). An argument I would like to discuss is that, in my opinion, software engineering best practices should not be kept only for high technology readiness levels, closer to production and engineering. I believe best practices are useful also in fundamental research and can really speed up research and science in the long run. While following best practice can involve an initial investment, reusable software can help future research projects to replicate results and build on top of existing ideas. This problem is also related to the crucial need for reproducibility in machine learning.
 
 \section{Guest-Lecture Principles}
+
+% Ideas:
+% - Requirements engineering in industrial research, explainability needs from stakeholders in Ericsson
+% - Incremental refinement of requirements is good advice and really necessary. Good to have regular meetings to get feedback and refine requirements. In research requirements are even less clear to stakeholders than in engineering.
+
+In the guest lecture on \textit{Requirements Engineering}, Julian Frattini gave an overview of requirements engineering, including techniques to conduct it. In relation to my industrial research on \gls{xrl}, I find the practice of requirements engineering really important to apply within a company. Since industrial research is driven by actual business needs rather than only intellectual interest, finding stakeholders and defining their requirements is a crucial activity to define and solving research problems that are of interest for the company.
+
+I also think the idea of incremental refinement of requirements presented in the lecture is really useful and the way to go in practice. In my research experience, I had the opportunity to communicate with domain experts in telecommunications, which represented stakeholders for my research on \gls{xrl}. Defining clear, unambiguous explainability needs has been, and continues to be, a challenge. Thus, I believe regular meetings with direct feedback from stakeholders are key to ensure the success of an industrial research project.
 
 \section{Data Scientists versus Software Engineers}
 
