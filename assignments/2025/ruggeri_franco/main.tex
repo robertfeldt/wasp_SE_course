@@ -1,6 +1,6 @@
 \documentclass{article}
 
-\usepackage{biblatex}
+\usepackage[sorting=none]{biblatex}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{graphicx}
@@ -15,12 +15,14 @@
 \newacronym{ai}{AI}{Artificial Intelligence}
 \newacronym{ml}{ML}{Machine Learning}
 \newacronym{rl}{RL}{Reinforcement Learning}
-\newacronym{xai}{XAI}{Explainable \glsentrylong{ai}}
-\newacronym{xrl}{XRL}{Explainable \glsentrylong{rl}}
+\newacronym{xai}{XAI}{eXplainable \glsentrylong{ai}}
+\newacronym{xrl}{XRL}{eXplainable \glsentrylong{rl}}
 \newacronym{llm}{LLM}{Large Language Model}
 \newacronym{sla}{SLA}{Service Level Agreement}
 \newacronym{rx}{RX}{Runtime eXplainability}
 \newacronym{kpi}{KPI}{Key Performance Indicator}
+
+\glsunset{ai}
 \glsdisablehyper
 
 \title{WASP Software Engineering\\Assignment}
@@ -35,33 +37,15 @@
 
 \section{Introduction}
 
-I'm an industrial PhD student at Ericsson Research and KTH Royal Institute of
-Technology. My research is focused on \gls{xrl} applied to telecommunication
-networks.
+I'm an industrial PhD student at Ericsson Research and KTH Royal Institute of Technology. My research is focused on \gls{xrl} applied to telecommunication networks \cite{ruggeri-2025-explainable-reinforcement-learning}.
 
-\Gls{rl} is a branch of \gls{ml} that involves training an agent to act
-optimally in an environment to optimize a given reward signal. Given its
-closed-loop framework, \gls{rl} is a promising solution for automating the
-optimization of large 5G networks, which involves tuning a large number of
-interconnected parameters. This optimization is not feasible to perform manually
-by human operators given the scale of such systems. Today's commercial solutions
-rely on rule-based systems that are rigid and suboptimal. \Gls{rl} can instead
-adapt to dynamic network conditions and optimize performance in real-time.
+\Gls{rl} is a branch of \gls{ml} that involves training an agent to act optimally in an environment in order to optimize a reward signal. Given its closed-loop framework, \gls{rl} is a promising solution for automating the optimization of large 5G networks, which involves tuning a large number of interconnected parameters. Given the scale of such systems, this optimization cannot be manually manually performed by human operators, and today's commercial solutions rely on rule-based systems that are rigid and suboptimal. \Gls{rl} can instead adapt to dynamic network conditions and optimize performance in real-time.
 
-However, network automation comes with risks, as wrong parameter adjustments can
-lead to degraded performance and services for end users. For this reason,
-network operators seek transparency and reliability in such solutions.
-State-of-the-art \gls{rl}, similarly to other branches of \gls{ml}, is notably
-opaque and lacks the required transparency to be adopted in production
-environments.
+However, network automation comes with risks, as wrong parameter adjustments can lead to degraded performance and services for end users. For this reason, network operators seek transparency and reliability in such solutions. State-of-the-art \gls{rl}, similarly to other branches of \gls{ml}, is notably opaque and lacks the required transparency to be adopted in production environments.
 
 The goal of \gls{xrl} is to design methods that enhance the interpretability of
 \gls{rl} agents so that humans can understand and trust \gls{rl}-based
 decisions.
-
-% further topics in case of need for more content:
-% - reasons for lack of interpretability in RL
-% - post-hoc vs intrinsic XRL
 
 \section{Lecture Principles}
 
@@ -69,12 +53,9 @@ decisions.
 % - Testing in RL. Maybe XRL for automated testing?
 % - \gls{ai} engineering is useful also at lower readiness levels. Software engineering best practices should be applied also in fundamental research to ensure high-quality code and speed up collaboration in open science, with reusable code.
 
-In the second lecture on \textit{Quality Assurance and Testing in SE}, we discussed principles and techniques for testing in software engineering. A particularly interesting idea that I found inspiring is the usage of Anchors \cite{ribeiro-2018-anchors-highprecision-modelagnostic} for \gls{ml} invariant/metamorphic testing. In my opinion, using \gls{xai}, or \gls{xrl} in the specific case of \gls{rl} models, for automated testing is a really interesting and promising research direction. In my research experience, I had the opportunity to collaborate with engineering teams to deliver novel \gls{rl} solutions to customers. During these projects, we used \gls{xrl} methods to produce plots that were later manually analyzed to extract actionable insights for improving the models. In this context, completing this manual analysis with automated testing, using other \gls{xrl} methods, would be a key improvement to speed up iterations and bring best practices from software engineering. For instance, such automated testing would enable continuous integration pipelines to avoid bugs from code changes (e.g., in the training code).
+In the second lecture on \textit{Quality Assurance and Testing in SE}, we discussed principles and techniques for testing in software engineering. An idea that I found inspiring is the usage of Anchors \cite{ribeiro-2018-anchors-highprecision-modelagnostic} for \gls{ml} invariant/metamorphic testing. In my opinion, using \gls{xai}, or \gls{xrl} in the specific case of \gls{rl} models, for automated testing is a promising research direction. In my research experience, I had the opportunity to collaborate with engineering teams to deliver novel \gls{rl} solutions to customers. During these projects, we used \gls{xrl} methods to produce plots that were later manually analyzed to extract actionable insights for improving the models. In this context, using \gls{xrl} methods for automating testing would remove the need for human analysis, speed up iterations, and bring best practices from software engineering. For instance, such automated \gls{xrl}-based testing would enable continuous integration pipelines to avoid bugs from code changes (e.g., in the training code).
 
-% TODO: commenting this because it seems too much. Uncomment or remove later depending on space.
-% In general, I believe better testing techniques is really necessary in \gls{rl} and the field is less mature than other branches of \gls{ml}. In my experience, end-to-end testing (e.g., training an agent from scratch and testing its performance) works but very expensive. I do not think it is feasible to perform such end-to-end tests in the same way standard continuous integration pipelines are performed (e.g., for each commit in a merge request).
-
-In the fourth lecture on \textit{Science vs Engineering}, we discussed how machine learning is in practice a hybrid between science and engineering. I found the 9 technology readiness levels very interesting and aligned with my research experience. Personally, I had the opportunity to work at different levels. In the beginning of my PhD, I experimented with existing methods from the literature, applying them to a telecom use case and even collaborating with engineering teams to deliver production-ready solutions (higher level of technology readiness). Later, I worked on a more fundamental problem in \gls{xrl} and devised a novel \gls{xrl} method (lower level of technology readiness). An argument I would like to discuss is that, in my opinion, software engineering best practices should not be kept only for high technology readiness levels, closer to production and engineering. I believe best practices are useful also in fundamental research and can really speed up research and science in the long run. While following best practice can involve an initial investment, reusable software can help future research projects to replicate results and build on top of existing ideas. This problem is also related to the crucial need for reproducibility in machine learning.
+In the fourth lecture on \textit{Science vs Engineering}, we discussed how machine learning is in practice a hybrid between science and engineering. I found the 9 technology readiness levels \cite{lavin-2022-technology-readiness-levels} well-aligned with my research experience. During the past few years, I had the opportunity to work at different levels. In the beginning of my PhD, I experimented with existing methods from the literature, applying them to a telecom use case and even collaborating with engineering teams to deliver production-ready solutions (higher level of technology readiness). Later, I worked on a more fundamental \gls{rl} problem and devised a novel \gls{xrl} method (lower level of technology readiness). I also noticed that many researchers at low-level of technology readiness neglect software engineering best practices. In my opinion, instead, high-quality code with strong modularity and testing should always be maintained, not only for high technology readiness levels closer to production and engineering. I believe good software engineering practices can really speed up research and science in the long run. While there is certainly an initial investment, reusable high-quality research software can facilitate replicating results and extending existing ideas. This problem is also related to the crucial need for reproducibility in \gls{ml}.
 
 \section{Guest-Lecture Principles}
 
@@ -82,17 +63,18 @@ In the fourth lecture on \textit{Science vs Engineering}, we discussed how machi
 % - Requirements engineering in industrial research, explainability needs from stakeholders in Ericsson
 % - Incremental refinement of requirements is good advice and really necessary. Good to have regular meetings to get feedback and refine requirements. In research requirements are even less clear to stakeholders than in engineering.
 
-In the guest lecture on \textit{Requirements Engineering}, Julian Frattini gave an overview of requirements engineering, including techniques to conduct it. In relation to my industrial research on \gls{xrl}, I find the practice of requirements engineering really important to apply within a company. Since industrial research is driven by actual business needs rather than only intellectual interest, finding stakeholders and defining their requirements is a crucial activity to define and solving research problems that are of interest for the company.
+In the guest lecture on \textit{Requirements Engineering}, Julian Frattini gave an overview of requirements engineering and presented several techniques to conduct it. In relation to my industrial research on \gls{xrl}, I find the practice of requirements engineering really important to apply within a company, even in research projects. Since industrial research is driven by real business needs rather than only intellectual interest, finding stakeholders and defining their requirements is a crucial activity to define and solving research problems that are of interest for the company.
 
-I also think the idea of incremental refinement of requirements presented in the lecture is really useful and the way to go in practice. In my research experience, I had the opportunity to communicate with domain experts in telecommunications, which represented stakeholders for my research on \gls{xrl}. Defining clear, unambiguous explainability needs has been, and continues to be, a challenge. Thus, I believe regular meetings with direct feedback from stakeholders are key to ensure the success of an industrial research project.
+I also think the idea of incremental refinement of requirements presented in the lecture is really useful and a necessary practice under the high uncertainty typical of research projects. In my research experience, I had the opportunity to communicate with domain experts in telecommunications, which represented stakeholders for my research on \gls{xrl}. Defining clear, unambiguous explainability needs has been, and continues to be, a challenge. Thus, I believe regular meetings with direct feedback from stakeholders are key to ensure the success of an industrial research project.
 
 \section{Data Scientists versus Software Engineers}
 
-The first two chapters of \cite{kastner-2025-machine-learning-production} present an overview of \gls{ml}-enabled software products. The author argues that building such products requires both data scientists and software engineers. Data scientists are expert in \gls{ml} models and training algorithms, while software engineers are required to build the software product following the engineering process. I definitely agree with this distinction. In my experience, data scientists come from diverse backgrounds that might have very little to do with software engineering. For instance, many successful data scientists have backgrounds in statistics or mathematics. I believe software engineers who understand machine learning are necessary to build \gls{ml}-enabled software products, as many data scientists are only used to experimentation tools such as Jupyter notebooks and have no experience with production-ready software and infrastructure. Furthermore, following a proper engineering process, including requirements engineering, design, testing, and maintenance, is key to deliver high-quality software products, and data scientists with no software-engineering experience are certainly not the right profiles to do so.
+The first two chapters of \cite{kastner-2025-machine-learning-production} present an overview of \gls{ml}-enabled software products. The author argues that building such products requires the collaboration of data scientists and software engineers. Data scientists are expert in \gls{ml} models and training algorithms, while software engineers are required to build the overall software product following the engineering process. I definitely agree with this distinction. In my experience, data scientists come from diverse backgrounds that might have very little to do with software engineering. For instance, many successful data scientists have backgrounds in statistics or mathematics. I believe software engineers who understand machine learning are necessary to build \gls{ml}-enabled software products, as many data scientists are only used to experimentation tools such as Jupyter notebooks and have no experience with production software and infrastructure. Furthermore, delivering high-quality software products require a proper engineering process that includes requirements engineering, design, testing, and maintenance. Data scientists with no software engineering experience are certainly not the right profiles to perform these tasks.
 
-In my opinion, the role of data scientist will evolve and be required to know more about software engineering, but not the other way around, as there is still a huge chunk of software engineering concerning non-ML models. The recently emerging role of \gls{ai}/\gls{ml} engineer is a software engineer specialized in \gls{ml} and, in a sense, can be seen as an evolution of a data scientist for embedding \gls{ml} in larger software systems. I believe the roles of data scientists, \gls{ai}/\gls{ml} engineers, and software engineers will keep coexisting, but there will be further specialization. The reason is that the current spectrum of skills expected from \gls{ai}/\gls{ml} engineers is really wide. For instance, cloud engineers with some understanding of \gls{ml} might be labeled with a new name and focus on the the deployment of \gls{ml} components at scale in cloud environments.
+In my opinion, the role of data scientist will evolve and be required to know more about software engineering, but not the other way around, as there is still a huge part of software engineering that concerns non-ML components. The recently emerging role of \gls{ai}/\gls{ml} engineer is, in my view, a software engineer specialized in \gls{ml} and, in a sense, can be seen as an evolution of a data scientist specialized in integrating \gls{ml} in larger software systems. I believe the roles of data scientists, \gls{ai}/\gls{ml} engineers, and software engineers will keep coexisting, but there will be further specialization. The main reason is that the current spectrum of skills expected from \gls{ai}/\gls{ml} engineers is really wide. For instance, cloud engineers with some understanding of \gls{ml} might be labeled with a new name and focus on the deployment of \gls{ml} components at scale in cloud environments.
 
 \section{Paper Analysis}
+\label{sec:paper-analysis}
 
 \subsection{Novel Contract-based Runtime Explainability Framework for End-to-End Ensemble Machine Learning Serving \cite{nguyen-2024-novel-contractbased-runtime}}
 
@@ -158,20 +140,19 @@ Overall, responsible \gls{ai} is a crucial topic in my research on \gls{xrl} for
 
 \section{Research Ethics \& Synthesis Reflection}
 
-I followed the following process to search and screen papers:
+I used the following method to select the papers \cite{nguyen-2024-novel-contractbased-runtime,lu-2022-roadmap-software-engineering} described in \cref{sec:paper-analysis}:
 \begin{enumerate}
-	\item Checked list of accepted long papers from CAIN 2022-2025 using the official CAIN website.
-	\item Filtered papers containing one of the following keywords in their title: reinforcement learning, explainability, explainable AI, trustworthy AI, trustworthiness, responsible AI.
-	\item Read title and abstract to select 2 papers out of the 8 filtered ones, based on the perceived relevance to my research.
+	\item Checked the list of accepted long papers from CAIN 2022-2025 using the official CAIN website.
+	\item Filtered the papers containing one of the following keywords in their title: reinforcement learning, explainability, explainable AI, trustworthy AI, trustworthiness, responsible AI. The result was a set of 8 papers.
+	\item Read title and abstract to select 2 papers based on the perceived relevance to my research.
 \end{enumerate}
-
 The above process was the result of a few adjustments:
 \begin{itemize}
-	\item Before searching in the official CAIN website, I tried to select papers via IEEE Xplore. After selecting two papers on \gls{rl}, I realized they were not short papers, and that IEEE Xplore includes industry talks and short papers in the list.
+	\item Before searching in the official CAIN website, I tried to select papers via IEEE Xplore. After selecting two papers on \gls{rl}, I realized they were not long papers, and that IEEE Xplore includes industry talks and posters in the list.
 	\item I initially used only reinforcement learning as a keyword for my search, but had to extend the set of keywords due to lack of long papers on \gls{rl}.
 \end{itemize}
 
-I did not use any \gls{llm} detector to ensure originality of the manuscript. I used my critical thinking and intuition while reading the papers. I did not use any \gls{llm} tool as aid for this assignment.
+I did not use any \gls{llm} detector to ensure originality of the selected papers. I used my critical thinking and intuition while reading the papers. I also trust that the reviewers have checked the originality of the content. For writing this assignment, I did not use any \gls{llm}-based aid.
 
 % List of papers considered:
 % - Rule-Based Assessment of Reinforcement Learning Practices Using Large Language Models
