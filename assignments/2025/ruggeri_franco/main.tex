@@ -1,13 +1,33 @@
 \documentclass{article}
-\usepackage{setup/mypackage}
-\input{setup/acronyms}
+
+\usepackage{biblatex}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[acronym]{glossaries}
+\usepackage[capitalise,nameinlink]{cleveref}
+\usepackage[inline]{enumitem}
+\usepackage[subrefformat=parens]{subcaption}
+\usepackage{siunitx}
+
+\addbibresource{bibliography.bib}
+
+\newacronym{ai}{AI}{Artificial Intelligence}
+\newacronym{ml}{ML}{Machine Learning}
+\newacronym{rl}{RL}{Reinforcement Learning}
+\newacronym{xai}{XAI}{Explainable \glsentrylong{ai}}
+\newacronym{xrl}{XRL}{Explainable \glsentrylong{rl}}
+\newacronym{llm}{LLM}{Large Language Model}
+\newacronym{sla}{SLA}{Service Level Agreement}
+\newacronym{rx}{RX}{Runtime eXplainability}
+\newacronym{kpi}{KPI}{Key Performance Indicator}
+\glsdisablehyper
 
 \title{WASP Software Engineering\\Assignment}
 \author{Franco Ruggeri}
 
-% TODO: read and correct grammar
-% TODO: Add .bib
-% TODO: don't gitignore PDF, needed for submission
+% TODO: re-read and correct grammar
+% TODO: complete section 5 paper 2
 
 \begin{document}
 
@@ -132,7 +152,7 @@ policy.
 
 
 
-The topics discussed in the paper are really relevant for my research on \gsl{xrl} for telecommunication networks. In fact, \gls{xai} is a key enabler for responsible \gls{ai} and is mentioned by the authors in both process-level and system-level responsible \gls{ai}. Given my research focus on algorithmic interpretability of \gls{rl} models, I find my research to be a good fit for responsible \gls{ai} by design. \gls{xrl} methods can be integrated in the system (in the design phase) to enhance trustworthiness of \gls{rl} components. For example, an architecture pattern presented in  the -level Given my focus on algorithmic interpretability of \gsl{rl} models, my research fits
+The topics discussed in the paper are really relevant for my research on \gls{xrl} for telecommunication networks. In fact, \gls{xai} is a key enabler for responsible \gls{ai} and is mentioned by the authors in both process-level and system-level responsible \gls{ai}. Given my research focus on algorithmic interpretability of \gls{rl} models, I find my research to be a good fit for responsible \gls{ai} by design. \gls{xrl} methods can be integrated in the system (in the design phase) to enhance trustworthiness of \gls{rl} components. For example, an architecture pattern presented in  the -level Given my focus on algorithmic interpretability of \gls{rl} models, my research fits
 
 Overall, responsible \gls{ai} is a crucial topic in my research on \gls{xrl} for telecommunication networks. In fact, network operators require trustworthy and transparent solutions to automate network optimization using \gls{rl}. Thus, I find the research roadmap presented in the paper really useful to guide my future research on \gls{xrl}. Due to the relevance of my research to responsible \gls{ai}, my future research is already well aligned with the roadmap proposed in the paper. An adaptation could be to extend the scope of my research to system-level aspects such as data quality, as my current research focus is on model interpretability.
 
@@ -163,6 +183,6 @@ I did not use any \gls{llm} detector to ensure originality of the manuscript. I 
 % - Towards a Roadmap for Software Engineering for Responsible AI
 % - Towards a Responsible AI Metrics Catalogue: A Collection of Metrics for AI Accountability
 
-\bibliography{setup/bibliography}
+\printbibliography
 
 \end{document}
