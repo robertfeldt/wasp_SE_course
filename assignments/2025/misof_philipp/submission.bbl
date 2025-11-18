@@ -1,0 +1,171 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{ximenesInvestigatingIssuesThat2025}{inproceedings}{}{}
+      \name{author}{5}{}{%
+        {{hash=0d5dc6dd20c5e775e3e19f64275559a5}{%
+           family={Ximenes},
+           familyi={X\bibinitperiod},
+           given={Rodrigo},
+           giveni={R\bibinitperiod}}}%
+        {{hash=ff397be3420ef19f57631a7fdfb731be}{%
+           family={Alves},
+           familyi={A\bibinitperiod},
+           given={Antonio\bibnamedelimb Pedro\bibnamedelima Santos},
+           giveni={A\bibinitperiod\bibinitdelim P\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=fefec4757059c2d70789c91ac80cf67e}{%
+           family={Escovedo},
+           familyi={E\bibinitperiod},
+           given={Tatiana},
+           giveni={T\bibinitperiod}}}%
+        {{hash=bdb0b33ba77df5f6066756772b37d7b7}{%
+           family={Spinola},
+           familyi={S\bibinitperiod},
+           given={Rodrigo},
+           giveni={R\bibinitperiod}}}%
+        {{hash=4a78c08dd05c994fc2712f82578d7d6f}{%
+           family={Kalinowski},
+           familyi={K\bibinitperiod},
+           given={Marcos},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{e4de1983e3ccaa8d80a73a15f1597ef5}
+      \strng{fullhash}{2bb02ac878b8fe5a0fec711c88e0747b}
+      \strng{fullhashraw}{2bb02ac878b8fe5a0fec711c88e0747b}
+      \strng{bibnamehash}{2bb02ac878b8fe5a0fec711c88e0747b}
+      \strng{authorbibnamehash}{2bb02ac878b8fe5a0fec711c88e0747b}
+      \strng{authornamehash}{e4de1983e3ccaa8d80a73a15f1597ef5}
+      \strng{authorfullhash}{2bb02ac878b8fe5a0fec711c88e0747b}
+      \strng{authorfullhashraw}{2bb02ac878b8fe5a0fec711c88e0747b}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{[Context] Technical debt (TD) in machine learning (ML) systems, much like its counterpart in software engineering (SE), holds the potential to lead to future rework, posing risks to productivity, quality, and team morale. Despite growing attention to TD in SE, the understanding of ML-specific code-related TD remains underexplored. [Objective] This paper aims to identify and discuss the relevance of code-related issues that lead to TD in ML code throughout the ML workflow. [Method] The study first compiled a list of 34 potential issues contributing to TD in ML code by examining the phases of the ML workflow, their typical associated activities, and problem types. This list was refined through two focus group sessions involving nine experienced ML professionals, where each issue was assessed based on its occurrence contributing to TD in ML code and its relevance. [Results] The list of issues contributing to TD in the source code of ML systems was refined from 34 to 30, with 24 of these issues considered highly relevant. The data pre-processing phase was the most critical, with 14 issues considered highly relevant. Shortcuts in code related to typical pre-processing tasks (e.g., handling missing values, outliers, inconsistencies, scaling, rebalancing, and feature selection) often result in “patch fixes” rather than sustainable solutions, leading to the accumulation of TD and increasing maintenance costs. Relevant issues were also found in the data collection, model creation and training, and model evaluation phases. [Conclusion] We have made the final list of issues available to the community and believe it will help raise awareness about issues that need to be addressed throughout the ML workflow to reduce TD and improve the maintainability of ML code.}
+      \field{booktitle}{2025 {{IEEE}}/{{ACM}} 4th {{International Conference}} on {{AI Engineering}} – {{Software Engineering}} for {{AI}} ({{CAIN}})}
+      \field{eventtitle}{2025 {{IEEE}}/{{ACM}} 4th {{International Conference}} on {{AI Engineering}} – {{Software Engineering}} for {{AI}} ({{CAIN}})}
+      \field{month}{4}
+      \field{title}{Investigating {{Issues That Lead}} to {{Code Technical Debt}} in {{Machine Learning Systems}}}
+      \field{urlday}{25}
+      \field{urlmonth}{8}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{173\bibrangedash 183}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1109/CAIN66642.2025.00028
+      \endverb
+      \verb{file}
+      \verb /home/philipp/Zotero/storage/R7KNC57M/Ximenes et al. - 2025 - Investigating Issues That Lead to Code Technical Debt in Machine Learning Systems.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/abstract/document/11030012
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/abstract/document/11030012
+      \endverb
+      \keyw{Codes,Data collection,Data models,Focus Group,Machine learning,Machine Learning,Maintenance,Object recognition,Productivity,Software engineering,Source coding,Technical Debt,Training}
+    \endentry
+    \entry{cabralInvestigatingImpactSOLID2024}{inproceedings}{}{}
+      \name{author}{6}{}{%
+        {{hash=605bb17cc1b66705a7ccc55164637755}{%
+           family={Cabral},
+           familyi={C\bibinitperiod},
+           given={Raphael},
+           giveni={R\bibinitperiod}}}%
+        {{hash=4a78c08dd05c994fc2712f82578d7d6f}{%
+           family={Kalinowski},
+           familyi={K\bibinitperiod},
+           given={Marcos},
+           giveni={M\bibinitperiod}}}%
+        {{hash=8f66f0ec12180755b61871098032a10d}{%
+           family={Baldassarre},
+           familyi={B\bibinitperiod},
+           given={Maria\bibnamedelima Teresa},
+           giveni={M\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+        {{hash=4c6bd520819baf4577b51c4eb301355e}{%
+           family={Villamizar},
+           familyi={V\bibinitperiod},
+           given={Hugo},
+           giveni={H\bibinitperiod}}}%
+        {{hash=fefec4757059c2d70789c91ac80cf67e}{%
+           family={Escovedo},
+           familyi={E\bibinitperiod},
+           given={Tatiana},
+           giveni={T\bibinitperiod}}}%
+        {{hash=f41bf3c31f6a165cb14cd952d76e7a99}{%
+           family={Lopes},
+           familyi={L\bibinitperiod},
+           given={Hélio},
+           giveni={H\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New York, NY, USA}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery}%
+      }
+      \strng{namehash}{069d639515035fdb3ead0f8e70646d69}
+      \strng{fullhash}{3e65273d3a4bf7af1c5e2c689d656861}
+      \strng{fullhashraw}{3e65273d3a4bf7af1c5e2c689d656861}
+      \strng{bibnamehash}{069d639515035fdb3ead0f8e70646d69}
+      \strng{authorbibnamehash}{069d639515035fdb3ead0f8e70646d69}
+      \strng{authornamehash}{069d639515035fdb3ead0f8e70646d69}
+      \strng{authorfullhash}{3e65273d3a4bf7af1c5e2c689d656861}
+      \strng{authorfullhashraw}{3e65273d3a4bf7af1c5e2c689d656861}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{[Context] Applying design principles has long been acknowledged as beneficial for understanding and maintainability in traditional software projects. These benefits may similarly hold for Machine Learning (ML) projects, which involve iterative experimentation with data, models, and algorithms. However, ML components are often developed by data scientists with diverse educational backgrounds, potentially resulting in code that doesn't adhere to software design best practices. [Goal] In order to better understand this phenomenon, we investigated the impact of the SOLID design principles on ML code understanding. [Method] We conducted a controlled experiment with three independent trials involving 100 data scientists. We restructured real industrial ML code that did not use SOLID principles. Within each trial, one group was presented with the original ML code, while the other was presented with ML code incorporating SOLID principles. Participants of both groups were asked to analyze the code and fill out a questionnaire that included both open-ended and closed-ended questions on their understanding. [Results] The study results provide statistically significant evidence that the adoption of the SOLID design principles can improve code understanding within the realm of ML projects. [Conclusion] We put forward that software engineering design principles should be spread within the data science community and considered for enhancing the maintainability of ML code.}
+      \field{booktitle}{Proceedings of the {{IEEE}}/{{ACM}} 3rd {{International Conference}} on {{AI Engineering}} - {{Software Engineering}} for {{AI}}}
+      \field{day}{11}
+      \field{isbn}{979-8-4007-0591-5}
+      \field{month}{6}
+      \field{series}{{{CAIN}} '24}
+      \field{title}{Investigating the {{Impact}} of {{SOLID Design Principles}} on {{Machine Learning Code Understanding}}}
+      \field{urlday}{25}
+      \field{urlmonth}{8}
+      \field{urlyear}{2025}
+      \field{year}{2024}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{7\bibrangedash 17}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1145/3644815.3644957
+      \endverb
+      \verb{file}
+      \verb /home/philipp/Zotero/storage/DJ5KEHC8/Cabral et al. - 2024 - Investigating the Impact of SOLID Design Principles on Machine Learning Code Understanding.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://dl.acm.org/doi/10.1145/3644815.3644957
+      \endverb
+      \verb{url}
+      \verb https://dl.acm.org/doi/10.1145/3644815.3644957
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
