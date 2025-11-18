@@ -1,0 +1,133 @@
+\documentclass{article}
+
+\usepackage[sorting=none]{biblatex}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[acronym]{glossaries}
+\usepackage[capitalise,nameinlink]{cleveref}
+\usepackage[inline]{enumitem}
+\usepackage[subrefformat=parens]{subcaption}
+\usepackage{siunitx}
+
+\addbibresource{bibliography.bib}
+
+\newacronym{ai}{AI}{Artificial Intelligence}
+\newacronym{ml}{ML}{Machine Learning}
+\newacronym{rl}{RL}{Reinforcement Learning}
+\newacronym{xai}{XAI}{eXplainable \glsentrylong{ai}}
+\newacronym{xrl}{XRL}{eXplainable \glsentrylong{rl}}
+\newacronym{llm}{LLM}{Large Language Model}
+\newacronym{sla}{SLA}{Service Level Agreement}
+\newacronym{rx}{RX}{Runtime eXplainability}
+\newacronym{kpi}{KPI}{Key Performance Indicator}
+
+\glsunset{ai}
+\glsdisablehyper
+
+\title{WASP Software Engineering\\Assignment}
+\author{Franco Ruggeri}
+
+% TODO: re-read and correct grammar
+% TODO: complete section 5 paper 2
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+I'm an industrial PhD student at Ericsson Research and KTH Royal Institute of Technology. My research is focused on \gls{xrl} applied to telecommunication networks \cite{ruggeri-2025-explainable-reinforcement-learning}.
+
+\Gls{rl} is a branch of \gls{ml} that involves training an agent to act optimally in an environment in order to optimize a reward signal. Given its closed-loop framework, \gls{rl} is a promising solution for automating the optimization of large 5G networks, which involves tuning a large number of interconnected parameters. Given the scale of such systems, this optimization cannot be manually manually performed by human operators, and today's commercial solutions rely on rule-based systems that are rigid and suboptimal. \Gls{rl} can instead adapt to dynamic network conditions and optimize performance in real-time.
+
+However, network automation comes with risks, as wrong parameter adjustments can lead to degraded performance and services for end users. For this reason, network operators seek transparency and reliability in such solutions. State-of-the-art \gls{rl}, similarly to other branches of \gls{ml}, is notably opaque and lacks the required transparency to be adopted in production environments.
+
+The goal of \gls{xrl} is to design methods that enhance the interpretability of
+\gls{rl} agents so that humans can understand and trust \gls{rl}-based
+decisions.
+
+\section{Lecture Principles}
+
+% Ideas:
+% - Testing in RL. Maybe XRL for automated testing?
+% - \gls{ai} engineering is useful also at lower readiness levels. Software engineering best practices should be applied also in fundamental research to ensure high-quality code and speed up collaboration in open science, with reusable code.
+
+In the second lecture on \textit{Quality Assurance and Testing in SE}, we discussed principles and techniques for testing in software engineering. An idea that I found inspiring is the usage of Anchors \cite{ribeiro-2018-anchors-highprecision-modelagnostic} for \gls{ml} invariant/metamorphic testing. In my opinion, using \gls{xai}, or \gls{xrl} in the specific case of \gls{rl} models, for automated testing is a promising research direction. In my research experience, I had the opportunity to collaborate with engineering teams to deliver novel \gls{rl} solutions to customers. During these projects, we used \gls{xrl} methods to produce plots that were later manually analyzed to extract actionable insights for improving the models. In this context, using \gls{xrl} methods for automating testing would remove the need for human analysis, speed up iterations, and bring best practices from software engineering. For instance, such automated \gls{xrl}-based testing would enable continuous integration pipelines to avoid bugs from code changes (e.g., in the training code).
+
+In the fourth lecture on \textit{Science vs Engineering}, we discussed how machine learning is in practice a hybrid between science and engineering. I found the 9 technology readiness levels \cite{lavin-2022-technology-readiness-levels} well-aligned with my research experience. During the past few years, I had the opportunity to work at different levels. In the beginning of my PhD, I experimented with existing methods from the literature, applying them to a telecom use case and even collaborating with engineering teams to deliver production-ready solutions (higher level of technology readiness). Later, I worked on a more fundamental \gls{rl} problem and devised a novel \gls{xrl} method (lower level of technology readiness). I also noticed that many researchers at low-level of technology readiness neglect software engineering best practices. In my opinion, instead, high-quality code with strong modularity and testing should always be maintained, not only for high technology readiness levels closer to production and engineering. I believe good software engineering practices can really speed up research and science in the long run. While there is certainly an initial investment, reusable high-quality research software can facilitate replicating results and extending existing ideas. This problem is also related to the crucial need for reproducibility in \gls{ml}.
+
+\section{Guest-Lecture Principles}
+
+% Ideas:
+% - Requirements engineering in industrial research, explainability needs from stakeholders in Ericsson
+% - Incremental refinement of requirements is good advice and really necessary. Good to have regular meetings to get feedback and refine requirements. In research requirements are even less clear to stakeholders than in engineering.
+
+In the guest lecture on \textit{Requirements Engineering}, Julian Frattini gave an overview of requirements engineering and presented several techniques to conduct it. In relation to my industrial research on \gls{xrl}, I find the practice of requirements engineering really important to apply within a company, even in research projects. Since industrial research is driven by real business needs rather than only intellectual interest, finding stakeholders and defining their requirements is a crucial activity to define and solving research problems that are of interest for the company.
+
+I also think the idea of incremental refinement of requirements presented in the lecture is really useful and a necessary practice under the high uncertainty typical of research projects. In my research experience, I had the opportunity to communicate with domain experts in telecommunications, which represented stakeholders for my research on \gls{xrl}. Defining clear, unambiguous explainability needs has been, and continues to be, a challenge. Thus, I believe regular meetings with direct feedback from stakeholders are key to ensure the success of an industrial research project.
+
+\section{Data Scientists versus Software Engineers}
+
+The first two chapters of \cite{kastner-2025-machine-learning-production} present an overview of \gls{ml}-enabled software products. The author argues that building such products requires the collaboration of data scientists and software engineers. Data scientists are expert in \gls{ml} models and training algorithms, while software engineers are required to build the overall software product following the engineering process. I definitely agree with this distinction. In my experience, data scientists come from diverse backgrounds that might have very little to do with software engineering. For instance, many successful data scientists have backgrounds in statistics or mathematics. I believe software engineers who understand machine learning are necessary to build \gls{ml}-enabled software products, as many data scientists are only used to experimentation tools such as Jupyter notebooks and have no experience with production software and infrastructure. Furthermore, delivering high-quality software products require a proper engineering process that includes requirements engineering, design, testing, and maintenance. Data scientists with no software engineering experience are certainly not the right profiles to perform these tasks.
+
+In my opinion, the role of data scientist will evolve and be required to know more about software engineering, but not the other way around, as there is still a huge part of software engineering that concerns non-ML components. The recently emerging role of \gls{ai}/\gls{ml} engineer is, in my view, a software engineer specialized in \gls{ml} and, in a sense, can be seen as an evolution of a data scientist specialized in integrating \gls{ml} in larger software systems. I believe the roles of data scientists, \gls{ai}/\gls{ml} engineers, and software engineers will keep coexisting, but there will be further specialization. The main reason is that the current spectrum of skills expected from \gls{ai}/\gls{ml} engineers is really wide. For instance, cloud engineers with some understanding of \gls{ml} might be labeled with a new name and focus on the deployment of \gls{ml} components at scale in cloud environments.
+
+\section{Paper Analysis}
+\label{sec:paper-analysis}
+
+\subsection{Novel Contract-based Runtime Explainability Framework for End-to-End Ensemble Machine Learning Serving \cite{nguyen-2024-novel-contractbased-runtime}}
+
+In current \gls{ml} serving frameworks, where an \gls{ml} provider serves \gls{ml} models to \gls{ml} consumers, \glspl{sla} typically include only latency and throughput. With these limited \glspl{sla}, \gls{ml} consumers use \gls{ml} essentially as a black box. \gls{ml} consumers need instead more detailed \glspl{sla} and reports with \gls{ml}-specific metrics that enhance the service transpacency. Furthermore, \gls{ml} providers do not receive feedback from \gls{ml} consumers about served inferences. In presence of data drift, \gls{ml} providers have therefore a hard time updating models to maintain a high-quality service.
+
+Nguyen et al. \cite{nguyen-2024-novel-contractbased-runtime} introduce the concept of \gls{rx}. While traditional \gls{xai} focuses on model-level interpretability (why an \gls{ml} model makes a certain inference), \gls{rx} considers service-level explainability, with a holistic perspective of the \gls{ml} serving framework. \gls{rx} includes data quality metrics, inference confidence metrics, and inference accuracy metrics. The authors propose a novel contract-based \gls{rx} framework to provide \gls{rx} in an \gls{ml} serving system. In short, the framework collects \gls{rx} metrics to produce an explainability report, which is then used to generate a quality report for the \gls{ml} consumer and a performance report for the \gls{ml} provider. The performance report can additionally include feedback from the \gls{ml} consumer. The \gls{rx} framework can be seen as an \gls{ml} observability platform for monitoring \gls{ml} services. In fact, in my opinion, the term \textit{observability} fits better than \textit{explainability}, given that the framework focuses on collecting metrics and generating reports rather than explaining reasons behind inferences. Neverthelss, observability is a crucial aspect for enhancing transparency and trustworthiness of \gls{ml} services.
+
+An example of a real \gls{ml}-enabled software product where this framework would fit is antenna tilt control in a 5G network, where the vertical electrical tilt of each antenna is controlled using \gls{rl}. The \gls{ml} component of this system would be an \gls{ml} consumer interacting with an \gls{ml} provider on the cloud. The \gls{ml} provider serves \gls{rl} agents that propose adjustments (actions) to update the tilt angle of antennas. Since wrong adjustments can degrade network performance and violate \glspl{sla} with customers, knowing the inference confidence and expected result is important. The proposed framework can attach quality reports to the proposed actions so that network operators can check and manually confirm or reject changes. The human manual checks would also serve as feedback to the \gls{ml} provider to update the \gls{rl} models. My \gls{xrl} research could be integrated into this framework to extend reports with model-level explanations of proposed actions. For instance, \gls{xrl} can clarify which aspect of the current state the \gls{rl} model considered for the proposal \cite{hayes-2017-improving-robot-controller,terra-2022-beerl-both-ends} and predict expected future outcomes \cite{ruggeri-2025-explainable-reinforcement-learninga}. Such detailed model-level explanations can complement the service-level metrics provided by the \gls{rx} framework.
+
+The concept of \gls{rx} is also inspiring for my future research, as service-level \gls{xrl}, or \gls{rx} for \gls{rl}, is an underexplored research area that can be of high interest for telecommunication systems. Typically, network operators are more interested in high-level reports using traditional network \glspl{kpi}, rather than in the internal details of \gls{rl} models, which is aligned with the ideas introduced in the paper. Also, there are unique challenges to extend \gls{rx} to \gls{rl}. First, data quality metrics should account for the mix of simulated and real data, as \gls{rl} models are typically trained in simulators due to the actionability requirement. Given that simulators are imperfect representations of the real world, service-level \gls{xrl} would need to consider the uncertainty coming from the reality gap between simulated and real data when presenting reports to \gls{ml} consumers, quantified by adequate metrics. Second, since \gls{rl} models output actions aiming to maximize a reward signal over a sequence of actions, typically predicting action values, the inference confidence has a more opaque meaning. Instead, \gls{xrl} should focus on the confidence the agent has in achieving certain future outcomes. Contracts and \glspl{sla} between \gls{rl} provider and \gls{rl} consumer could then include future desired outcomes.
+
+A further consideration is that the boundary between model-level and service-level explainability is more blurry when it comes to \gls{rl}, as the \gls{rl} framework is designed to be applied end-to-end directly into the real world, with interactions between agent and environment. For example, the confidence of future outcomes can be seen as a model-level explanation or service-level explanation, depending on how the outcome is defined. If the outcome is defined as the reward used by the \gls{rl} algorithm the explanation would be at model-level, while service-level explanations would typically focus on \glspl{kpi} used in \glspl{sla}.
+
+\subsection{Towards a roadmap on software enigneering for responsible AI \cite{lu-2022-roadmap-software-engineering}}
+
+Current responsible \gls{ai} guidelines are abstract and do not provide concrete best practices for \gls{ai} practitioners and developers. Also, \gls{ai} researchers focus on model-level interpretability, while responsible \gls{ai} concerns the wider software development lifecycle. Given these problems, Lu et al. \cite{lu-2022-roadmap-software-engineering} conducted a systematic literature review to provide a research roadmap for operationalizing responsible \gls{ai}. The paper presents the current state of responsible \gls{ai} and a set of research challenges to guide future research in software engineering for responsible \gls{ai}.
+
+Responsible \gls{ai} is analyzed from different perspectives: governance, process, and system. The governance perspective includes structures and processes designed to ensure compliance with ethical regulations. The process perspective concerns practices that developers should apply during the software development lifecycle (requirements, design, implementation, testing, and operations) for compliance with regulations. The system perspective considers architectural and design patterns for responsible \gls{ai} by design in \gls{ai}-enabled software systems that include \gls{ai} and non-\gls{ai} components.
+
+The topics discussed in the paper are really relevant for my research on \gls{xrl} for telecommunication networks. In fact, \gls{xai} is a key enabler for responsible \gls{ai} and is mentioned by the authors in both process-level and system-level responsible \gls{ai}. Given my research focus on algorithmic interpretability of \gls{rl} models, I believe \gls{xrl} research provides valuable methods to achieve responsible \gls{ai} by design for \gls{rl} components.
+
+From the process perspective, my \gls{xrl} research could be used to improve two of the design techniques discussed in the paper for reducing ethical risk. The first technique is \textit{reducing frequency of occurrence}, which consists of reducing how often an AI system makes automatic decisions. If an \gls{rl}-generated action proposal is accompanied with explanations generated by \gls{xrl} methods, humans can more easily decide whether to approve or reject the action proposal \cite{ruggeri-2025-explainable-reinforcement-learninga}. The second technique, \textit{consequence response}, involves defining procedures to respond to ethical problems. A known use of \gls{xai} and \gls{xrl} is to perform root-cause analysis \cite{terra-2020-explainability-methods-identifying}, which can help to design effective consequence response procedures.
+
+From the system perspective, my \gls{xrl} research could be integrated into the \textit{\gls{ai} mode switcher} architectural pattern described in the paper. This pattern consists of designing the AI-enabled software system so that AI components can be switched on and off, either by the user or by automatic procedures. For example, a built-in guard can activate the AI component only when predefined conditions are met (e.g., inputs in a certain domain). Similar to the process-level, where \gls{xrl} can help humans validate and override actions, explanations can provide useful information based on which humans or automated rules can decide whether to use the \gls{ai} component or not. For example, in my \gls{xrl} research, I propose to predict expected future outcomes of \gls{rl} actions \cite{ruggeri-2025-explainable-reinforcement-learninga}. Such predictions can be used to decide whether to activate or deactivate the \gls{rl} agent based on predefined rules or human validation.
+
+Overall, responsible \gls{ai} is a crucial topic in my research on \gls{xrl} for telecommunication networks, as network operators require trustworthy and transparent solutions to adopt \gls{rl}-based network automation. Thus, I find the research roadmap presented in the paper a useful guide for my future research on \gls{xrl}. My future research is already well aligned with the roadmap proposed in the paper due to the relevance of explainability in responsible \gls{ai}. A slight adaptation could be to extend the scope of my research to system-level aspects such as data quality rather than only model-level interpretability, as also discussed for \cite{nguyen-2024-novel-contractbased-runtime}.
+
+\section{Research Ethics \& Synthesis Reflection}
+
+I used the following method to select the papers \cite{nguyen-2024-novel-contractbased-runtime,lu-2022-roadmap-software-engineering} described in \cref{sec:paper-analysis}:
+\begin{enumerate}
+	\item Checked the list of accepted long papers from CAIN 2022-2025 using the official CAIN website.
+	\item Filtered the papers containing one of the following keywords in their title: reinforcement learning, explainability, explainable AI, trustworthy AI, trustworthiness, responsible AI. The result was a set of 8 papers.
+	\item Read title and abstract to select 2 papers based on the perceived relevance to my research.
+\end{enumerate}
+The above process was the result of a few adjustments:
+\begin{itemize}
+	\item Before searching in the official CAIN website, I tried to select papers via IEEE Xplore. After selecting two papers on \gls{rl}, I realized they were not long papers, and that IEEE Xplore includes industry talks and posters in the list.
+	\item I initially used only reinforcement learning as a keyword for my search, but had to extend the set of keywords due to lack of long papers on \gls{rl}.
+\end{itemize}
+
+I did not use any \gls{llm} detector to ensure originality of the selected papers. I used my critical thinking and intuition while reading the papers. I also trust that the reviewers have checked the originality of the content. For writing this assignment, I did not use any \gls{llm}-based aid.
+
+% List of papers considered:
+% - Rule-Based Assessment of Reinforcement Learning Practices Using Large Language Models
+% - Trustworthy and Robust AI Deployment by Design: A framework to inject best practice support into AI deployment pipelines
+% - Defining Quality Requirements for a Trustworthy AI Wildflower Monitoring Platform
+% - POLARIS: A framework to guide the development of Trustworthy AI systems
+% - Novel Contract-based Runtime Explainability Framework for End-to-End Ensemble Machine Learning Serving
+% - Bringing Machine Learning Models Beyond the Experimental Stage with Explainable AI
+% - Towards a Roadmap for Software Engineering for Responsible AI
+% - Towards a Responsible AI Metrics Catalogue: A Collection of Metrics for AI Accountability
+
+\printbibliography
+
+\end{document}
