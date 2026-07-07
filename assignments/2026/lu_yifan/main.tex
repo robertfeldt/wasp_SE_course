@@ -1,0 +1,191 @@
+\documentclass{article}
+\usepackage{arxiv}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{lipsum}
+\usepackage{graphicx}
+ \usepackage{amsmath}
+ \usepackage{float}
+ \usepackage{listings}
+
+\title{WASP Software Engineering and Cloud Computing\\ \small{Assignment for Software Engineering Module}}
+
+
+\author{
+  Yifan Lu \\
+  KTH Royal Institute of Technology\\
+  \texttt{yifanlu@kth.se} \\
+}
+
+\begin{document}
+\maketitle
+
+
+
+
+
+
+\section{Introduction}
+
+Recent advances in generative artificial intelligence have significantly expanded the capabilities of machine learning systems and accelerated their adoption across a wide range of industries. Foundation models, including diffusion models\cite{sohl2015deep, ho2020denoising, nichol2021improved, rombach2022high}, large language models\cite{brown2020language, ouyang2022training}, and multimodal models\cite{radford2021learning, liu2023visual}, have demonstrated remarkable ability in generating realistic images\cite{ho2020denoising, rombach2022high}, text\cite{brown2020language, ouyang2022training}, audio\cite{huang2023make}, and other forms of digital content. These developments have created new opportunities for domains such as gaming, where generative models can assist in producing character assets, animations, dialogue, sound effects, and other content at a scale that would be difficult and costly to achieve through traditional production pipelines.
+
+Despite these advances, the practical deployment of generative AI systems remains challenging. One of the main obstacles is the lack of reliable methods for evaluating generated content. In real-world applications, generated outputs must satisfy multiple requirements simultaneously, including quality, diversity, robustness, safety, and alignment with user expectations. Without trustworthy evaluation methods, it becomes difficult to determine whether a model is suitable for deployment or how its performance should be improved.
+
+Existing evaluation metrics, such as Fréchet Inception Distance (FID)\cite{heusel2017gans}, Kernel Inception Distance (KID)\cite{binkowski2018demystifying}, and Precision and Recall\cite{sajjadi2018assessing}, have become standard tools for benchmarking generative models. These metrics provide useful distribution-level summaries of similarity between real and generated data and have played an important role in advancing the field. However, they typically reduce evaluation to a single numerical score, offering limited insight into the underlying factors that contribute to model performance. As a result, they often fail to identify semantic biases, attribute-level discrepancies, or spatial inconsistencies that may substantially affect the usefulness of generated content in downstream applications.
+
+My research addresses this limitation by developing evaluation methods that are not only reliable but also interpretable. In particular, I investigate attribute-aware and spatially-aware metrics built upon multimodal foundation models such as CLIP\cite{radford2021learning}. Rather than providing only an aggregate performance score, these methods aim to generate diagnostic information about semantic attributes, object relationships, and spatial structures present in generated content. Such analyses can help researchers and practitioners understand not only whether a generative model performs well, but also why it succeeds or fails and which aspects of the generated outputs require improvement.
+
+More broadly, my PhD research focuses on automated evaluation of generative models with applications in the gaming industry. The motivation stems from the increasing role of evaluation throughout the lifecycle of production AI systems. Evaluation is no longer a purely academic exercise performed after model training; instead, it directly influences model selection, deployment decisions, quality assurance procedures, and system monitoring strategies. Furthermore, evaluation metrics are increasingly incorporated into optimization and feedback loops, making their reliability and validity critical to the behavior of the overall system.
+
+Although generative model evaluation is often studied as a machine learning problem, it also presents important AI engineering challenges. Effective evaluation frameworks must be reproducible, scalable, maintainable, and capable of integrating diverse datasets, models, and computational pipelines. As AI systems evolve from standalone models into complex socio-technical systems, their success depends not only on predictive performance but also on robust engineering practices, including validation, testing, monitoring, and human-centered design. From this perspective, developing evaluation methodologies for generative models is both a machine learning research problem and an AI engineering challenge situated at the intersection of software engineering, artificial intelligence, and human-centered system design.
+
+
+
+
+
+
+
+\section{Lecture Principles}
+
+\subsection{Validation versus Verification}
+
+Source: Lecture 02 -- Quality Assurance and Testing in SE, QA for ML, ML for QA
+
+One of the key concepts discussed in the course is the distinction between verification and validation. Verification concerns whether a system is built correctly according to its specification, while validation focuses on whether the system solves the intended problem and satisfies user needs. In traditional software engineering, both perspectives are important, but the course emphasized that machine learning systems are often fundamentally validation-driven because their behavior emerges from data rather than explicit rules.
+
+This distinction is highly relevant to my research on generative model evaluation. Existing evaluation metrics such as FID\cite{heusel2017gans}, KID\cite{binkowski2018demystifying}, Precision and Recall\cite{sajjadi2018assessing} can be viewed as verification-oriented measures. They assess whether generated samples match certain statistical properties of a reference dataset and provide quantitative evidence that a model behaves according to predefined criteria. However, these metrics do not necessarily indicate whether the generated content is useful, realistic, or acceptable from a human perspective. A model may achieve a strong FID score while still producing outputs that contain semantic inconsistencies, undesirable biases, or artifacts that negatively affect user experience.
+
+My research addresses this gap by developing evaluation methods that move beyond purely statistical similarity and attempt to capture semantic and structural properties of generated content. By leveraging multimodal foundation models such as CLIP\cite{radford2021learning}, the proposed metrics aim to evaluate whether generated samples preserve meaningful attributes, object relationships, and spatial structures. In this sense, the work can be interpreted as shifting evaluation from verification-oriented assessment toward validation-oriented assessment. Rather than asking only whether generated data resembles the training distribution, the goal is to determine whether the generated content satisfies the expectations and requirements of human users and downstream applications.
+
+\subsection{Engineering Mindset and ML Engineering}
+
+Source: Lecture 04 -- Science versus Engineering and ML Engineering
+
+Another central theme of the course was the importance of adopting an engineering mindset when developing AI systems. While scientific research primarily seeks to understand why a method works, engineering focuses on how to build systems that are reliable, scalable, maintainable, and useful in practice. The course further emphasized that modern machine learning systems operate within a continuous research--engineering loop, where models are developed, deployed, monitored, and iteratively improved.
+
+This perspective strongly resonates with my research. Evaluation metrics are often treated as research artifacts whose primary purpose is to compare models in academic benchmarks. However, in industrial environments such as game development, evaluation systems serve a much broader role. They influence model selection, guide development decisions, monitor deployed systems, and provide safeguards against undesired behavior. As a result, evaluation metrics themselves become critical components of larger AI systems rather than standalone research contributions.
+
+Developing such evaluation systems therefore requires addressing software engineering concerns in addition to machine learning challenges. The evaluation framework must be reproducible so that results can be trusted and compared across studies. It must be scalable enough to evaluate large datasets and multiple generative models. It must also be maintainable and extensible as new models, datasets, and evaluation criteria emerge. From this perspective, my research is not only concerned with designing better metrics but also with engineering robust evaluation infrastructure that can support the lifecycle of generative AI systems. This aligns closely with the course's view of AI Engineering as a discipline that integrates machine learning, software engineering, and system-level thinking.
+
+Furthermore, the engineering perspective highlights an important distinction between research success and deployment success. A novel evaluation metric may demonstrate strong empirical results in a controlled experimental setting, yet still fail to create practical impact if it cannot be integrated into existing development workflows. Consequently, my research increasingly considers not only the validity of evaluation metrics, but also their usability, computational efficiency, reproducibility, and compatibility with real-world AI pipelines. These considerations reflect the broader transition from machine learning research toward AI engineering, where the ultimate goal is not merely to develop better algorithms, but to build reliable systems that can support the development and deployment of generative AI at scale.
+
+
+
+
+
+
+
+
+\section{Guest-Lecture Principles}
+
+\subsection{Requirements Engineering for AI Evaluation}
+
+
+Source: Guest Lecture -- Requirements Engineering
+
+A central idea presented in the guest lecture was that successful software systems require a clear understanding of the problem before designing a solution. Requirements Engineering (RE) aims to systematically identify stakeholder needs, constraints, and goals, and to translate them into explicit requirements that guide subsequent development activities. The lecture also emphasized the distinction between the problem space, which concerns why a system is needed and what it should accomplish, and the solution space, which focuses on how the system is implemented.
+
+This perspective is highly relevant to my research on generative model evaluation. Much of the existing literature focuses on proposing new evaluation metrics without explicitly defining the underlying requirements that such metrics are expected to satisfy. For example, a metric may be expected to measure image quality, semantic correctness, diversity, robustness, fairness, or alignment with human perception. However, these objectives are often only partially specified, leading to situations where a metric performs well according to one criterion while failing to satisfy others.
+
+The requirements engineering perspective encourages a more systematic view of evaluation metric design. Rather than starting from a technical solution, such as a particular feature extractor or statistical distance measure, the development process should begin by identifying the needs of stakeholders. In the gaming industry, stakeholders may include machine learning researchers, content creators, game designers, and end users, all of whom may have different expectations regarding generated content. Understanding these requirements can help define more meaningful evaluation objectives and guide the design of metrics that better support real-world applications.
+
+This principle also influences my long-term research goals. Evaluation metrics should not merely provide numerical scores, they should satisfy explicit requirements regarding interpretability, reliability, scalability, and alignment with human judgment. Viewing evaluation as a requirements-driven problem therefore provides a useful framework for designing more effective and practically relevant assessment methods for generative AI systems.
+
+
+
+
+\subsection{Behavioral Software Engineering and Human Factors}
+
+Source: Guest Lecture -- Importance of Human Aspects in Software Engineering
+
+Another important theme from the guest lectures was the role of human factors in software engineering. Behavioral Software Engineering (BSE) studies the cognitive, behavioral, and social aspects of software development, emphasizing that individuals and organizations do not always behave rationally. Consequently, the success of a software system depends not only on technical quality but also on how humans interact with, interpret, and use the system.
+
+This insight is particularly relevant to the evaluation of generative models because evaluation ultimately serves human decision-making. Although automated metrics provide quantitative assessments of generated content, they are often used as proxies for human judgment. However, extensive research has shown that human perceptions of quality, realism, creativity, and usefulness can differ substantially from what automated metrics measure. As a result, a technically sound metric may still fail to capture the aspects of generated content that matter most to users.
+
+My research attempts to address this challenge by developing evaluation methods that are more closely aligned with semantic understanding and human perception. Instead of relying exclusively on low-level statistical similarities, I investigate multimodal foundation models that can capture higher-level concepts and relationships within generated content. The ultimate goal is to create evaluation frameworks that provide feedback that is meaningful not only to machine learning researchers but also to human stakeholders who must interpret and act upon the results.
+
+The behavioral perspective also highlights the importance of interpretability. In practice, developers and content creators are more likely to trust and adopt evaluation systems that provide understandable explanations rather than opaque numerical scores. Consequently, the design of evaluation metrics should consider not only statistical validity but also how effectively the resulting information can support human decision-making. This reinforces the view that evaluation is not solely a technical problem but also a human-centered engineering challenge.
+
+
+
+
+\section{Data Scientists, Software Engineers, and AI Engineers}
+
+Source: \cite{kaestner2025mlip} Christian Kästner. Machine Learning in Production: From Models to Products. MIT Press, 2025.
+
+The distinction between data scientists and software engineers is often presented as a contrast between model-centric and system-centric perspectives. As discussed in the book Machine Learning in Production, data scientists traditionally focus on data collection, model development, experimentation, and performance optimization, whereas software engineers focus on building reliable, maintainable, scalable, and deployable systems. While this distinction captures important differences in expertise and priorities, it is increasingly difficult to draw a clear boundary between the two roles in modern AI projects.
+
+Historically, many machine learning projects were evaluated primarily through model-centric metrics such as accuracy, precision, recall, or loss values. In this setting, success was often defined by improvements in predictive performance on benchmark datasets. However, production machine learning systems involve substantially more than model training. Data pipelines, deployment infrastructure, monitoring, testing, security, governance, user interaction, and maintenance all influence whether a system delivers value in practice. Consequently, a model that performs well in an experimental setting may still fail when deployed within a larger software ecosystem.
+
+This system-wide perspective is highly relevant to my own research area. My PhD project focuses on the evaluation of generative models, where traditional metrics such as FID, KID, Precision, and Recall are often treated as isolated research tools. However, in industrial settings these metrics become components of larger AI systems that influence model selection, deployment decisions, monitoring processes, and quality assurance workflows. From a purely model-centric perspective, an evaluation metric is simply a method for comparing models. From a system-centric perspective, however, the metric becomes part of the infrastructure that governs the development and operation of generative AI systems. As a result, concerns such as reproducibility, scalability, maintainability, computational efficiency, and interpretability become as important as the underlying mathematical formulation of the metric itself.
+
+For this reason, I believe that the traditional distinction between data scientists and software engineers will gradually become less pronounced. Future AI practitioners will likely require a broader combination of skills. Data scientists will need a deeper understanding of software engineering practices such as testing, version control, deployment, and system design, while software engineers will increasingly need to understand machine learning concepts, data quality issues, and model behavior. Although specialized roles will continue to exist, effective development of AI-intensive systems will require stronger collaboration and greater overlap between these disciplines.
+
+Within this evolving landscape, AI Engineering can be viewed as a discipline that integrates elements of both software engineering and machine learning. It is not merely software engineering applied to AI systems, nor is it simply data science made more systematic. Rather, AI Engineering addresses the unique challenges that arise when machine learning models become components of larger socio-technical systems. This includes issues such as data and model lifecycle management, evaluation and monitoring, human-AI interaction, governance, robustness, and continuous adaptation after deployment. In this sense, AI Engineering represents a distinct systems-oriented perspective that connects research, development, deployment, and operations.
+
+Recent developments in foundation models further blur the boundaries between traditional roles. AI coding assistants can automate portions of software development, while retrieval-augmented generation (RAG) systems, prompt pipelines, and agentic workflows introduce new abstractions that combine software engineering and machine learning concepts. In many cases, system behavior is no longer determined solely by source code or model parameters, but by the interaction between prompts, retrieval mechanisms, external tools, orchestration logic, and foundation models. Designing, evaluating, and maintaining such systems requires expertise that extends beyond either conventional software engineering or traditional data science. Consequently, the emergence of foundation-model-based systems reinforces the need for AI Engineering as a discipline focused on understanding and managing the full lifecycle of AI-enabled systems.
+
+From the perspective of my own research, this shift highlights an important challenge. Evaluation can no longer focus exclusively on the quality of a standalone model. As generative AI systems become increasingly integrated into complex workflows involving foundation models, retrieval systems, and autonomous agents, evaluation must also adopt a broader system-level perspective. Developing trustworthy evaluation frameworks for such systems therefore requires not only advances in machine learning, but also the application of software engineering principles that ensure reliability, transparency, and long-term maintainability.
+
+
+
+
+
+
+\section{Paper Analysis}
+
+\subsection{Paper 1: Data Engineering for AI Systems}
+
+Source: \cite{heck2024data} Petra Heck. What about the data? a mapping study on data engineering for ai systems. In Proceedings of the
+IEEE/ACM 3rd International Conference on AI Engineering-Software Engineering for AI, pages 43–52, 2024.
+
+The first paper I selected is a CAIN paper on data engineering for AI systems. Its central argument is that AI engineering cannot be reduced to model development alone. Instead, data-related activities such as data collection, preprocessing, storage, annotation, versioning, quality control, and governance form a major part of the AI system lifecycle. The paper frames data engineering as an organizational and architectural concern rather than a one-time preprocessing step for a single experiment. This is important for software engineering because many AI failures do not originate from the model architecture itself, but from poorly managed data pipelines, unclear data assumptions, insufficient documentation, and fragile links between data, models, and deployment environments.
+
+This idea is closely related to my research on generative model evaluation. Evaluation metrics such as FID, KID, Precision, Recall, and my own attribute-aware or spatially-aware metrics all depend on the quality and structure of the underlying datasets. If the real reference dataset is biased, poorly documented, or inconsistent, then the evaluation results can also become misleading. For example, a generative model may appear to perform well according to a distribution-level metric while still failing to represent important semantic attributes or spatial patterns. From the perspective of this paper, such failures are not only metric-design problems, but also data engineering problems. Reliable evaluation requires well-managed benchmark datasets, transparent preprocessing pipelines, versioned generated samples, and clear documentation of what each dataset represents.
+
+A larger AI-intensive project where this paper's ideas would be useful is a generative content evaluation platform for game development. Such a platform could be used by artists, machine learning researchers, and game designers to evaluate generated character assets, animations, sound effects, or game environments. In this system, generative models would produce candidate content, and automated metrics would assess quality, diversity, semantic consistency, safety, and suitability for a particular game context. The ideas from the paper could guide the design of the data layer of this platform: how assets are stored, how generated samples are linked to model versions, how human ratings are collected, and how evaluation datasets are maintained over time. My WASP research could fit into this project as the evaluation component that provides interpretable metrics for comparing real and generated content.
+
+The paper also suggests ways in which I could adapt my own research. At present, my work mainly focuses on the design of evaluation metrics. In the long term, however, these metrics should be embedded in a broader data and evaluation infrastructure. This means that my research should not only report metric scores, but also specify dataset assumptions, preprocessing steps, data versioning strategies, and benchmark protocols. A possible extension of my project would be to develop a reproducible evaluation framework where datasets, generated samples, metric implementations, and visualization results are all traceable. This would make the proposed metrics more useful not only as research contributions, but also as practical AI engineering tools.
+
+
+
+\subsection{Paper 2: LLM-as-a-Judge for AI Evaluation}
+
+Source: \cite{gu2026survey} Jiawei Gu, Xuhui Jiang, Zhichao Shi, Hexiang Tan, Xuehao Zhai, Chengjin Xu, Wei Li, Yinghan Shen, Shengjie
+Ma, Honghao Liu, et al. A survey on llm-as-a-judge. The Innovation, 7(6), 2026.
+
+The second paper surveys the use of large language models as evaluators, often referred to as the LLM-as-a-Judge paradigm. The core idea is that LLMs can be used to assess the quality of generated outputs in tasks where automatic evaluation is difficult and human evaluation is expensive or slow. The paper discusses how LLM judges can provide scalable assessments, but also emphasizes challenges such as reliability, consistency, bias, prompt sensitivity, and the need for meta-evaluation. From a software engineering perspective, this is important because evaluation itself becomes an AI component that must be engineered, tested, monitored, and validated. The evaluator is no longer a fixed mathematical function; it is a model-based system whose behavior may change depending on prompts, context, model version, and evaluation design.
+
+This paper is strongly connected to my research because my project also investigates automated evaluation methods for generative models. While my current work focuses mainly on image generation and multimodal models such as CLIP\cite{radford2021learning}, the LLM-as-a-Judge literature raises a broader question: can foundation models be used as flexible evaluators of generated content? In the gaming domain, many qualities of generated content are difficult to capture with traditional metrics. For example, an animation may be technically smooth but semantically inappropriate, or a generated game asset may be visually realistic but inconsistent with the intended style. An LLM or multimodal foundation model could potentially evaluate such aspects when combined with appropriate prompts, examples, rubrics, and domain-specific criteria.
+
+A possible larger AI-intensive project is an evaluation assistant for generative game content. The system could combine automatic metrics, multimodal foundation models, and human feedback. For example, generated images or animations could first be assessed using quantitative metrics. Then, an LLM-based or multimodal judge could provide more qualitative feedback, such as whether the content matches a design brief, whether it contains visual artifacts, or whether it violates stylistic constraints. Human experts could review a subset of cases, and their feedback could be used to calibrate or validate the automated evaluator. In this project, my WASP research would provide the metric-based evaluation layer, while the LLM-as-a-Judge approach would support higher-level semantic and requirement-based assessment.
+
+The paper also highlights how my research could be adapted in the future. First, my evaluation metrics could be combined with rubric-based foundation-model judges instead of being used only as standalone numerical scores. Second, I could study the reliability of these judges in the same way that I study the reliability of generative model metrics: by testing consistency, robustness, sensitivity to prompts, and alignment with human judgments. Third, I could extend my work from measuring visual similarity and attribute distributions toward evaluating whether generated content satisfies explicit requirements. This would connect my research more directly to AI engineering, because the evaluation system would not only compare datasets but also support decision-making in a larger development workflow.
+
+
+
+
+
+\section{Evidence, Originality, and GenAI-Use Transparency}
+
+This essay draws upon a combination of course materials, academic literature, and research papers related to software engineering, machine learning, and AI systems. The primary sources include the lecture and guest-lecture materials provided during the course, the book Machine Learning in Production: From Models to Products by Kästner, and the research papers discussed and cited throughout this report.
+
+Among these sources, I place the highest level of trust in peer-reviewed conference papers and established academic books, as they have undergone expert review and generally provide stronger methodological foundations and more rigorous evidence. The course materials are also highly valuable because they synthesize insights from both academic research and industrial practice, making them particularly relevant for understanding the challenges of engineering AI-intensive systems.
+
+Generative AI tools were used during the preparation of this report for brainstorming, language refinement, and improving the clarity and organization of the text. All literature selection, interpretation, analysis, arguments, and conclusions were performed by the author. The final content, opinions, and any remaining errors are solely the responsibility of the author.
+
+
+
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}
+
