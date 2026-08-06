@@ -1,0 +1,203 @@
+\documentclass{article}
+\usepackage{titling}
+\usepackage{titlesec}
+
+\titlespacing*{\section}
+{0pt}{1.3ex plus .2ex}{0.65ex}
+
+\titlespacing*{\subsection}
+{0pt}{1ex}{0.4ex}
+
+
+\setlength{\droptitle}{-1cm}
+\pretitle{\begin{center}\Large\bfseries}
+\posttitle{\end{center}\vspace{-1.2em}}
+\preauthor{\begin{center}}
+\postauthor{\end{center}\vspace{-1em}}
+\predate{\begin{center}}
+\postdate{\end{center}\vspace{-1.5em}}
+
+
+\title{WASP SE}
+\author{Sara Betancur Giraldo}
+\date{August 2026}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+My research lies at the intersection of machine learning, traffic engineering, optimization, and control.
+The objective is to develop intelligent traffic management strategies that reduce congestion and improve accessibility by supporting the operation of Autonomous Mobility-on-Demand (AMoD) systems. 
+The idea is to use optimization techniques to promote a more equitable distribution of mobility resources, giving more consideration to populations that are currently underserved.
+
+The current stage of my research focuses on traffic state estimation. 
+I investigate Physics-Informed Neural Networks (PINNs) for reconstructing traffic density from sparse measurements collected by probe vehicles--autonomous vehicles acting as mobile sensors. 
+The objective is to estimate traffic conditions accurately even when only a limited number of observations are available. 
+
+Although my current work focuses on traffic density reconstruction, I see it as a prerequisite for many traffic management applications rather than as an end goal. 
+Reliable traffic state estimation provides the information needed by optimization and control algorithms to make informed decisions based on an accurate representation of the traffic network. 
+
+The course shifted my perspective from developing an accurate traffic density reconstruction model to understanding how that model could become a reliable component of a larger AI-enabled traffic management system.
+
+\section{Lecture principles}
+\subsection{Usability of AI programming assistants}
+
+One of the topics that I found particularly relevant was the discussion on the usability of AI programming assistants. 
+Developers mainly use these tools in two different ways: exploration mode and acceleration mode. 
+In the first, AI assists to understand unfamiliar problems, generating ideas, or proposing an initial implementation. 
+In the second, developers already know how to solve the problem and use AI primarily for code completion or syntax recall. 
+However, AI assistants are most effective when developers remain in control of the software design and requirements~\cite{Liang2024}.
+This distinction closely matches my experience. 
+In my research, I frequently use AI assistants during the exploration phase when implementing problems outside my my area of expertise. 
+This allows me to focus on understanding the underlying concepts. 
+However, I use AI in acceleration mode when I am familiar with topics. 
+
+Although AI tools can significantly speed up programming, they cannot replace the need to understand the underlying mathematical models or verify whether an implementation satisfies the intended physical assumptions. 
+For this reason, I see AI assistants as tools that improve productivity. 
+Maintaining responsibility for software architecture, validation, and correctness remains essential.
+
+\subsection{Behavioral Software Engineering}
+
+Another topic that resonated with me was Behavioural Software Engineering (BSE), which studies the cognitive, behavioural, and social aspects of software development rather than focusing exclusively on technical solutions~\cite{Lenberg2014}. 
+Software quality depends not only on algorithms and programming practices but also on the individuals and organizations responsible for developing and maintaining the software. 
+Team composition, communication, diversity, motivation, and organizational culture all influence the success of engineering projects.
+
+As a PhD student working in an international research environment, I recognize many of these aspects in my daily work. 
+Collaborating with researchers from different backgrounds often leads to alternative perspectives and new approaches to solving problems. 
+Diversity within research groups broadens the range of ideas considered and encourages questioning assumptions that might otherwise go unnoticed. 
+
+The discussion also connected directly to the motivation behind my own research. 
+My objective is not only to reduce congestion but also to improve accessibility for disadvantaged populations. 
+Mobility data often reflects existing societal inequalities. 
+If these biases are ignored, optimization algorithms may unintentionally reinforce existing disparities. 
+Behavioural Software Engineering therefore reminds me that AI systems should not only be technically correct but also developed with an awareness of the people they ultimately affect. 
+For my research, this means considering fairness and accessibility from the earliest stages of system design rather than treating them as secondary objectives after the optimization framework has already been developed.
+
+\section{Guest-lecture principles}
+\subsection{Semi-executable stack}
+
+The guest lecturer introduced the Semi-Executable Stack, a diagnostic tool for understanding how AI-based agentic systems affect organizations beyond the software itself. 
+The framework encourages engineers to consider how new technologies change workflows, responsibilities, governance, and decision-making throughout an organization. 
+In this sense, software engineering extends beyond implementation to include questions about adoption, maintenance, accountability, and whether a system should be built in the first place~\cite{Feldt2026}. 
+
+This perspective is particularly relevant to my research because my current work focuses on developing a machine learning model rather than deploying a complete system. 
+However, I would like to support traffic management authorities by providing reliable traffic state estimates that can guide optimization and control strategies. 
+Successfully integrating such a system would require much more than an accurate model. 
+Decision makers would need to understand and trust its recommendations, existing traffic management workflows would have to accommodate the new technology, and the generated information would need to be presented in a form that supports operational decisions. 
+
+The Semi-Executable Stack therefore reinforced the idea that developing AI is only one part of engineering an AI system. 
+As my research progresses, I expect that issues such as usability, integration with existing infrastructure, governance, and user interaction will become just as important as improving reconstruction accuracy. Thinking about these aspects early can help bridge the gap between an academic prototype and a system that can realistically support transportation planning.
+
+\subsection{Behavioral Software Engineering}
+During the guest lecture the BSE subject was touched upon once again. 
+Introducing AI into organizations does not automatically improve the work performed by individuals. 
+While AI assistants can eliminate repetitive tasks, they also change the nature of work. 
+If all routine activities disappear, people may spend most of their time on cognitively demanding problems, which can increase mental workload. 
+Productive work therefore requires a balance between challenging activities, routine tasks, and opportunities for recovery. 
+
+This discussion resonated with my own experience as a researcher. 
+Administrative tasks provide structure and a sense of progress after completion. 
+AI assistants could reduce the time spent on these activities. 
+However, in my experience, they help reduce the perceived difficulty of complex tasks. 
+When approaching an unfamiliar programming problem or learning a new methodology, AI helps me structure unfamiliar problems that makes the problem more approachable without replacing my own reasoning. 
+
+The lecturer also highlighted an important lesson for AI engineering: successful AI adoption depends on how humans interact with the technology rather than on the technology alone. 
+This is equally relevant for future intelligent transportation systems. 
+Even if an AI model provides accurate recommendations, the system will only be effective if traffic operators understand, trust, and are willing to use those recommendations. 
+Consequently, human factors should be considered alongside algorithmic performance when designing AI-supported decision-making systems.
+
+\section{Data scientists, software engineers, and AI engineers}
+
+The chapters Introduction and From Models to Systems from Machine Learning in Production argue that machine learning models should be viewed as components within larger software systems rather than as standalone research artifacts~\cite{Kastner2025}. 
+From this perspective, model quality cannot be evaluated only by predictive accuracy. 
+Instead, it depends on how effectively the model contributes to the objectives of the complete system, taking into account aspects such as reliability, maintainability, computational efficiency, monitoring, and interaction with other software components.
+
+This systems perspective highlighted an important limitation of my current research. 
+Much of my work has focused on improving the accuracy of traffic density reconstruction using physics-informed neural networks. 
+Although this is an important research objective, the quality of reconstruction alone is insufficient if the model cannot operate reliably within a larger intelligent transportation system. 
+Thinking about deployment therefore changes the way success should be measured.
+
+The book distinguishes between the roles of data scientists, who focus on developing accurate models, and software engineers, who focus on building reliable and maintainable systems. 
+Although the distinction is simplified, it captures an important difference in mindset. 
+Rather than remaining separate, these roles should complement each other. 
+AI engineering combines both viewpoints by addressing challenges such as data quality, uncertainty, retraining, validation, deployment, and integration into larger software systems.
+
+I recognize many of the challenges represented in my own work. 
+As a researcher, I focus most of my attention to model development and evaluation. 
+My datasets are generated through simulation, making them clean and more controlled than real traffic measurements. 
+AI-engineering could then, be directly applicable to my own research. 
+Traffic density estimation should not be viewed as the final objective but as one component within an integrated traffic management platform. 
+The reconstructed traffic state ultimately supports optimization algorithms, control strategies, and operational decision-making. 
+Consequently, evaluating my research only through reconstruction accuracy is too narrow. 
+Future work could also consider robustness, computational efficiency, uncertainty estimation, integration with downstream applications, and validation under realistic operating conditions. 
+These aspects determine whether the proposed methods can become practical components of an AI-enabled transportation system rather than remaining successful research prototypes.
+
+\section{Paper analysis}
+\subsection{What Does a Software Engineer Look Like? Exploring Societal Stereotypes in LLMs}
+
+This paper investigates whether large language models reproduce societal stereotypes when evaluating candidates for software engineering positions~\cite{Bano2025}. 
+The authors show that both ChatGPT and Microsoft Copilot systematically favour white male candidates when ranking otherwise equivalent software engineering profiles. 
+The study highlights that these biases are not just theoretical concerns but can directly influence real decision-making if LLMs are used in recruitment or other human resource processes. 
+Moreover, there is a possibility of a feedback loop, where biased AI-generated data are later used to train future models, reinforcing existing inequalities.
+
+Although this topic is different from my research area, it raises concerns that are directly applicable to my work. 
+The quality of an AI system depends not only on its predictive performance but also on the quality and representativeness of the data on which it is built. 
+My research aims to improve accessibility through traffic optimization and autonomous mobility systems. 
+Achieving this objective requires models that learn from mobility data collected from people. 
+If these datasets underrepresent particular geographical regions or demographic groups, the resulting models may unintentionally reinforce existing inequalities. 
+Since my research goal is accessibility-aware optimization, biased mobility datasets would not only affect prediction quality but also influence the optimization policies built on top of those predictions. 
+As a result, optimization strategies that appear efficient at the system level may fail to improve accessibility for the populations that need it most. 
+
+The ideas from this paper made me think beyond the machine learning model itself. 
+A mobility platform could combine traffic state estimation, demand prediction, accessibility analysis, and optimization to support transportation planning.
+Since many disadvantaged groups are underrepresented in existing transportation datasets, data augmentation could help improve coverage. 
+However, the paper demonstrates that augmentation alone is insufficient if the underlying biases remain unaddressed. 
+Data quality, representativeness, and fairness should be continuously monitored throughout the entire data pipeline.
+This perspective also suggests future directions for my own research. 
+Beyond improving reconstruction accuracy, I should consider whether the datasets used to train and evaluate traffic estimation models adequately represent different populations and travel behaviours. 
+Similarly, optimization algorithms should not only maximize efficiency but also include mechanisms to detect and mitigate systematic disadvantages for underrepresented populations. 
+Integrating fairness-aware validation and bias assessment into the development process would make the resulting AI system more aligned with the broader societal objectives motivating the research.
+
+\subsection{Efficient Domain Augmentation for Autonomous Driving Testing Using Diffusion Models}
+
+The authors address a key problem in testing autonomous driving systems: simulators are useful for system-level testing, but their operational design domain covers a limited set of conditions~\cite{Baresi2025}. 
+This reduces the simulator's ability to expose failures before deployment. 
+The study proposes to use diffusion models to augment simulator generated images with new environmental conditions--domain augmentation. 
+The authors generate--by means of diffusion models--new visual domains that challenge the perception system without modifying the simulator's physics, adding new weather, lighting, geographic, or seasonal conditions. 
+
+To ensure that the generated scenarios remain valid, the approach includes a semantic validation step to verify the preservation of road geometry and other task-relevant features. 
+Then, a knowledge distillation step is included. 
+Diffusion models are computationally expensive in real-time simulation. 
+Therefore, the generated images are filtered with a cycle-consistent network to execute the augmentation online. 
+The system changes what the Autonomous Driving System (ADS) perceives using generated images, but the vehicle dynamics still run in the original physics-based simulator. 
+Together, these components provide a practical software engineering solution that increases testing coverage while maintaining realism and scalability.
+The results show practical value: the approach found many ADS failures that the simulator’s built-in domains did not reveal.
+
+The paper relates to my research because both combine data-driven learning with physics-based models to improve reliability. 
+In their case, diffusion models extend the visual domain of an autonomous driving simulator, while the simulator preserves physical vehicle behavior. 
+In my case, physics-informed learning is used to reconstruct traffic density from sparse probe vehicle measurements, while traffic-flow models provide physical structure. 
+Both settings raise a similar engineering question: how can we trust an AI component when it is used outside the limited conditions represented in the available data?
+A connection between the works is the semantic validation stage proposed in the paper and a physical consistency validator in my research. 
+One verifies that generated images preserve road structure, and the other ensures reconstructed traffic states satisfy conservation laws and realistic traffic dynamics.
+
+The ideas introduced in the paper--combined with my research--could be integrated into a traffic digital twin for autonomous and connected mobility.
+The system could combine SUMO simulations, probe vehicle data, traffic state reconstruction, autonomous vehicle fleet control, and accessibility-aware traffic optimization. 
+The ideas from the paper could be used to test mobility control policies under visual and environmental domain shifts, such as rain or unfamiliar urban scenes. 
+My current research could contribute to the traffic state estimation layer. 
+This could include reconstructing congestion patterns from sparse measurements providing traffic information to the optimization and control modules. 
+As a result, the performance of traffic management strategies can be tested under a broader range of operating conditions.
+
+To support this type of AI-engineering challenge, I could adapt my research in several ways. 
+First, I could evaluate reconstruction methods not only on standard simulated cases, but also on augmented or rare traffic events, such as incidents, changing demand, bottlenecks, low probe-vehicle penetration, and transient congestion waves. 
+Second, I could move from reconstruction accuracy metrics to assessing the impact on higher-level applications such as traffic control, route guidance, and accessibility-aware optimization. 
+Third, if the physics-informed model is too slow for online use, I could investigate distilled models that approximate the reconstruction while preserving key physical constraints.
+
+\section{Evidence, originality, and GenAI-use transparency}
+The main papers and sources I relied on are included in the biography. I trust the most the papers published on peer reviewed journals because I elieve the scientific method can ensure the validity and relevance of knowledge. 
+Generative AI tools were used in Section 5.2 for extracting the most relevant ideas of the paper. 
+Furthermore, they were used to proofread and shorten answers throughout the whole document. 
+
+\bibliographystyle{plain} 
+\bibliography{references} 
+\end{document}
