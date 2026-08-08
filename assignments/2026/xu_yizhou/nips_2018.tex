@@ -1,0 +1,88 @@
+\documentclass{article}
+
+% if you need to pass options to natbib, use, e.g.:
+\PassOptionsToPackage{numbers}{natbib}
+% before loading neurips_2018
+
+% ready for submission
+% \usepackage{neurips_2018}
+
+% to compile a preprint version, e.g., for submission to arXiv, add add the
+% [preprint] option:
+%     \usepackage[preprint]{neurips_2018}
+
+% to compile a camera-ready version, add the [final] option, e.g.:
+\usepackage[preprint]{nips_2018}
+
+% to avoid loading the natbib package, add option nonatbib:
+%     \usepackage[nonatbib]{neurips_2018}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{indentfirst}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{float}
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{caption}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{subcaption}
+            \usepackage{booktabs}
+\usepackage[toc,page]{appendix}
+\lstset{
+    language=Python,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{gray},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny,
+    stepnumber=1,
+    frame=single,
+    tabsize=4,
+    breaklines=true,
+    showstringspaces=false,
+}
+
+\title{WASP Software Engineering Assignment}
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to break the
+% lines. Using \AND forces a line break at that point. So, if LaTeX puts 3 of 4
+% authors names on the first line, and the last on the second line, try using
+% \AND instead of \And before the third author name.
+
+\author{%
+  Yizhou Xu \\
+  KTH Royal Institute of Technology \\
+  \texttt{yizhoux@kth.se}
+}
+
+\begin{document}
+\maketitle
+
+\input{sec/1_introduction}
+\input{sec/2_lecture_principles}
+\input{sec/3_guest_lecture_principles}
+\input{sec/4_ds_se_ai}
+\input{sec/5_paper_analysis}
+\input{sec/6_evidence}
+
+
+% \newpage
+\bibliographystyle{plainnat}
+\bibliography{reference}
+
+\end{document}
