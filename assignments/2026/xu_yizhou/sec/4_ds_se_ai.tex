@@ -1,0 +1,45 @@
+\section{Data Scientists, Software Engineers, and AI Engineers - Q \& A}
+\label{sec:qa}
+
+\noindent\textbf{Q: What differences do the chapters describe between data scientists and software engineers? Do you agree with this distinction? Why or why not?}
+
+A: 
+The chapters distinguish data scientists and software engineers mainly by the scope and goal of their work. Data scientists are model-oriented: they work with data, model architectures, feature engineering, and hyperparameter tuning, with the main objective of improving model performance. Software engineers are system-oriented: their goal is to build reliable software that satisfies user needs, with the model treated as one component of a larger system. Their work therefore includes requirements analysis, system architecture, implementation, testing, deployment, and long-term maintenance.
+
+I agree with this distinction. They are two jobs with different responsibilities and success criteria. In a company, data scientists generally focus on improving the model, while software engineers integrate that model into a usable and reliable product. Naturally, their work overlaps and requires communication, but this is not unique to machine-learning projects. Software engineers must also communicate to other people like product managers and marketing specialists. The need for communication does not mean that the roles themselves are unclear.
+
+
+\noindent\textbf{Q: The chapters argue that production ML requires a system-wide view, not only a model-centric view. How does this apply to your own research area?}
+
+A: 
+My current research is not a production-ready system and will not directly face users in the near future. Its primary goal is scientific: to investigate effective methods for learning representations from football tracking data. In this context, I believe it is reasonable to remain relatively model-centric. Requirements such as deployment, operational monitoring, and business cost are not yet central to the research question.
+
+Nevertheless, my work still depends on a complete system. A system-wide view is relevant for ensuring scientific validity. An error in data processing, annotation, or evaluation could produce an incorrect scientific conclusion. Software-engineering principles are useful when they improve the reliability of this research pipeline, but not every principle designed for customer-facing production systems is directly applicable at the current stage.
+
+
+\noindent\textbf{Q: Do you think data scientists and software engineers will remain distinct roles, or
+will both need to learn more of each other’s skills?}
+
+A: 
+I believe data scientists and software engineers will remain distinct roles because they have different goals and require different specialist skills. Developing a strong machine-learning model requires deep knowledge in areas such as data, optimization, and model behaviour. Building a reliable software product requires expertise in areas like architecture, testing, deployment, and maintenance. A successful ML-enabled product needs both forms of expertise.
+
+It is useful for data scientists to understand some software engineering and for software engineers to understand the fundamentals of machine learning. However, the main purpose of this is to support communication and cooperation rather than to make everyone capable of performing every role. No individual is expected to know everything. Complex systems are built by specialists who communicate and combine their expertise.
+
+
+\noindent\textbf{Q: Where does ``AI Engineering'' fit in this picture: is it mostly software engineering for AI systems, data science made more systematic, MLOps/model engineering, or something
+partly distinct? }
+
+A: 
+``AI Engineering'' is a relatively new concept. The book~\cite{kastner2025machine} notes that it is often used to describe automated ML pipelines, model deployment, scalable inference, and MLOps, although it may also be used more broadly. My view is that AI Engineering is mainly software engineering applied to systems containing AI components, together with systematic practices for developing those AI components. I do not see it as a fundamentally separate engineering discipline.
+
+A machine-learning model is just a software component with greater uncertainty and less precisely specified behaviour. However, software engineering already has methods for handling unreliable components. AI may require these practices to be adapted or applied more carefully, but the fundamental goal remains unchanged: users still need reliable and useful software. The presence of a machine-learning model should not be used as a reason to lower software quality. Models are introduced to provide better functionality, not a worse user experience.
+From this perspective, what matters is not inventing new engineering principles, but deciding which existing principles must be preserved when AI components are introduced. For example, MLOps can be understood as a natural extension of DevOps that maintains software quality throughout the machine-learning lifecycle.
+
+
+\noindent\textbf{Q: How do foundation models, AI coding assistants, RAG systems, prompt pipelines, and agentic workflows change the boundaries between these
+roles? }
+
+A: 
+It is difficult to predict how foundation models and AI agents will ultimately change the boundaries between data scientists and software engineers because their capabilities are developing quickly. A conclusion based only on current tools may become outdated very soon. Nevertheless, based on my experience with current tools such as Claude Code and Codex, AI coding assistants have made it easier for machine-learning researchers to build simple demos and for software engineers to experiment with small models. However, current agents still struggle to independently manage complex projects, whether the goal is to develop a complex model for a large research problem or to build a reliable software system. They often lack the broad understanding needed to decide what the system requires and how its parts should be organized.
+
+Specialist knowledge therefore remains essential for guiding AI agents and ensuring that their work contributes to the intended goal. Role boundaries remain clear, as each specialist’s expertise continues to provide distinct value within the workflow, even when AI handles much of the implementation.

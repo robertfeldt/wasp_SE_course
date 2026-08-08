@@ -1,0 +1,52 @@
+\section{Paper Analysis}
+
+\subsection{Paper A}
+
+    Paper Title: Statistical Confidence in Functional Correctness: An Approach for AI Product Functional Correctness Evaluation~\cite{AlbertiniEtAl2026SCFC} (CAIN 2026)
+
+    \subsubsection{Core Ideas}
+
+    The paper proposes Statistical Confidence in Functional Correctness (SCFC) for evaluating whether an AI system meets quantitative functional requirements. Rather than relying on a single performance estimate, SCFC considers uncertainty by combining specification limits, stratified sampling, bootstrapping, and a capability index. This provides a more reliable basis for judging whether an AI system is functionally ready for practical use.
+
+
+    \subsubsection{Integration into a Larger AI-intensive Project}
+
+    A relevant AI-intensive project is semi-automated offside technology (SAOT). SAOT uses AI models to capture players' 3D skeletons in real time, identify the moment when the ball is played, and combine this information to generate offside decisions that assist referees. Since these decisions can directly influence the outcome of a match, the system needs to be highly reliable rather than merely achieving good average performance.
+    
+    SCFC could be applied to evaluate whether the system satisfies clearly defined functional requirements. For example, specification limits could be defined for the accuracy of player-position estimation or the accuracy of the final offside decision. The evaluation data could also be stratified according to challenging conditions, such as player occlusion and crowded scenes. Bootstrapping could then be used to estimate confidence intervals for the relevant performance metrics, and the capability index could indicate whether the system meets its required performance with sufficient statistical confidence.
+    
+    This is particularly useful for SAOT because a high average accuracy alone may not provide enough evidence of reliability. A system may perform well overall while being unstable in less common but important situations. SCFC therefore provides a systematic way to connect statistical model evaluation with the functional requirements of a high-reliability AI system.
+    
+        
+    \subsubsection{Relation and Adaptation to my Research}
+    
+    The paper is relevant to my research because practical football AI systems can encounter many corner cases that are difficult to capture with standard machine-learning evaluation. Performance on a fixed test set may show that a model works well on average, but it does not necessarily indicate how reliably the model will behave across different game situations. SCFC therefore provides a useful perspective by evaluating not only model performance, but also the statistical confidence that a required level of performance can be achieved.
+    
+    SCFC is not directly applicable to my current representation learning research, since there is no single functional requirement or clear definition of what constitutes a ``correct'' representation. However, it could be applied to downstream tasks built on these representations, such as event recognition and player action evaluation, where measurable requirements can be defined.
+    
+    More generally, I think reliability is undervalued in machine learning research, where evaluation often focuses mainly on average benchmark performance. Reliability is related to robustness, but the emphasis is slightly different. Robustness usually concerns how a model behaves under perturbations or changes in the input or data distribution, while reliability is more concerned with whether the model can consistently satisfy its expected requirements in practical use. I believe that more reliable AI models could be a very promising research direction for machine learning researchers.
+    % In future work, I could therefore complement conventional evaluation metrics with confidence intervals, evaluation across different football situations, and, where suitable functional requirements exist, approaches such as SCFC.
+
+
+\subsection{Paper B}
+
+    Paper Title: Engineering LLM Powered Multi-Agent Framework for Autonomous CloudOps~\cite{ParthasarathyEtAl2025CloudOps} (CAIN 2025)
+    
+    \subsubsection{Core Ideas}
+
+    The paper presents MOYA, an LLM-powered multi-agent framework developed for autonomous CloudOps. Instead of relying on a single LLM, MOYA decomposes complex workflows into specialized agents coordinated within a modular framework. The design addresses practical engineering concerns such as heterogeneous data sources, task orchestration, extensibility, security, error mitigation, and the balance between agent autonomy and human control. 
+
+    \subsubsection{Integration into a Larger AI-intensive Project}
+    
+    A larger AI-intensive project related to my research could be an intelligent football-analysis platform for professional clubs. Such a system could combine tracking and skeleton data, video, match statistics, and textual information to support coaches and analysts. Similar to MOYA, the system could be organized as a collection of specialized agents rather than one general-purpose AI component. For example, one agent could retrieve and analyze tracking data, another could detect game events, another could analyze tactical patterns, while an LLM-based agent could retrieve relevant match information and generate explanations or reports for analysts. An orchestrator could select and coordinate these agents according to the user's request.
+    
+    The ideas in MOYA are particularly useful for such a system because football analysis involves different data sources and specialized tasks that cannot easily be handled by a single model. The paper argues that assigning distinct domains to specialized agents can reduce context overload and make the overall system more modular and extensible. 
+    Human control would also remain important. The system could assist coaches and analysts with information and recommendations while leaving important decisions to domain experts. 
+    % My research could provide one of the underlying AI capabilities, where the learned representations of player motions can be used for event recognition and tactical analysis.
+    
+    \subsubsection{Relation and Adaptation to my Research}
+    
+    The paper is not directly related to my current representation learning problem, but it provides a useful perspective on how my research could eventually become part of a larger AI system. At present, I mainly focus on developing models that learn meaningful representations from football tracking data. If these models are later used in a practical football analysis platform, they would likely become only one specialized component among many others. The multi-agent architecture in the paper suggests a natural way of combining such specialized AI capabilities while keeping their responsibilities and interfaces separated.
+    
+    To better support this type of integration in the long term, I could design my research project in a more modular way, with clear interfaces between data processing, representation learning, and downstream analysis. The trained models could expose well-defined inputs and outputs so that they can later be called as tools by other components or agents. 
+    These adaptations would not change the scientific goal of my research, but they would make its results easier to reuse as a specialized capability within a larger agent-based football analysis system.
