@@ -1,0 +1,158 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{graphicx} 
+\usepackage{hyperref}
+\usepackage{amsmath}
+
+\title{WASP Software Engineering Assignment}
+\author{Lena Wild}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Research description}
+My research focuses on road understanding for autonomous vehicles. While humans reason intuitively about the current road structure and road conditions during driving, end-to-end driving policies trained to predict steering commands or control output directly from sensor input often struggle to correctly identify and act upon basic road concepts, such as neighboring lanes, sign-to-lane relations or road boundaries. In my research, I leverage highly detailed maps with centimeter-level precision, so-called high-definition (HD) maps, with the aim of incorporating the precise geometric and relational knowledge they contain into the training paradigm and supervision of vision-language-(action-)models (VLMs and VLAs). The training objective is then to condition their internal latent representation on this road knowledge and align their internal states with the ``rules'' of the road environment. 
+Beyond leveraging pre-existing maps for supervision, in a parallel line of work I explore how these highly precise, yet expensive to acquire HD maps could be maintained up-to-date over time with the help of learning-based online methods, to close the loop for continuous map learning.
+In summary, my research aims at combining the relational and geometrically precise road structure provided in traditional map representations with learning-based paradigms, with the goal of transferring the essence of the road rules into the latent of autonomous driving models.
+
+\section{Lecture principles}
+\subsection{Verification vs Validation}
+While the lecture notes characterize ML testing as focusing primarily on validation (``Did we build the right thing''), I also observe the opposite focus in my research field (``Did we build it right?''). In online HD mapping specifically (the task of predicting a vectorized HD map from sensor input), progress is commonly measured by benchmark metrics such as mean average precision, effectively treating improved benchmark performance as the primary indicator of success. Over the past two to three years, a large number of papers have reported gains on these benchmarks \cite{maptr, maptrv2, lanesegnet}. Even after two studies have called out leakage between training and test set in the most used benchmarks, reporting on the leaking split has continued \cite{lilja, streammapnet}. Consequently, a research culture that equates progress with improvements on a benchmark may optimize for``building it right'' while losing sight of ``building the right thing'', namely a solution capable of meeting real-world (deployment) requirements. 
+\subsection{Data Quality Assurance and Validation}
+The lecture highlighted data testing and data validation as key aspects of ML pipelines, particularly because predictions from earlier models may later become training data, causing errors to accumulate over time if data quality is not carefully monitored. In autonomous driving research, especially in academia, only a handful of large-scale datasets are widely used, and many of them have well-known limitations \cite{nuscenes, argoverse2, impact}. Furthermore, current research often targets use cases for which these datasets were not originally designed, which can exacerbate issues such as data leakage and limited diversity.
+In online mapping, for example, many models are trained on datasets that were originally created for object detection. Only recently has substantial geographic overlap between training and test splits been identified. While revisiting the same location at different times may not significantly simplify an object detection task, it can create a serious source of leakage in online mapping, where the goal is to infer the static structure of the environment. As a result, several models have been reported to lose roughly 50\% of their performance when evaluated on geographically disjoint splits \cite{lilja}. In my own research, I try to remain aware of such shortcuts and minimize them whenever possible. However, the limited number of available datasets makes it difficult to fully ensure data quality and diversity.
+\section{Guest-lecture principles}
+\subsection{RE4AI}
+In the first guest lecture, requirements engineering for AI-based systems was discussed, highlighting that AI systems often have different requirements than traditional software with respect to aspects such as usability, maintainability, and re-trainability. In my research field, although not directly in my current work, the topics of safety and certification are heavily debated because they represent key requirements for production-grade autonomous vehicles \cite{zhao2022certification}. Traditional safety certification approaches have largely been developed for modular autonomous driving stacks, where failures can often be traced back to individual components of the system. However, as the field increasingly moves toward end-to-end, monolithic, and largely black-box approaches \cite{alpamayo, emma}, satisfying these certification requirements becomes significantly more challenging. The lack of interpretability and traceability makes it difficult to demonstrate safety and reliability, and robust solutions to this problem are still an active area of research.
+\subsection{AI in the V-model of software development}
+During the second guest lecture, the V-model has been discussed in the context of recent developments in (agentic) AI, with different hypotheses on which parts of the model will eventually be replaced or at least augmented by generative models. While replacing higher level planning and organizational tasks seemed to be out of reach for a long time, the increasing capabilities of agentic systems question the assumption that only skill-centric implementation tasks at the lower part of the V would be replaced anytime soon. For my own research, I currently try to limit agentic AI usage to replace ``skill''-questions rather than ``taste'' questions (i.e., the ones involving judgement, theory development, etc.), but I am increasingly questioning if that is still the right approach given the models' enormous capabilities. 
+
+\section{Data scientists, software engineers, and AI engineers}
+\begin{itemize}
+\item \textbf{What differences do the chapters describe between data scientists and software engineers? Do you agree with this distinction? Why or why not? }
+The chapters describe data scientists as primarily focused on developing models, experimenting with data, and optimizing predictive performance (maybe optionally investigating fairness or robustness of models), while software engineers focus on building reliable, maintainable, scalable, and deployable systems, ideally all this while keeping the user's needs and practical cost in mind. 
+On a high level, I agree with this distinction because the two roles emphasize different skills and success metrics. However, in practice the boundary seems to be increasingly blurred: many ML practitioners need software engineering skills, and many software engineers need a working understanding of ML. In my experience, during education these two groups of people are not separated (at least not from the beginning), and ideally should hence have an understanding of the techniques used and problems faced on the opposite side. In my research, the ``contribution'' is often on the algorithmic or model-side rather than focusing on deployability or scalability.
+
+\item \textbf{The chapters argue that production ML requires a system-wide view, not only a model-centric view. How does this apply to your own research area? }
+In my research, the focus is primarily on the model itself, with the system-wide perspective typically mentioned only in the introduction to provide context. At the same time, many of the models developed and trained in autonomous driving research would be difficult to deploy in a production vehicle in the near term due to constraints such as latency, model size, and the complexity of their training and inference pipelines. Because my research is exploratory rather than production-oriented, this is not necessarily a disadvantage. Focusing on model development without being constrained by real-world deployment requirements enables rapid iterations and the creation of proof-of-concepts that can be used to explore promising new approaches and system designs more in-depth at a later point.
+
+\item \textbf{Do you think data scientists and software engineers will remain distinct roles, or will both need to learn more of each other’s skills? Explain.}
+The roles will likely remain distinct to some extent because they require different depths of expertise. Considering the increasing complexity of systems and tools, I can imagine that true specialists will still be needed on both sides. However, I also believe that a lot of the hard technical skills could be outsourced to GenAI tools soon (we already see that happening), which in turn would make the role of ``generalists'' more relevant than before. Hence, I can think of two different trends that could emerge: the need for more specialists with high technical expertise in both domains, and the need for more generalists that overlook the complete landscape. In the nearer future I foresee that a group of data scientists will need stronger software engineering, deployment, and reproducibility skills, and a group of software engineers will need stronger understanding of ML behavior, evaluation, and data quality, to build generalist competence. 
+
+\item \textbf{Where does “AI Engineering” fit in this picture: is it mostly software engineering for AI systems, data science made more systematic, MLOps / model engineering, or something partly distinct?}
+AI Engineering sits between software engineering, data science, and MLOps. It is not only software engineering, because it requires understanding model behavior and evaluation, but also not exclusively data science, since it has a focus on deploying and operating systems. It also goes beyond traditional MLOps because it includes aspects of application design, user experience, safety, and integration of AI components into products. Therefore, in my view AI Engineering is best seen as a distinct interdisciplinary \emph{engineering} discipline focused on building production AI systems.
+
+\item \textbf{How do foundation models, AI coding assistants, RAG systems, prompt pipelines, and agentic workflows change the boundaries between these roles?}
+These technologies shift the emphasis from training models toward system design and integration: The use of foundation models removes the necessity to build models from scratch, while RAG systems make data management and retrieval as important as model training. AI coding assistants and agentic workflows lower the barrier for software implementation, while introducing the need to orchestrate and monitor parallel subsystems. As a result, the boundary between data science and software engineering becomes less about ``who trains the model'' and more about ``who designs and operates the complete AI system'', with AI Engineers probably increasingly occupying this middle ground. 
+
+\end{itemize}
+\section{Paper analysis from CAIN}
+
+\subsection{Data Leakage in Automotive Perception: Practitioners' Insights\\\small \textsc{M.A.A. Babu, S. K. Pandey, D. Durisic, A. B\'alint, M. Staron}, CAIN 2026}
+\paragraph{Core ideas and their SE importance.}
+The paper investigates how practitioners in the automotive industry perceive, detect, and mitigate data leakage in machine learning systems for automotive perception. Through interviews with engineers working in system design, development, and verification, the authors find that knowledge about data leakage is widespread but fragmented across organizational roles. ML engineers often view leakage as a dataset splitting or validation problem, whereas system and verification engineers tend to focus on representativeness, scenario coverage, and real-world deployment concerns. The study further shows that leakage prevention relies primarily on experience, communication, and organizational processes rather than dedicated technical tools. The authors therefore characterize leakage control as a socio-technical challenge that spans the entire development process. This work is important from a software engineering perspective because it highlights that ensuring reliable AI systems requires more than good model architectures and evaluation metrics - data quality, traceability, and human factors such as communication between teams are equally important. 
+
+\paragraph{Relation to my research.} The paper is highly relevant to my research on autonomous driving and online HD mapping. In fact, one of the examples discussed in an earlier section of this report concerns geographic leakage in commonly used autonomous driving datasets (Many mapping approaches are trained and evaluated on repeated observations of the same road infrastructure, which can leak information about the target environment and significantly inflate performance) \cite{lilja, streammapnet}. What I found particularly interesting is that the paper broadens the notion of leakage beyond the purely technical/statistical perspective commonly found in academic research. While researchers often discuss leakage in terms of train-test splits and scenario coverage, the interviewed practitioners connect leakage also to representativeness and deployment validity. 
+
+\paragraph{Integration into a larger AI-intensive project.} Consider a large-scale autonomous driving platform consisting of fleet data collection, HD map maintenance, perception models, planning systems, simulation environments, validation pipelines, and continuous retraining infrastructure. Such a system would continuously gather data from vehicles operating in different geographic regions and use that data to improve perception and mapping models.
+
+The paper's ideas could be applied by introducing explicit data governance and traceability mechanisms throughout the development lifecycle. Data localization could be tracked across collection, preprocessing, training, and evaluation stages, while validation teams could collaborate closely with ML engineers to identify potential leakage sources before deployment. Furthermore, leakage detection would become a shared responsibility across engineering roles rather than being delegated exclusively to data scientists (which wouldn't be feasible in the first place since leakage - as the paper points out - doesn't happen exclusively at that stage).
+
+My own research would fit into such a system insofar as the online HD mapping component provides continuously updated map representations, while the VLM-related work could leverage these maps to improve scene understanding and reasoning. Ensuring that the resulting systems generalize beyond benchmark datasets would require precisely the type of cross-functional leakage awareness advocated in the paper.
+
+\paragraph{Adaptation of my research.}
+To better support the paper's vision, I would place greater emphasis on evaluating models under geographically and temporally disjoint conditions. In addition to reporting standard benchmark metrics, I would explicitly investigate how performance changes under stricter leakage-resistant evaluation protocols. However, given the data scarcity in publicly available research datasets, the mitigation of leakage beyond geographical overlap, i.e., leakage related to missing geographical coverage or diverse scenarios, etc., is only in part possible.
+
+More broadly, the paper suggests that research on autonomous driving datasets should not only focus on creating better models but also on creating better evaluation methodologies. In the long term, I believe my research could contribute to developing mapping benchmarks and validation procedures that are explicitly designed to minimize leakage and better reflect deployment conditions by showing that exactly such a leakage exists with respect to road understanding.
+
+\subsection{Investigating Issues that Lead to Code Technical Debt in Machine Learning Systems\\\small \textsc{R. Ximenes, A. P. Santos Alves, T. Escovedo, R. Spinola, M. Kalinowski}, CAIN 2025}
+\paragraph{Core ideas and their SE importance.}
+The paper investigates sources of technical debt in machine learning systems, focusing specifically on code-related issues that arise throughout the ML workflow, hence narrowing the scope of the original Sculley paper discussed in the course \cite{sculley}. Through discussions with experienced ML practitioners, the authors identify 30 issues that contribute to technical debt, with the majority occurring during data preprocessing and preparation. Examples include ad-hoc handling of missing values, inconsistent preprocessing pipelines, undocumented assumptions, feature engineering shortcuts, and evaluation code that is difficult to maintain.
+
+The importance of this work for AI engineering lies in shifting attention away from model performance alone and towards the long-term maintainability of ML systems (no quick fixes and temporary solutions). While shortcuts may accelerate experimentation, they can substantially increase future maintenance costs and make systems difficult to reproduce, debug, or evolve. 
+
+\paragraph{Relation to my research.} In academic research, the primary focus is often on demonstrating improvements in benchmark metrics, while code quality and maintainability receive less attention. This can lead to technical debt in data preprocessing, evaluation scripts, and dataset-specific adaptations, with a direct impact on reproducibility of training results, even when working with the same dataset. Hence, the data-related issues discussed in the paper are particularly relevant for my research. Autonomous driving research relies heavily on a small number of large-scale datasets that often contain hidden biases or limitations \cite{argoverse2, nuscenes}. As researchers adapt these datasets to new tasks, additional preprocessing steps and task-specific modifications are frequently introduced, with the necessary steps and potential heuristics often not described in the main paper due to lack of space. These adaptations can gradually accumulate into complex and poorly documented pipelines that are difficult to reproduce or transfer to new datasets, e.g. ``we transfer the HD map to a graph'', when there are a large number of mutually exclusive approaches to do this, often with very different outcomes. In my own work, maintaining clear and reproducible data processing pipelines is therefore as important as improving model performance, especially since the latter might be inflated as a consequence of sloppy or leaking data handling.
+
+\paragraph{Integration into a larger AI-intensive project.} Consider a production-grade autonomous driving platform that continuously updates and maintains HD maps using data collected from a fleet of vehicles. Such a system would include perception models, mapping components, data collection pipelines, retraining infrastructure, validation systems, and deployment mechanisms. The ideas from the paper could be applied by systematically identifying and reducing technical debt throughout the ML workflow: Data preprocessing steps could be standardized and version-controlled, feature extraction procedures documented, and evaluation pipelines automated. Monitoring technical debt would become a first-class engineering concern alongside model accuracy (i.e., the produced map's precision) and latency of the online system.
+
+My own research could fit naturally into such a project. The online mapping component would provide mechanisms for updating and refining HD maps, while my work on incorporating map knowledge into autonomous driving models could improve downstream perception and decision-making. However, for these components to operate reliably in a production system, they would need to be supported by maintainable data and software pipelines that avoid the accumulation of code technical debt identified in the paper, besides a larger number of more diverse training scenes, to assure better coverage.
+
+\paragraph{Adaptation of my research.} To better support the paper's vision, I would place greater emphasis on engineering aspects of my research workflow, the ones which are often overlooked in the final paper submission. In addition to evaluating model performance, I would explicitly consider reproducibility, maintainability, and data pipeline quality. While dataset versioning, clear documentation of preprocessing steps and meticulous annotation quality measurement are already part of my workflow, automated validation checks tailored to each part in the modular software design of my multi-stage pipeline could profit from the ideas of the paper. 
+In the longer term, I believe autonomous driving research would benefit from treating data and software infrastructure as \emph{research} contributions in their own right, rather than merely supporting components or an engineering by-product.
+
+\section{Evidence, originality, and GenAI-use transparency}
+The main sources I used are listed in the References section below. [1] - [7, 9, 11, 12] are papers peer-reviewed at conferences and journals I use for my own research. Given the peer-review, I deem them to be trustworthy. [8] is a review of existing datasets by a research group that is currently releasing their own large-scale dataset, and despite not peer-reviewed (as far as I can see at the moment), I deem it trustworthy because of its origin and scope. [10] is a technical report for the Alpamayo-R1 model released by NVIDIA, which has not been formally accepted at a peer-reviewed venue, but since sourcecode and training details are publicly available and it is now one of the most-used baselines in autonomous driving, I deem it trustworthy too. 
+
+I have used GenAI tools for cross-checking my citations for accuracy, a final pass on my manuscript for language checking and inconsistency search, and for summarizing book chapters and the two CAIN papers as a guide before reading them myself. All text in this submission reflects my own thoughts and opinions.
+
+\begin{thebibliography}{99}
+\bibitem{maptr}
+B. Liao, S. Chen, X. Wang, T. Cheng, Q. Zhang, W. Liu, and C. Huang,
+``MapTR: Structured Modeling and Learning for Online Vectorized HD Map Construction,''
+in \textit{International Conference on Learning Representations (ICLR)}, 2023.
+
+\bibitem{maptrv2}
+B. Liao, S. Chen, Y. Zhang, B. Jiang, Q. Zhang, W. Liu, C. Huang, and X. Wang,
+``MapTRv2: An End-to-End Framework for Online Vectorized HD Map Construction,''
+\textit{International Journal of Computer Vision (IJCV)}, 2024.
+
+\bibitem{lanesegnet}
+T. Li, P. Jia, B. Wang, L. Chen, K. Jiang, J. Yan, and H. Li,
+``LaneSegNet: Map Learning with Lane Segment Perception for Autonomous Driving,''
+in \textit{International Conference on Learning Representations (ICLR)}, 2024.
+
+\bibitem{streammapnet}
+T. Yuan, Y. Liu, Y. Wang, Y. Wang, and H. Zhao,
+``StreamMapNet: Streaming Mapping Network for Vectorized Online HD Map Construction,''
+in \textit{IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)}, 2024.
+
+\bibitem{lilja}
+A. Lilja, J. Fu, E. Stenborg, and L. Hammarstrand,
+``Localization Is All You Evaluate: Data Leakage in Online Mapping Datasets and How to Fix It,''
+in \textit{IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}, 2024.
+
+
+\bibitem{nuscenes}
+H. Caesar, V. Bankiti, A. H. Lang, S. Vora, V. E. Liong, Q. Xu, A. Krishnan, Y. Pan, G. Baldan, and O. Beijbom,
+``nuScenes: A Multimodal Dataset for Autonomous Driving,''
+in \textit{IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}, 2020.
+
+
+\bibitem{argoverse2}
+B. Wilson, W. Qi, T. Agarwal, J. Lambert, J. Singh, S. Khandelwal, B. Pan, R. Kumar, A. Hartnett, J. K. Pontes, D. Ramanan, P. Carr, and J. Hays,
+``Argoverse 2: Next Generation Datasets for Self-Driving Perception and Forecasting,''
+in \textit{Conference on Neural Information Processing Systems (NeurIPS) Datasets and Benchmarks Track}, 2021.
+
+
+\bibitem{impact}
+R. Schwarzkopf, J. Merkert, F. Bieder, A. B\"atz, A. Blumberg, C. Fernandez, F. Hauser, F. Immel, C. Kinzig, H. K\"onigshof, F. Konstantinidis, M. Lauer, W. Poh, N. Rack, K. R\"osch, Y. Shen, M. Steiner, G. Stepanov, D. Strutz, \"O. S. Ta\c{s}, J. Truetsch, K. Wang, R. Wagner, J.-H. Pauls, and C. Stiller,
+``Creating Impactful Autonomous Driving Datasets: A Strategic Guide from Research Gap to Benchmark,''
+arXiv:2607.00710, 2026.
+
+\bibitem{zhao2022certification}
+T. Zhao, E. Yurtsever, J. Paulson, and G. Rizzoni,
+``Formal Certification Methods for Automated Vehicle Safety Assessment,''
+in \textit{IEEE Transactions on Intelligent Vehicles}, vol. 8, no. 1, pp. 232-249, 2023.
+
+\bibitem{alpamayo}
+NVIDIA, Y. Wang, W. Luo, J. Bai, Y. Cao, T. Che, K. Chen, Y. Chen, et al.,
+``Alpamayo-R1: Bridging Reasoning and Action Prediction for Generalizable Autonomous Driving in the Long Tail,''
+arXiv:2511.00088, 2025.
+
+\bibitem{emma}
+J.-J. Hwang, R. Xu, H. Lin, W.-C. Hung, J. Ji, K. Choi, D. Huang, T. He, P. Covington, B. Sapp, Y. Zhou, J. Guo, D. Anguelov, and M. Tan,
+``EMMA: End-to-End Multimodal Model for Autonomous Driving,''
+in \textit{Transactions on Machine Learning Research (TMLR)}, 2025.
+
+\bibitem{sculley}
+D. Sculley, G. Holt, D. Golovin, E. Davydov, T. Phillips, D. Ebner, V. Chaudhary, M. Young, J.-F. Crespo, and D. Dennison,
+``Hidden Technical Debt in Machine Learning Systems,''
+in \textit{Advances in Neural Information Processing Systems (NeurIPS)}, 2015.
+
+\end{thebibliography}
+
+\end{document}
+
+
