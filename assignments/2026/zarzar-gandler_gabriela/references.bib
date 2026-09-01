@@ -1,0 +1,202 @@
+@inproceedings{alpha-req,
+ author = {Agrawal, Kumar K and Mondal, Arnab Kumar and Ghosh, Arna and Richards, Blake},
+ booktitle = {Advances in Neural Information Processing Systems},
+ editor = {S. Koyejo and S. Mohamed and A. Agarwal and D. Belgrave and K. Cho and A. Oh},
+ pages = {17626--17638},
+ publisher = {Curran Associates, Inc.},
+ title = {\textbackslash alpha-ReQ : Assessing Representation Quality in Self-Supervised Learning by measuring eigenspectrum decay},
+ url = {https://proceedings.neurips.cc/paper_files/paper/2022/file/70596d70542c51c8d9b4e423f4bf2736-Paper-Conference.pdf},
+ volume = {35},
+ year = {2022}
+}
+
+@InProceedings{rankme,
+  title = 	 {{R}ank{M}e: Assessing the Downstream Performance of Pretrained Self-Supervised Representations by Their Rank},
+  author =       {Garrido, Quentin and Balestriero, Randall and Najman, Laurent and Lecun, Yann},
+  booktitle = 	 {Proceedings of the 40th International Conference on Machine Learning},
+  pages = 	 {10929--10974},
+  year = 	 {2023},
+  editor = 	 {Krause, Andreas and Brunskill, Emma and Cho, Kyunghyun and Engelhardt, Barbara and Sabato, Sivan and Scarlett, Jonathan},
+  volume = 	 {202},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {23--29 Jul},
+  publisher =    {PMLR},
+  pdf = 	 {https://proceedings.mlr.press/v202/garrido23a/garrido23a.pdf},
+  url = 	 {https://proceedings.mlr.press/v202/garrido23a.html},
+  abstract = 	 {Joint-Embedding Self Supervised Learning (JE-SSL) has seen a rapid development, with the emergence of many method variations but only few principled guidelines that would help practitioners to successfully deploy them. The main reason for that pitfall comes from JE-SSL’s core principle of not employing any input reconstruction therefore lacking visual cues of unsuccessful training. Adding non informative loss values to that, it becomes difficult to deploy SSL on a new dataset for which no labels can help to judge the quality of the learned representation. In this study, we develop a simple unsupervised criterion that is indicative of the quality of the learned JE-SSL representations: their effective rank. Albeit simple and computationally friendly, this method —coined RankMe— allows one to assess the performance of JE-SSL representations, even on different downstream datasets, without requiring any labels. A further benefit of RankMe is that it does not have any training or hyper-parameters to tune. Through thorough empirical experiments involving hundreds of training episodes, we demonstrate how RankMe can be used for hyperparameter selection with nearly no reduction in final performance compared to the current selection method that involve a dataset’s labels. We hope that RankMe will facilitate the deployment of JE-SSL towards domains that do not have the opportunity to rely on labels for representations’ quality assessment.}
+}
+
+@inproceedings{q-score,
+author = {Kalibhat, Neha and Narang, Kanika and Firooz, Hamed and Sanjabi, Maziar and Feizi, Soheil},
+title = {Measuring self-supervised representation quality for downstream classification using discriminative features},
+year = {2024},
+isbn = {978-1-57735-887-9},
+publisher = {AAAI Press},
+url = {https://doi.org/10.1609/aaai.v38i12.29201},
+doi = {10.1609/aaai.v38i12.29201},
+abstract = {Self-supervised learning (SSL) has shown impressive results in downstream classification tasks. However, there is limited work in understanding their failure modes and interpreting their learned representations. In this paper, we study the representation space of state-of-the-art self-supervised models including SimCLR, SwaV, MoCo, BYOL, DINO, SimSiam, VICReg and Barlow Twins. Without the use of class label information, we discover discriminative features that correspond to unique physical attributes in images, present mostly in correctly-classified representations. Using these features, we can compress the representation space by up to 40\% without significantly affecting linear classification performance. We then propose Self-Supervised Representation Quality Score (or Q-Score), an unsupervised score that can reliably predict if a given sample is likely to be mis-classified during linear evaluation, achieving AUPRC of 91.45 on ImageNet-100 and 78.78 on ImageNet-1K. Q-Score can also be used as a regularization term on pre-trained encoders to remedy low-quality representations. Fine-tuning with Q-Score regularization can boost the linear probing accuracy of SSL models by up to 5.8\% on ImageNet-100 and 3.7\% on ImageNet-1K compared to their baselines. Finally, using gradient heatmaps and Salient ImageNet masks, we define a metric to quantify the interpretability of each representation. We show that discriminative features are strongly correlated to core attributes and, enhancing these features through Q-score regularization makes SSL representations more interpretable.},
+booktitle = {Proceedings of the Thirty-Eighth AAAI Conference on Artificial Intelligence and Thirty-Sixth Conference on Innovative Applications of Artificial Intelligence and Fourteenth Symposium on Educational Advances in Artificial Intelligence},
+articleno = {1453},
+numpages = {9},
+series = {AAAI'24/IAAI'24/EAAI'24}
+}
+
+@InProceedings{tsitsulin23a,
+  title = 	 {Unsupervised Embedding Quality Evaluation},
+  author =       {Tsitsulin, Anton and Munkhoeva, Marina and Perozzi, Bryan},
+  booktitle = 	 {Proceedings of 2nd Annual Workshop on Topology, Algebra, and Geometry in Machine Learning (TAG-ML)},
+  pages = 	 {169--188},
+  year = 	 {2023},
+  editor = 	 {Doster, Timothy and Emerson, Tegan and Kvinge, Henry and Miolane, Nina and Papillon, Mathilde and Rieck, Bastian and Sanborn, Sophia},
+  volume = 	 {221},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {28 Jul},
+  publisher =    {PMLR},
+  pdf = 	 {https://proceedings.mlr.press/v221/tsitsulin23a/tsitsulin23a.pdf},
+  url = 	 {https://proceedings.mlr.press/v221/tsitsulin23a.html},
+  abstract = 	 {Unsupervised learning has recently significantly gained in popularity, especially with deep learning-based approaches. Despite numerous successes and approaching supervised-level performance on a variety of academic benchmarks, it is still hard to train and evaluate SSL models in practice due to the unsupervised nature of the problem. Even with networks trained in a supervised fashion, it is often unclear whether they will perform well when transferred to another domain. Past works are generally limited to assessing the amount of information contained in embeddings, which is most relevant for self-supervised learning of deep neural networks. This works chooses to follow a different approach: can we quantify how easy it is to linearly separate the data in a stable way? We survey the literature and uncover three methods that could be potentially used for evaluating quality of representations. We also introduce one novel method based on recent advances in understanding the high-dimensional geometric structure self-supervised learning. We conduct extensive experiments and study the properties of these metrics and ones introduced in the previous work. Our results suggest that while there is no free lunch, there are metrics that can robustly estimate embedding quality in an unsupervised way.}
+}
+
+@INPROCEEDINGS{aldeneh25,
+  author={Aldeneh, Zakaria and Thilak, Vimal and Higuchi, Takuya and Theobald, Barry-John and Likhomanenko, Tatiana},
+  booktitle={ICASSP 2025 - 2025 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)}, 
+  title={Towards Automatic Assessment of Self-Supervised Speech Models using Rank}, 
+  year={2025},
+  volume={},
+  number={},
+  pages={1-5},
+  keywords={Training;Measurement;Speech recognition;Self-supervised learning;Signal processing;Acoustics;Reliability;Speech processing;Tuning;Monitoring;Foundation speech models;self-supervised learning;phoneme recognition;keyword spotting;speaker identification;RankMe},
+  doi={10.1109/ICASSP49660.2025.10889651}}
+
+@inproceedings{whetten25,
+  title     = {{Towards Early Prediction of Self-Supervised Speech Model Performance}},
+  author    = {Ryan Whetten and Lucas Maison and Titouan Parcollet and Marco Dinarelli and Yannick Estève},
+  year      = {2025},
+  booktitle = {{Interspeech 2025}},
+  pages     = {1228--1232},
+  doi       = {10.21437/Interspeech.2025-34},
+  issn      = {2958-1796},
+}
+
+@INPROCEEDINGS{liu24,
+  author={Liu, Alexander H. and Yeh, Sung-Lin and Glass, James R.},
+  booktitle={ICASSP 2024 - 2024 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)}, 
+  title={Revisiting Self-supervised Learning of Speech Representation from a Mutual Information Perspective}, 
+  year={2024},
+  volume={},
+  number={},
+  pages={12051-12055},
+  keywords={Measurement;Training;Computational modeling;Speech recognition;Self-supervised learning;Signal processing;Robustness;Self-supervised speech representation learning;representation analysis;information theory},
+  doi={10.1109/ICASSP48485.2024.10447758}}
+
+@inproceedings{li25,
+  title={Tracing the Representation Geometry of Language Models from Pretraining to Post-training},
+  author={Li, Melody Zixuan and Agrawal, Kumar Krishna and Ghosh, Arna and Teru, Komal Kumar and Santoro, Adam and Lajoie, Guillaume and Richards, Blake A.},
+  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},
+  year={2025},
+  url={https://arxiv.org/abs/2509.23024}
+}
+
+@inproceedings{skean25,
+author = {Skean, Oscar and Arefin, Md Rifat and Zhao, Dan and Patel, Niket and Naghiyev, Jalal and LeCun, Yann and Shwartz-Ziv, Ravid},
+title = {Layer by layer: uncovering hidden representations in language models},
+year = {2025},
+publisher = {JMLR.org},
+abstract = {From extracting features to generating text, the outputs of large language models (LLMs) typically rely on the final layers, following the conventional wisdom that earlier layers capture only low-level cues. However, our analysis shows that intermediate layers can encode even richer representations, often improving performance on a range of downstream tasks. To explain and quantify these hidden-layer properties, we propose a unified framework of representation quality metrics based on information theory, geometry, and invariance to input perturbations. Our framework highlights how each layer balances information compression and signal preservation, revealing why mid-depth embeddings can exceed the last layer's performance. Through extensive experiments on 32 text-embedding tasks across various architectures (transformers, state-space models) and domains (language, vision), we demonstrate that intermediate layers consistently provide stronger features, challenging the standard view on final-layer embeddings and opening new directions on using mid-layer representations for more robust and accurate representations.},
+booktitle = {Proceedings of the 42nd International Conference on Machine Learning},
+articleno = {2221},
+numpages = {22},
+location = {Vancouver, Canada},
+series = {ICML'25}
+}
+
+@article{
+shelim25,
+title={Is isotropy a good proxy for generalization in time series forecasting with transformers?},
+author={Rashed Shelim and Shengzhe Xu and Walid Saad and Naren Ramakrishnan},
+journal={Transactions on Machine Learning Research},
+issn={2835-8856},
+year={2025},
+url={https://openreview.net/forum?id=iUtDYVQzFq},
+note={}
+}
+
+@misc{wen24,
+      title={Measuring Pre-training Data Quality without Labels for Time Series Foundation Models}, 
+      author={Songkang Wen and Vasilii Feofanov and Jianfeng Zhang},
+      year={2024},
+      booktitle={Workshop on Time Series in the Age of Large Models.},
+      url={https://openreview.net/pdf?id=nBtV1A3PrR}, 
+}
+
+@inproceedings{sculley2015,
+ author = {Sculley, D. and Holt, Gary and Golovin, Daniel and Davydov, Eugene and Phillips, Todd and Ebner, Dietmar and Chaudhary, Vinay and Young, Michael and Crespo, Jean-Fran\c{c}ois and Dennison, Dan},
+ booktitle = {Advances in Neural Information Processing Systems},
+ editor = {C. Cortes and N. Lawrence and D. Lee and M. Sugiyama and R. Garnett},
+ pages = {},
+ publisher = {Curran Associates, Inc.},
+ title = {Hidden Technical Debt in Machine Learning Systems},
+ url = {https://proceedings.neurips.cc/paper_files/paper/2015/file/86df7dcfd896fcaf2674f757a2463eba-Paper.pdf},
+ volume = {28},
+ year = {2015}
+}
+
+@article{drl,
+  author       = {Neil D. Lawrence},
+  title        = {Data Readiness Levels},
+  journal      = {CoRR},
+  volume       = {abs/1705.02245},
+  year         = {2017},
+  url          = {http://arxiv.org/abs/1705.02245},
+  eprinttype   = {arXiv},
+  eprint       = {1705.02245},
+  timestamp    = {Mon, 13 Aug 2018 16:48:33 +0200},
+  biburl       = {https://dblp.org/rec/journals/corr/Lawrence17.bib},
+  bibsource    = {dblp computer science bibliography, https://dblp.org}
+}
+
+@article{trl,
+   title={Technology readiness levels for machine learning systems},
+   volume={13},
+   ISSN={2041-1723},
+   url={http://dx.doi.org/10.1038/s41467-022-33128-9},
+   DOI={10.1038/s41467-022-33128-9},
+   number={1},
+   journal={Nature Communications},
+   publisher={Springer Science and Business Media LLC},
+   author={Lavin, Alexander and Gilligan-Lee, Ciarán M. and Visnjic, Alessya and Ganju, Siddha and Newman, Dava and Ganguly, Sujoy and Lange, Danny and Baydin, Atílím Güneş and Sharma, Amit and Gibson, Adam and Zheng, Stephan and Xing, Eric P. and Mattmann, Chris and Parr, James and Gal, Yarin},
+   year={2022},
+   month=Oct }
+
+@INPROCEEDINGS{paper1,
+  author={Emile Dos Santos Ferreira and Andrei Paleyes and Neil D. Lawrence},
+  booktitle={2026 IEEE/ACM 5th International Conference on AI Engineering – Software Engineering for AI (CAIN)}, 
+  title={Optimising for Energy Efficiency and Performance in Machine Learning}, 
+  year={2026},
+  volume={},
+  number={},}
+
+@INPROCEEDINGS{paper2,
+  author={Ximenes, Rodrigo and Alves, Antonio Pedro Santos and Escovedo, Tatiana and Spinola, Rodrigo and Kalinowski, Marcos},
+  booktitle={2025 IEEE/ACM 4th International Conference on AI Engineering – Software Engineering for AI (CAIN)}, 
+  title={Investigating Issues That Lead to Code Technical Debt in Machine Learning Systems}, 
+  year={2025},
+  volume={},
+  number={},
+  pages={173-183},
+  keywords={Training;Productivity;Codes;Source coding;Machine learning;Data collection;Data models;Maintenance;Object recognition;Software engineering;Technical Debt;Machine Learning;Focus Group},
+  doi={10.1109/CAIN66642.2025.00028}}
+
+@book{Kastner2025Machine,
+  title = {Machine {{Learning}} in {{Production}}: {{From Models}} to {{Products}}},
+  shorttitle = {Machine {{Learning}} in {{Production}}},
+  author = {K{\"a}stner, Christian},
+  year = 2025,
+  month = apr,
+  publisher = {MIT Press},
+  address = {Cambridge, MA, USA},
+  urldate = {2026-07-09},
+  abstract = {A practical and innovative textbook detailing how to build real-world software products with machine learning components, not just models.},
+  isbn = {978-0-262-04972-6},
+  langid = {english}
+}
